@@ -3,6 +3,129 @@
  * Vanilla JavaScript (no React) - replaces all React event handlers
  */
 
+// Service Worker Registration
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/workout/sw.js')
+      .then((registration) => {
+        console.log('Service Worker registered:', registration);
+      })
+      .catch((error) => {
+        console.error('Service Worker registration failed:', error);
+      });
+  });
+}
+
+// PWA Install Prompt
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  // Show install banner
+  const installBanner = document.createElement('div');
+  installBanner.id = 'install-banner';
+  installBanner.className = 'fixed bottom-4 left-4 right-4 bg-black text-white p-4 border-2 border-white shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] z-50';
+  installBanner.innerHTML = `
+    <div class="flex items-center justify-between gap-4">
+      <div>
+        <p class="font-bold text-sm">Install Workout Trainer</p>
+        <p class="text-xs opacity-80">Add to home screen for quick access</p>
+      </div>
+      <div class="flex gap-2">
+        <button id="install-btn" class="px-3 py-1 text-xs font-bold bg-green-400 text-black border border-white">
+          Install
+        </button>
+        <button id="dismiss-install" class="px-3 py-1 text-xs font-bold bg-white text-black border border-white">
+          ✕
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(installBanner);
+
+  document.getElementById('install-btn').addEventListener('click', async () => {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`User ${outcome} the install prompt`);
+    installBanner.remove();
+    deferredPrompt = null;
+  });
+
+  document.getElementById('dismiss-install').addEventListener('click', () => {
+    installBanner.remove();
+  });
+});
+
+// Push Notifications
+async function requestNotificationPermission() {
+  if (!('Notification' in window)) {
+    console.log('This browser does not support notifications');
+    return false;
+  }
+
+  if (Notification.permission === 'granted') {
+    return true;
+  }
+
+  if (Notification.permission !== 'denied') {
+    const permission = await Notification.requestPermission();
+    return permission === 'granted';
+  }
+
+  return false;
+}
+
+async function subscribeToPushNotifications() {
+  const registration = await navigator.serviceWorker.ready;
+
+  try {
+    const subscription = await registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(
+        'YOUR_VAPID_PUBLIC_KEY_HERE' // You'll need to generate VAPID keys
+      )
+    });
+
+    // Send subscription to server
+    await fetch('/workout/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(subscription)
+    });
+
+    return true;
+  } catch (error) {
+    console.error('Failed to subscribe:', error);
+    return false;
+  }
+}
+
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/');
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+
+// Add notification button to header (optional - you can customize this)
+window.addEventListener('DOMContentLoaded', () => {
+  if ('Notification' in window && Notification.permission === 'default') {
+    // Show notification opt-in after login
+  }
+});
+
 // Auth modal elements
 const authModal = document.getElementById("auth-modal");
 const loginForm = document.getElementById("login-form");
@@ -107,15 +230,17 @@ if (nextWeek && !nextWeek.disabled) {
   });
 }
 
-// Workout card expansion
-document.querySelectorAll(".expand-btn").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    const card = e.target.closest(".workout-card");
+// Workout card expansion - click anywhere on card to expand/collapse
+document.querySelectorAll(".workout-card").forEach((card) => {
+  card.addEventListener("click", (e) => {
     const exerciseList = card.querySelector(".exercise-list");
+    const expandText = card.querySelector(".expand-text");
     const isHidden = exerciseList.classList.contains("hidden");
 
     exerciseList.classList.toggle("hidden");
-    btn.textContent = isHidden ? "Hide exercises ↑" : "Show exercises ↓";
+    if (expandText) {
+      expandText.textContent = isHidden ? "Hide exercises ↑" : "Show exercises ↓";
+    }
   });
 });
 

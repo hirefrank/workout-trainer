@@ -4,7 +4,7 @@
  */
 
 import type { WorkerEnv } from "~/types/env";
-import { WorkoutQuerySchema, WorkoutCompletionWithNotesSchema } from "~/lib/schemas";
+import { WorkoutQuerySchema, WorkoutCompletionWithNotesSchema, PushSubscriptionSchema } from "~/lib/schemas";
 import { isUserAuthenticated } from "./api";
 
 /**
@@ -128,6 +128,54 @@ export async function handleUnmark(request: Request, env: WorkerEnv): Promise<Re
     console.error("Unmark error:", error);
     return new Response(
       JSON.stringify({ error: "Failed to unmark workout" }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
+  }
+}
+
+/**
+ * Handle POST /api/subscribe
+ * Stores push notification subscription (requires authentication)
+ */
+export async function handleSubscribe(request: Request, env: WorkerEnv): Promise<Response> {
+  try {
+    // Check authentication
+    if (!(await isUserAuthenticated(request, env))) {
+      return new Response(
+        JSON.stringify({ error: "Unauthorized" }),
+        { status: 401, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    // Parse and validate subscription
+    const body = await request.json();
+    const subscription = PushSubscriptionSchema.parse(body);
+
+    // Store subscription in KV with the endpoint as key
+    // Hash the endpoint to create a safe key
+    const encoder = new TextEncoder();
+    const data = encoder.encode(subscription.endpoint);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    const key = `push-sub:${hashHex}`;
+
+    // Store subscription with 30-day TTL
+    await env.WORKOUTS_KV.put(key, JSON.stringify(subscription), {
+      expirationTtl: 60 * 60 * 24 * 30, // 30 days
+    });
+
+    return new Response(
+      JSON.stringify({ success: true }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  } catch (error) {
+    console.error("Subscribe error:", error);
+    return new Response(
+      JSON.stringify({ error: "Failed to store subscription" }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }

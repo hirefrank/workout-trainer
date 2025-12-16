@@ -33,5 +33,8 @@
       "id": "cf9e891fc895458883fa2ebb048202fb"
     }
   ]
-  // Set auth password with: wrangler secret put AUTH_PASSWORD
+  // Secrets - set with: wrangler secret put <NAME>
+  // Required secrets:
+  // - AUTH_PASSWORD: Password for workout tracking
+  // - VAPID_PRIVATE_KEY: Private key for push notifications (generate with scripts/generate-vapid-keys.js)
 }

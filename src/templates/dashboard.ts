@@ -20,7 +20,7 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
   const currentWeek = weekParam ? parseInt(weekParam, 10) : 1;
 
   // Validate week parameter
-  if (isNaN(currentWeek) || currentWeek < 1 || currentWeek > 16) {
+  if (isNaN(currentWeek) || currentWeek < 1 || currentWeek > programData.program.weeks) {
     return new Response(
       htmlLayout(
         `<div class="text-center py-12">
@@ -29,7 +29,10 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
             <a href="/workout/" class="text-blue-600 hover:underline">Go to Week 1</a>
           </p>
         </div>`,
-        "Invalid Week"
+        "Invalid Week",
+        undefined,
+        undefined,
+        { weeks: programData.program.weeks, daysPerWeek: programData.program.days_per_week }
       ),
       {
         status: 404,
@@ -64,7 +67,10 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
             <a href="/workout/" class="text-blue-600 hover:underline">Go to Week 1</a>
           </p>
         </div>`,
-        "Week Not Found"
+        "Week Not Found",
+        undefined,
+        undefined,
+        { weeks: programData.program.weeks, daysPerWeek: programData.program.days_per_week }
       ),
       {
         status: 404,
@@ -149,7 +155,9 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
     htmlLayout(
       content,
       `${programData.program.name} - Week ${currentWeek}`,
-      { completed: totalCompleted, total: totalWorkouts }
+      { completed: totalCompleted, total: totalWorkouts },
+      programData.program.description,
+      { weeks: programData.program.weeks, daysPerWeek: programData.program.days_per_week }
     ),
     {
       headers: {

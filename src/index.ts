@@ -14,7 +14,8 @@ import {
 import {
   handleGetCompletions,
   handleMarkComplete,
-  handleUnmark
+  handleUnmark,
+  handleSubscribe
 } from "./handlers/workouts";
 
 export default {
@@ -49,6 +50,10 @@ export default {
 
       if (path === "/api/unmark" && request.method === "POST") {
         return await handleUnmark(request, env);
+      }
+
+      if (path === "/api/subscribe" && request.method === "POST") {
+        return await handleSubscribe(request, env);
       }
 
       // Main dashboard (all other routes)

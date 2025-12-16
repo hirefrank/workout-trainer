@@ -41,6 +41,12 @@ if (!fs.existsSync(stylesDir)) {
   fs.mkdirSync(stylesDir, { recursive: true });
 }
 
+// Create public/workout directory if it doesn't exist
+const publicDir = "./public/workout";
+if (!fs.existsSync(publicDir)) {
+  fs.mkdirSync(publicDir, { recursive: true });
+}
+
 // Create base CSS file if it doesn't exist
 const baseCSS = "./src/styles/app.css";
 if (!fs.existsSync(baseCSS)) {
@@ -49,9 +55,9 @@ if (!fs.existsSync(baseCSS)) {
 
 try {
   await execAsync(
-    "./node_modules/.bin/tailwindcss -i ./src/styles/app.css -o ./src/styles/styles.css --minify"
+    "./node_modules/.bin/tailwindcss -i ./src/styles/app.css -o ./public/workout/styles.css --minify"
   );
-  console.log("✓ Compiled Tailwind CSS to src/styles/styles.css\n");
+  console.log("✓ Compiled Tailwind CSS to public/workout/styles.css\n");
 } catch (error) {
   console.error("⚠️  Tailwind CSS compilation failed:", error.message);
   console.log("   Continuing without CSS compilation...\n");

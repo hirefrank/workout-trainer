@@ -1,0 +1,1 @@
+This folder contains the built output assets for the worker "workout-trainer" generated at 2025-12-16T15:41:59.003Z.

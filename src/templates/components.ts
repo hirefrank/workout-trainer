@@ -24,7 +24,7 @@ export function workoutCard(
   const buttonText = isComplete ? "Undo" : "Complete";
 
   return `
-    <div class="workout-card border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${completeClass}"
+    <div class="workout-card border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${completeClass} cursor-pointer hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all"
          data-week="${week}" data-day="${day.number}">
       <div class="flex items-start justify-between gap-4">
         <div class="flex-1">
@@ -49,7 +49,8 @@ export function workoutCard(
             ? `
           <button class="complete-btn px-4 py-2 font-bold border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] ${buttonClass}"
                   data-week="${week}" data-day="${day.number}"
-                  data-is-complete="${isComplete}">
+                  data-is-complete="${isComplete}"
+                  onclick="event.stopPropagation()">
             ${buttonText}
           </button>
         `
@@ -57,9 +58,9 @@ export function workoutCard(
         }
       </div>
 
-      <button class="expand-btn mt-4 text-sm font-medium text-zinc-700 hover:text-black">
-        Show exercises ↓
-      </button>
+      <div class="expand-indicator mt-4 text-sm font-medium text-zinc-700 pointer-events-none select-none">
+        <span class="expand-text">Show exercises ↓</span>
+      </div>
 
       <div class="exercise-list mt-4 space-y-2 hidden">
         ${day.exercises.map((ex) => exerciseRow(ex, exercises[ex.exercise_id])).join("")}

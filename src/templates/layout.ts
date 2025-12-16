@@ -7,17 +7,27 @@ import { escapeHtml } from "~/lib/html";
 export function htmlLayout(
   content: string,
   title: string,
-  footerStats?: { completed: number; total: number }
+  footerStats?: { completed: number; total: number },
+  description?: string,
+  programMeta?: { weeks: number; daysPerWeek: number }
 ): string {
+  const metaDescription = description || "Workout program tracker with progress tracking and completion notes";
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapeHtml(title)}</title>
-  <meta name="description" content="16-week progressive kettlebell training program tracker">
+  <meta name="description" content="${escapeHtml(metaDescription)}">
+  <meta name="theme-color" content="#000000">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Workout">
+  <link rel="manifest" href="/workout/manifest.json">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/workout/styles.css">
   <style>
     body, html {
       margin: 0;
@@ -47,7 +57,9 @@ export function htmlLayout(
             ${
               footerStats
                 ? `COMPLETED ${footerStats.completed} OUT OF ${footerStats.total} WORKOUTS`
-                : "16 WEEKS | 4 DAYS/WEEK"
+                : programMeta
+                ? `${programMeta.weeks} WEEKS | ${programMeta.daysPerWeek} DAYS/WEEK`
+                : "WORKOUT TRACKER"
             }
           </p>
           <a href="https://github.com/hirefrank/workout-trainer" target="_blank" rel="noopener noreferrer"
