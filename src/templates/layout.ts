@@ -29,6 +29,19 @@ export function htmlLayout(content: string, title: string): string {
     </header>
     <main class="container mx-auto max-w-4xl p-4">
       ${content}
+
+      <!-- Footer - Brutalist -->
+      <footer class="mt-8 pt-4 border-t-4 border-black">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-2">
+          <p class="text-xs font-bold tracking-wider uppercase">
+            16 WEEKS | 4 DAYS/WEEK | PROGRESSIVE OVERLOAD
+          </p>
+          <a href="https://github.com/hirefrank/workout-trainer" target="_blank" rel="noopener noreferrer"
+             class="px-4 py-2 text-xs font-bold border-2 border-black bg-white hover:bg-zinc-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] uppercase">
+            VIEW ON GITHUB &#8599;
+          </a>
+        </div>
+      </footer>
     </main>
   </div>
 
