@@ -1,11 +1,11 @@
 # 💪 Workout Trainer
 
-A progressive kettlebell training program tracker built with TanStack Start and deployed on Cloudflare Workers.
+A fully customizable workout program tracker built with TanStack Start and deployed on Cloudflare Workers. Includes a complete 16-week progressive kettlebell program as an example.
 
 ## Features
 
-- **16-Week Progressive Program** - Structured kettlebell training with strategic deload weeks
-- **YAML Configuration** - Easily customize exercises and weight classifications
+- **Fully Customizable Program** - Complete control over exercises, weights, sets, reps, and weekly structure via YAML
+- **16-Week Example Program** - Includes a structured kettlebell program with strategic deload weeks (easily adaptable)
 - **Mobile-Optimized** - Brutalist design that works great on phones
 - **Simple Tracking** - Mark workouts as complete with basic authentication
 - **Public Viewing** - Anyone can view the program, only authenticated users can track
@@ -129,9 +129,9 @@ See `docs/RATE_LIMITING.md` for rate limiting configuration guide.
 
 ### Customizing the Program
 
-Edit `program.yaml` to customize:
+**The included program is a complete example - customize everything in `program.yaml`:**
 
-1. **Exercise Definitions** - Add or modify exercises with their kettlebell weight classifications:
+1. **Exercise Definitions** - Add, remove, or modify exercises with their weight classifications:
 
 ```yaml
 exercises:
@@ -144,7 +144,19 @@ exercises:
       very_heavy: 88  # Your very heavy weight in lbs
 ```
 
-2. **Weekly Programming** - The YAML includes weeks 1-2 as examples. Extend it with your full 16-week program following the same structure.
+2. **Program Structure** - Completely customizable:
+   - Number of weeks (default: 16)
+   - Days per week (default: 4)
+   - Deload weeks
+   - Training phases
+
+3. **Weekly Programming** - Define your own workout structure:
+   - Which exercises per day
+   - Sets and reps
+   - Weight progressions
+   - Rest periods and notes
+
+**Note:** The YAML file includes a complete 16-week kettlebell program as an example. Use it as-is or adapt it completely to your training goals.
 
 ### Authentication
 
@@ -300,7 +312,3 @@ Built with:
 - [TanStack Start](https://tanstack.com/start) - Full-stack React framework
 - [Cloudflare Workers](https://workers.cloudflare.com/) - Edge computing platform
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-
----
-
-**Note**: The included YAML file contains weeks 1-2 as examples. You'll need to complete the full 16-week program based on your training plan.
