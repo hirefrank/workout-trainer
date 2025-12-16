@@ -4,191 +4,265 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A progressive kettlebell training program tracker built with TanStack Start and deployed on Cloudflare Workers. The app provides a 16-week structured training program with workout completion tracking.
+A progressive kettlebell training program tracker built with vanilla Cloudflare Workers. The app provides a 16-week structured training program with workout completion tracking, authentication, and optional workout notes.
 
 ## Development Commands
 
 ```bash
 # Development
-pnpm dev          # Start Vite dev server (localhost:3000)
-pnpm typecheck    # Run TypeScript type checking
-pnpm build        # Build for production
-pnpm preview      # Preview production build locally
-
-# Cloudflare Workers
-wrangler dev      # Test with Workers runtime locally
+pnpm dev          # Start wrangler dev server (localhost:8787)
+pnpm build        # Compile YAML → TypeScript and Tailwind CSS
 pnpm deploy       # Build and deploy to Cloudflare Workers
-pnpm cf-typegen   # Generate Cloudflare types from wrangler.jsonc
+pnpm typecheck    # Run TypeScript type checking
+
+# Utilities
+node scripts/rewrite-titles.mjs  # Regenerate workout titles with training focus
 ```
 
 ## Architecture
 
-### Cloudflare Workers Edge Runtime
+### Vanilla Cloudflare Workers
 
-This app runs on Cloudflare Workers V8 runtime, NOT Node.js:
+This app runs directly on Cloudflare Workers V8 runtime:
 
-- **No Node.js APIs**: Use Web Standard APIs only (Web Crypto, fetch, etc.)
-- **Global Context Access**: Environment and request are accessed via `Symbol.for("cloudflare:env")` and `Symbol.for("cloudflare:request")`
-- **Context Helpers**: Use `src/lib/context.ts` functions (getEnv, getEnvVar, getWorkoutsKV, getRequest, getCookie)
-- **No Buffer API**: Use `btoa()`/`atob()` instead of Node.js Buffer
+- **No framework**: Direct fetch handler with simple if/else routing
+- **Server-rendered HTML**: Template literal strings, no React/JSX
+- **Vanilla JavaScript**: Client-side interactivity without frameworks
+- **Tailwind CDN**: CSS via CDN, no bundling required
+- **Minimal dependencies**: 7 packages (js-yaml, zod, wrangler, etc.)
 
-### TanStack Start + TanStack Router
+### Entry Point
 
-- **File-based routing**: Routes live in `src/routes/` (index.tsx = homepage, __root.tsx = layout)
-- **Server functions**: Use `createServerFn()` from `@tanstack/react-start` for server-side logic
-- **Type-safe data**: Server functions are automatically typed on the client
+**`src/index.ts`** - Main Worker with fetch handler:
+```typescript
+export default {
+  async fetch(request: Request, env: WorkerEnv, ctx: ExecutionContext) {
+    const url = new URL(request.url);
+    const path = url.pathname.replace(/^\/workout/, "") || "/";
+
+    // API routes
+    if (path === "/api/login" && request.method === "POST")
+      return handleLogin(request, env);
+    // ... other routes
+
+    // Main dashboard
+    if (path === "/" || path === "")
+      return handleDashboard(request, env);
+
+    return new Response("Not Found", { status: 404 });
+  }
+};
+```
 
 ### Authentication System
 
-HMAC-signed tokens with HttpOnly cookies and server-side sessions:
+HMAC-signed tokens with HttpOnly cookies:
 
-- **Login flow**: `src/server/auth.ts` - Uses HMAC-SHA256 signatures with Web Crypto API
+- **Login flow**: `src/handlers/api.ts` - HMAC-SHA256 signatures with Web Crypto API
 - **Session storage**: KV namespace stores sessions with 24h TTL
 - **Token format**: `sessionId.hmacSignature` (prevents forgery)
-- **Cookie-based auth**: HttpOnly cookies prevent XSS attacks
-- **Verification**: `isUserAuthenticated()` checks signature and validates session in KV
-- **Security**: Constant-time password comparison prevents timing attacks
+- **Cookie utilities**: `src/lib/cookies.ts` - parseCookie, createCookieHeader, deleteCookieHeader
+- **HMAC utilities**: `src/lib/auth-utils.ts` - hmacSign, hmacVerify, constantTimeEqual
+- **Security**: HttpOnly cookies prevent XSS, constant-time comparison prevents timing attacks
 
 ### Data Storage
 
 - **KV Namespace**: Cloudflare KV stores workout completions and sessions
-- **Binding**: Access via `getWorkoutsKV()` helper function
-- **TTL**: All data has expiration (workouts: 180 days, sessions: 24 hours)
+- **Completions**: `workout:${week}-${day}` keys with `{ completedAt, notes? }`
+- **TTL**: Workouts expire after 180 days, sessions after 24 hours
 - **Parallel operations**: Use `Promise.all()` for multiple KV reads
+
+### HTML Template Generation
+
+**`src/templates/`** - Server-rendered HTML without React:
+- **`layout.ts`**: HTML document wrapper with header and Tailwind CDN
+- **`dashboard.ts`**: Main workout page with week navigation
+- **`components.ts`**: workoutCard, exerciseRow, authModal, notesModal
+
+**XSS Protection**: `src/lib/html.ts` provides `escapeHtml()` for all user input
 
 ### Program Configuration
 
 - **YAML-based**: `program.yaml` in root defines exercises and weekly programming
-- **Type definitions**: `src/types/program.ts` defines ProgramData, Exercise, Week, Day interfaces
-- **Import**: Loaded via `@modyfi/vite-plugin-yaml` as typed object
-- **Customization**: Users edit `program.yaml` to customize exercises and weights
+- **Build-time compilation**: `build.mjs` converts YAML → `src/data/program.ts`
+- **Type definitions**: `src/types/program.ts` defines ProgramData, Exercise, Week, Day
+- **Weight System**: Two-level system
+  - Exercise `bells` define reference weights (moderate/heavy/very_heavy)
+  - Workouts use `weight_type` to auto-lookup from bells
+  - Explicit `weight` field overrides bells definitions
+- **Title Generation**: `scripts/rewrite-titles.mjs` generates training-focused titles
 
 ### Project Structure
 
 ```
 src/
-├── routes/              # TanStack Router file-based routes
-│   ├── __root.tsx      # Root layout with header
-│   └── index.tsx       # Main workout view (homepage)
-├── server/             # Server functions (Cloudflare Workers)
-│   ├── auth.ts         # HMAC authentication, HttpOnly cookies
-│   ├── workouts.ts     # KV operations for workout completions
-│   └── schemas.ts      # Zod validation schemas
-├── lib/                # Utilities
-│   ├── context.ts      # Cloudflare context helpers (getEnv, getCookie, etc.)
-│   └── utils.ts        # UI utilities (cn)
-├── types/              # TypeScript types
-│   ├── env.ts          # WorkerEnv interface
-│   └── program.ts      # Program data types
-├── components/         # React components
-│   └── WorkoutCard.tsx # Workout display card
-└── middleware/         # Optional middleware
-    └── security.ts     # Security headers, CORS (not yet integrated)
+├── index.ts                # Main Workers entry (fetch handler, routing)
+├── templates/              # HTML generation
+│   ├── layout.ts          # Document wrapper with header
+│   ├── dashboard.ts       # Main workout page
+│   └── components.ts      # workoutCard, authModal, notesModal
+├── handlers/               # API endpoints
+│   ├── api.ts             # Auth (login, logout, checkAuth)
+│   └── workouts.ts        # Workout tracking (mark complete, unmark)
+├── lib/                    # Utilities
+│   ├── cookies.ts         # Cookie parsing and creation
+│   ├── auth-utils.ts      # HMAC signing and verification
+│   └── html.ts            # XSS prevention (escapeHtml)
+├── data/
+│   └── program.ts         # Compiled from program.yaml (generated)
+├── types/                  # TypeScript types
+│   ├── env.ts             # WorkerEnv interface
+│   └── program.ts         # Program data types
+└── styles/
+    └── styles.css         # Compiled Tailwind CSS (generated)
 
-program.yaml            # Exercise definitions and weekly programming (root)
-wrangler.jsonc          # Cloudflare Workers config (KV bindings, secrets)
+public/
+└── workout/
+    └── app.js             # Vanilla JavaScript (auth, navigation, completion)
+
+build.mjs                   # Build script (YAML → TS, Tailwind compilation)
+program.yaml                # Exercise definitions and weekly programming
+wrangler.jsonc              # Cloudflare Workers config
 ```
 
 ## Important Patterns
 
-### Accessing Cloudflare Environment
+### API Handlers
+
+All handlers accept `Request` and `WorkerEnv` directly:
 
 ```typescript
-// ALWAYS use context helpers from src/lib/context.ts
-import { getEnv, getEnvVar, getWorkoutsKV, getRequest } from "~/lib/context";
+export async function handleLogin(request: Request, env: WorkerEnv): Promise<Response> {
+  // 1. Parse and validate
+  const body = await request.json();
+  const { password } = LoginSchema.parse(body);
 
-const kv = getWorkoutsKV();              // Get KV namespace
-const password = getEnvVar("AUTH_PASSWORD"); // Get secret
-const request = getRequest();            // Get current request
-```
-
-### Server Functions
-
-```typescript
-import { createServerFn } from "@tanstack/react-start";
-import { MySchema } from "~/server/schemas";
-
-export const myServerFn = createServerFn({ method: "POST" }).handler(
-  async (input) => {
-    // 1. Validate input with Zod
-    const { field } = MySchema.parse(input);
-
-    // 2. Check authentication
-    const isAuth = await isUserAuthenticated();
-    if (!isAuth) throw new Error("Unauthorized");
-
-    // 3. Access Cloudflare bindings
-    const kv = getWorkoutsKV();
-
-    // 4. Perform operation
-    await kv.put(key, value, { expirationTtl: 60 * 60 * 24 });
-
-    return { success: true };
+  // 2. Check credentials
+  if (password !== env.AUTH_PASSWORD) {
+    return new Response(JSON.stringify({ error: "Invalid password" }), {
+      status: 401,
+      headers: { "Content-Type": "application/json" }
+    });
   }
-);
+
+  // 3. Create session token
+  const sessionId = crypto.randomUUID();
+  const signature = await hmacSign(sessionId, env.AUTH_PASSWORD);
+  const token = `${sessionId}.${signature}`;
+
+  // 4. Store in KV and return cookie
+  await env.WORKOUTS_KV.put(`session:${sessionId}`, "active", {
+    expirationTtl: 60 * 60 * 24
+  });
+
+  return new Response(JSON.stringify({ success: true }), {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+      "Set-Cookie": createCookieHeader("auth_token", token)
+    }
+  });
+}
 ```
+
+### HTML Template Generation
+
+```typescript
+export function workoutCard(
+  week: number,
+  day: Day,
+  exercises: Record<string, Exercise>,
+  isComplete: boolean,
+  canEdit: boolean,
+  completionNotes?: string
+): string {
+  return `
+    <div class="workout-card border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${isComplete ? "bg-green-100" : ""}">
+      <h3>${escapeHtml(day.name)}</h3>
+      ${completionNotes ? `<p class="notes">${escapeHtml(completionNotes)}</p>` : ""}
+      ${canEdit ? `<button class="complete-btn">Complete</button>` : ""}
+    </div>
+  `;
+}
+```
+
+**Always escape user input**: `escapeHtml()` prevents XSS attacks
 
 ### Input Validation
 
-All server functions MUST validate input with Zod schemas (see `src/server/schemas.ts`):
+All handlers validate input with Zod schemas:
 
 ```typescript
 import { z } from "zod";
 
-export const MySchema = z.object({
-  field: z.string().min(1).max(100),
+export const WorkoutCompletionWithNotesSchema = z.object({
+  week: z.number().int().min(1).max(16),
+  day: z.number().int().min(1).max(7),
+  notes: z.string().max(500).optional(),
 });
 ```
 
 ### KV Operations
 
 ```typescript
-// ALWAYS use Promise.all() for parallel reads
-const keys = ["workout:1-1", "workout:1-2", "workout:1-3"];
-const results = await Promise.all(
-  keys.map(key => kv.get(key, "json"))
-);
+// Read completions in parallel
+const { keys } = await env.WORKOUTS_KV.list({ prefix: "workout:" });
+const values = await Promise.all(keys.map(key => env.WORKOUTS_KV.get(key.name, "json")));
 
-// ALWAYS set expirationTtl on writes
-await kv.put(key, value, {
-  expirationTtl: 60 * 60 * 24 * 180 // 180 days
-});
+// Write with TTL
+await env.WORKOUTS_KV.put(
+  `workout:${week}-${day}`,
+  JSON.stringify({ completedAt: new Date().toISOString(), notes }),
+  { expirationTtl: 60 * 60 * 24 * 180 } // 180 days
+);
 ```
 
-### Authentication Cookies
+### Client JavaScript
 
-```typescript
-import { getCookie, createCookieHeader, deleteCookieHeader } from "~/lib/context";
-import { setResponseHeader } from "vinxi/http";
+**`public/workout/app.js`** - Vanilla JavaScript for interactivity:
 
-// Read from HttpOnly cookie
-const token = getCookie("auth_token");
+```javascript
+// Auth modal
+document.getElementById("login-trigger").addEventListener("click", () => {
+  document.getElementById("auth-modal").classList.remove("hidden");
+});
 
-// Set HttpOnly cookie
-setResponseHeader("Set-Cookie", createCookieHeader("auth_token", token, {
-  maxAge: 60 * 60 * 24,  // 24 hours
-  secure: true,
-  sameSite: "Lax"
-}));
+// Complete workout with optional notes
+document.querySelectorAll(".complete-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    // Show notes modal
+    const modal = document.getElementById("notes-modal");
+    modal.classList.remove("hidden");
+  });
+});
 
-// Delete cookie (logout)
-setResponseHeader("Set-Cookie", deleteCookieHeader("auth_token"));
+// Full page reload after state changes (simplest approach)
+window.location.reload();
 ```
 
 ## Security
-
-The application has been hardened for production deployment:
 
 - **HMAC-signed tokens**: Prevents token forgery
 - **HttpOnly cookies**: Protects against XSS attacks
 - **Constant-time comparison**: Prevents timing attacks on password
 - **Input validation**: Zod schemas prevent injection attacks
+- **HTML escaping**: All user input escaped via `escapeHtml()`
 - **Token expiration**: 24-hour session lifetime
-- **KV TTL**: Automatic data cleanup (6 months)
-- **Security headers**: Available in `src/middleware/security.ts` (not yet integrated)
-- **Rate limiting**: See `docs/RATE_LIMITING.md` for implementation guide
+- **KV TTL**: Automatic data cleanup
 
 ## Cloudflare Setup
+
+### Deployment Configuration
+
+**Base Path**: `/workout/` (configured in wrangler.jsonc)
+
+**Routes**:
+- `hirefrank.com/workout*`
+- `www.hirefrank.com/workout*`
+
+To deploy to a different domain:
+- Update `routes` in `wrangler.jsonc`
+- Add `workers_dev: true` for workers.dev deployment
 
 ### Secrets
 
@@ -199,13 +273,15 @@ wrangler secret put AUTH_PASSWORD
 
 ### KV Namespace
 
-The KV namespace is already configured in `wrangler.jsonc`:
+Configured in `wrangler.jsonc`:
 - Binding: `WORKOUTS_KV`
 - ID: `cf9e891fc895458883fa2ebb048202fb`
 
 ## Customizing the Program
 
-Edit `program.yaml` to customize exercises and weekly programming:
+Edit `program.yaml` and run `pnpm build` to recompile:
+
+### Exercise Definitions
 
 ```yaml
 exercises:
@@ -216,26 +292,66 @@ exercises:
       moderate: 35
       heavy: 45
       very_heavy: 53
+```
 
+### Workout Programming
+
+```yaml
 weeks:
   - number: 1
     phase: "Foundation"
     is_deload: false
     days:
       - number: 1
-        name: "Monday - Power"
+        name: "Volume baseline | Lower Body Strength"
         exercises:
+          # Uses bells definition
           - exercise_id: my-exercise
             sets: 5
             reps: 10
-            weight: 45
-            weight_type: heavy
+            weight_type: heavy     # Auto-uses 45 lbs from bells
             notes: "Optional notes"
+
+          # Overrides bells definition
+          - exercise_id: my-exercise
+            sets: 5
+            reps: 10
+            weight: 50             # Custom weight
+            notes: "Progressive overload"
 ```
+
+### Workout Titles
+
+Titles follow format: `Training Focus | Accessory Purpose`
+
+**Training focuses**:
+- "Volume baseline" - Week 1 foundation
+- "Swing volume +67%" - Major volume increases
+- "TGU strength progression" - Weight progressions
+- "Recovery & technique" - Deload weeks
+- "Strength consolidation" - Volume maintenance
+
+**Accessory purposes**:
+- "Lower Body Strength" - Deadlifts + squats
+- "Core Stability" - Deadbugs + suitcase march
+- "Upper Body Push" - Push-ups
+- "Strength Maintenance" - Light accessory work
+
+Regenerate titles: `node scripts/rewrite-titles.mjs`
+
+## Build System
+
+**`build.mjs`** - Orchestrates the build:
+1. Reads `program.yaml` with js-yaml
+2. Generates typed `src/data/program.ts`
+3. Compiles Tailwind CSS to `src/styles/styles.css`
+
+Run before deploying: `pnpm build`
 
 ## Documentation
 
-- `docs/SECURITY_AUDIT.md`: Complete security audit and fixes applied
-- `docs/RATE_LIMITING.md`: Rate limiting implementation guide
-- `docs/PROGRAM_REFERENCE.md`: 16-week program reference guide
+- `CLAUDE.md` (this file): Development guide
 - `CONTRIBUTING.md`: Contribution guidelines
+- `docs/SECURITY_AUDIT.md`: Security audit and fixes
+- `docs/RATE_LIMITING.md`: Rate limiting implementation guide
+- `docs/PROGRAM_REFERENCE.md`: 16-week program reference

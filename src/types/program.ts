@@ -44,4 +44,5 @@ export interface WorkoutExercise {
 
 export interface CompletedWorkout {
   completedAt: string;
+  notes?: string;
 }

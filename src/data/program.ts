@@ -1,0 +1,3229 @@
+// Auto-generated from program.yaml
+// Do not edit manually
+
+import type { ProgramData } from "../types/program";
+
+export const programData: ProgramData = {
+  "program": {
+    "name": "16-Week Progressive Kettlebell Program",
+    "description": "4-Day Weekly Split with Strategic Deloads and Progressive Overload",
+    "weeks": 16,
+    "days_per_week": 4
+  },
+  "exercises": {
+    "kb-deadlift": {
+      "name": "KB Deadlift",
+      "type": "kettlebell",
+      "bells": {
+        "moderate": 45,
+        "heavy": 70,
+        "very_heavy": 88
+      }
+    },
+    "2-hand-swing": {
+      "name": "2-Hand Swing",
+      "type": "kettlebell",
+      "bells": {
+        "moderate": 53,
+        "heavy": 70,
+        "very_heavy": 88
+      }
+    },
+    "turkish-getup": {
+      "name": "Turkish Getup",
+      "type": "kettlebell",
+      "bells": {
+        "moderate": 35,
+        "heavy": 45,
+        "very_heavy": 53
+      }
+    },
+    "goblet-squat": {
+      "name": "Goblet Squat",
+      "type": "kettlebell",
+      "bells": {
+        "moderate": 35,
+        "heavy": 45,
+        "very_heavy": 53
+      }
+    },
+    "cpg-gsq-pry": {
+      "name": "CPG - GSQ Pry",
+      "type": "kettlebell",
+      "bells": {
+        "moderate": 35,
+        "heavy": 45,
+        "very_heavy": 53
+      }
+    },
+    "cpg-deadbug-arms": {
+      "name": "CPG - DeadBug Arms",
+      "type": "bodyweight",
+      "bells": null
+    },
+    "cpg-suitcase-march": {
+      "name": "CPG Suitcase March",
+      "type": "kettlebell",
+      "bells": {
+        "moderate": 45,
+        "heavy": 53,
+        "very_heavy": 70
+      }
+    },
+    "wall-press-abs": {
+      "name": "Wall Press Abs",
+      "type": "bodyweight",
+      "bells": null
+    },
+    "push-ups": {
+      "name": "Push-ups",
+      "type": "bodyweight",
+      "bells": null
+    }
+  },
+  "weeks": [
+    {
+      "number": 1,
+      "phase": "Foundation Phase",
+      "is_deload": false,
+      "days": [
+        {
+          "number": 1,
+          "name": "Volume baseline | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "moderate",
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets total"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "Superset 2 - 3 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "30 sec",
+              "notes": "Superset 2 - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Volume baseline | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": "5 sets total"
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "5 sets, Moderate"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "4 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "TGU technique practice | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 3,
+              "reps": 6,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2-2",
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets progressive"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "20 sec",
+              "notes": "Superset - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": "20s",
+              "notes": "Superset - 3 rounds, on/off"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Active recovery day | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "phase": "Foundation Phase",
+      "is_deload": false,
+      "days": [
+        {
+          "number": 1,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight": 53,
+              "weight_type": null,
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "4 sets total"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "Superset 2 - 3 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "35 sec",
+              "notes": "Superset 2 - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight": 53,
+              "weight_type": null,
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "4 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "Skill consolidation | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 3,
+              "reps": 6,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2-2",
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "20 sec",
+              "notes": "Superset - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": "20s",
+              "notes": "Superset - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Maintenance volume | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "phase": "Foundation Phase",
+      "is_deload": false,
+      "days": [
+        {
+          "number": 1,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight": 53,
+              "weight_type": null,
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 2 - 3 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "40 sec",
+              "notes": "Superset 2 - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 4,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight": 53,
+              "weight_type": null,
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "4 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "TGU volume progression | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 3,
+              "reps": 6,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2-3",
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "25 sec",
+              "notes": "Superset - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": "20s",
+              "notes": "Superset - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Maintenance volume | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "phase": "Foundation Phase",
+      "is_deload": false,
+      "days": [
+        {
+          "number": 1,
+          "name": "TGU strength progression | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 2 - 3 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "45 sec",
+              "notes": "Superset 2 - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "TGU strength progression | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 4,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "TGU volume progression | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 3,
+              "reps": 6,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2-4",
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "25 sec",
+              "notes": "Superset - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": "20s",
+              "notes": "Superset - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "TGU strength progression | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "phase": "Deload Week",
+      "is_deload": true,
+      "days": [
+        {
+          "number": 1,
+          "name": "Recovery & technique | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "Light - Superset 1 - 2 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "Superset 1 - 2 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 8,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "48 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "Superset 2 - 2 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "30 sec",
+              "notes": "Superset 2 - 2 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Recovery & technique | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 8,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "48 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "Recovery & technique | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 2,
+              "reps": 6,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 8,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "48 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2",
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "2 sets"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "20 sec",
+              "notes": "Superset - 2 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": "20s",
+              "notes": "Superset - 2 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Recovery & technique | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 4,
+              "reps": 5,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 8,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "48 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 2,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "phase": "Strength Building Phase",
+      "is_deload": false,
+      "days": [
+        {
+          "number": 1,
+          "name": "Swing volume +67% | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "80 total swings - Heavy"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Superset 2 - 3 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "45 sec",
+              "notes": "Superset 2 - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Swing volume +67% | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 5,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "4 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "Swing volume +67% | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 3,
+              "reps": 6,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2-4",
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "25 sec",
+              "notes": "Superset - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": "20s",
+              "notes": "Superset - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Swing volume +67% | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "phase": "Strength Building Phase",
+      "is_deload": false,
+      "days": [
+        {
+          "number": 1,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Superset 2 - 3 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "50 sec",
+              "notes": "Superset 2 - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 5,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "Skill consolidation | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 3,
+              "reps": 6,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2-4",
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "25 sec",
+              "notes": "Superset - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": "20s",
+              "notes": "Superset - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Maintenance volume | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 8,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "80 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "phase": "Strength Building Phase",
+      "is_deload": false,
+      "days": [
+        {
+          "number": 1,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets, Heavy"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "100 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Superset 2 - 3 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "50 sec",
+              "notes": "Superset 2 - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 5,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "Skill consolidation | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 3,
+              "reps": 6,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2-4",
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "3 sets, Heavy"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "30 sec",
+              "notes": "Superset - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "very_heavy",
+              "duration": "20s",
+              "notes": "Superset - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Maintenance volume | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets, Heavy"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "phase": "Strength Building Phase",
+      "is_deload": false,
+      "days": [
+        {
+          "number": 1,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets, Heavy"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "100 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Superset 2 - 3 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "55 sec",
+              "notes": "Superset 2 - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 5,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "Skill consolidation | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 3,
+              "reps": 6,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2-4",
+              "reps": null,
+              "weight": 53,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "3 sets, Heavy"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "30 sec",
+              "notes": "Superset - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "very_heavy",
+              "duration": "20s",
+              "notes": "Superset - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Maintenance volume | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight": 53,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets, Heavy"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "phase": "Deload Week",
+      "is_deload": true,
+      "days": [
+        {
+          "number": 1,
+          "name": "Recovery & technique | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight": 53,
+              "weight_type": null,
+              "duration": null,
+              "notes": "Light - Superset 1 - 2 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "Superset 1 - 2 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 2 - 2 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "30 sec",
+              "notes": "Superset 2 - 2 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Recovery & technique | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight": 53,
+              "weight_type": null,
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "3 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "Recovery & technique | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 2,
+              "reps": 6,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2",
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "2 sets"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "20 sec",
+              "notes": "Superset - 2 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": "20s",
+              "notes": "Superset - 2 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Recovery & technique | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 4,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 2,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "phase": "Peak Performance Phase",
+      "is_deload": false,
+      "days": [
+        {
+          "number": 1,
+          "name": "Swing volume +67% | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets, Heavy"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Superset 2 - 3 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "45 sec",
+              "notes": "Superset 2 - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Swing volume +67% | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 5,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "4 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "Swing volume +67% | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 3,
+              "reps": 6,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2-4",
+              "reps": null,
+              "weight": 53,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "3 sets, Heavy"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "30 sec",
+              "notes": "Superset - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "very_heavy",
+              "duration": "20s",
+              "notes": "Superset - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Swing volume +67% | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight": 53,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets, Heavy"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "phase": "Peak Performance Phase",
+      "is_deload": false,
+      "days": [
+        {
+          "number": 1,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets, Heavy"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Superset 2 - 3 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "50 sec",
+              "notes": "Superset 2 - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "TGU recovery | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 5,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight": 45,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "5 sets, Moderate"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "Skill consolidation | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 3,
+              "reps": 6,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2-4",
+              "reps": null,
+              "weight": 53,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "3 sets, Heavy"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "30 sec",
+              "notes": "Superset - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "very_heavy",
+              "duration": "20s",
+              "notes": "Superset - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "TGU strength progression | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets, Very Heavy"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "phase": "Peak Performance Phase",
+      "is_deload": false,
+      "days": [
+        {
+          "number": 1,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets, Heavy"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Superset 2 - 3 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "55 sec",
+              "notes": "Superset 2 - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 5,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight": 45,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "5 sets, Moderate"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "Skill consolidation | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 3,
+              "reps": 6,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2-4",
+              "reps": null,
+              "weight": 53,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "3 sets, Heavy"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "30 sec",
+              "notes": "Superset - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "very_heavy",
+              "duration": "20s",
+              "notes": "Superset - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Maintenance volume | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets, Very Heavy"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "phase": "Peak Performance Phase",
+      "is_deload": false,
+      "days": [
+        {
+          "number": 1,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets, Heavy"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Superset 2 - 3 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "60 sec",
+              "notes": "Superset 2 - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Strength consolidation | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 5,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight": 45,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "5 sets, Moderate"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "Skill consolidation | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 3,
+              "reps": 6,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2-4",
+              "reps": null,
+              "weight": 53,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "3 sets, Heavy"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "30 sec",
+              "notes": "Superset - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "very_heavy",
+              "duration": "20s",
+              "notes": "Superset - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Maintenance volume | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets, Very Heavy"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "phase": "Deload Week",
+      "is_deload": true,
+      "days": [
+        {
+          "number": 1,
+          "name": "Recovery & technique | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight": 53,
+              "weight_type": null,
+              "duration": null,
+              "notes": "Light - Superset 1 - 2 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "Superset 1 - 2 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 2 - 2 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "30 sec",
+              "notes": "Superset 2 - 2 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Recovery & technique | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight": 53,
+              "weight_type": null,
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "3 sets"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "Recovery & technique | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 2,
+              "reps": 6,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2",
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "2 sets"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "20 sec",
+              "notes": "Superset - 2 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": "20s",
+              "notes": "Superset - 2 rounds"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Recovery & technique | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 4,
+              "reps": 5,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 6,
+              "reps": 10,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "60 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "3 sets"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 2,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "phase": "Peak Week",
+      "is_deload": false,
+      "days": [
+        {
+          "number": 1,
+          "name": "Swing volume +67% | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-gsq-pry",
+              "sets": "2-3",
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "Superset 1 - 3 rounds"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "5 sets, Heavy"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Superset 2 - 3 rounds"
+            },
+            {
+              "exercise_id": "wall-press-abs",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "30-60 sec",
+              "notes": "Superset 2 - 3 rounds"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Swing volume +67% | Lower Body Strength",
+          "exercises": [
+            {
+              "exercise_id": "push-ups",
+              "sets": 5,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "kb-deadlift",
+              "sets": 5,
+              "reps": 5,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets"
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 2,
+              "reps": null,
+              "weight": 45,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": "5 sets, Moderate"
+            },
+            {
+              "exercise_id": "goblet-squat",
+              "sets": "5+4",
+              "reps": 5,
+              "weight": "45→53",
+              "weight_type": null,
+              "duration": null,
+              "notes": "Progressive weight"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "name": "Swing volume +67% | Core Stability",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 3,
+              "reps": 6,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": "1-2/2-4/4",
+              "reps": null,
+              "weight": 53,
+              "weight_type": "heavy",
+              "duration": null,
+              "notes": "3 sets, Heavy"
+            },
+            {
+              "exercise_id": "cpg-deadbug-arms",
+              "sets": null,
+              "reps": null,
+              "weight": null,
+              "weight_type": null,
+              "duration": "30 sec",
+              "notes": "Superset - 3 rounds"
+            },
+            {
+              "exercise_id": "cpg-suitcase-march",
+              "sets": 2,
+              "reps": null,
+              "weight_type": "very_heavy",
+              "duration": "20s",
+              "notes": "Superset - 3 rounds, on/off"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "name": "Swing volume +67% | Strength Maintenance",
+          "exercises": [
+            {
+              "exercise_id": "goblet-squat",
+              "sets": 5,
+              "reps": 5,
+              "weight": 53,
+              "weight_type": "moderate",
+              "duration": null,
+              "notes": null
+            },
+            {
+              "exercise_id": "2-hand-swing",
+              "sets": 10,
+              "reps": 10,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "Very Heavy - 100 total swings"
+            },
+            {
+              "exercise_id": "turkish-getup",
+              "sets": 1,
+              "reps": null,
+              "weight_type": "very_heavy",
+              "duration": null,
+              "notes": "5 sets, Very Heavy"
+            },
+            {
+              "exercise_id": "push-ups",
+              "sets": 3,
+              "reps": 5,
+              "weight": null,
+              "weight_type": null,
+              "duration": null,
+              "notes": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+} as const;
+
+export default programData;

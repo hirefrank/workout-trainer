@@ -2,13 +2,17 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "workout-trainer",
   "compatibility_date": "2025-01-01",
-  "compatibility_flags": ["nodejs_compat"],
   "account_id": "6034f1c5d23e5503f6573740480cf0d6",
-  // Use TanStack Start's default entry point
-  "main": "./node_modules/@tanstack/react-start/dist/default-entry/esm/server.js",
-  // Static assets configuration
+  // Observability for production monitoring
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1.0
+  },
+  // Main Worker entry point
+  "main": "./src/index.ts",
+  // Static assets (public directory for app.js)
   "assets": {
-    "directory": "./dist/client/",
+    "directory": "./public/",
     "not_found_handling": "404-page"
   },
   // Route patterns for /workout on hirefrank.com
@@ -22,7 +26,7 @@
       "zone_name": "hirefrank.com"
     }
   ],
-  // KV namespace for workout completions (always use remote)
+  // KV namespace for workout completions and sessions
   "kv_namespaces": [
     {
       "binding": "WORKOUTS_KV",
