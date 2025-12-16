@@ -89,12 +89,22 @@ function ExerciseRow({
   exerciseData: ProgramData["exercises"][string];
 }) {
   const getWeightDisplay = () => {
+    // Use explicit weight if provided (override)
     if (exercise.weight) {
       return `${exercise.weight} lbs`;
     }
+
+    // Use bells definition based on weight_type
+    if (exercise.weight_type && exerciseData.bells) {
+      const weight = exerciseData.bells[exercise.weight_type];
+      return `${weight} lbs`;
+    }
+
+    // Bodyweight exercises
     if (exerciseData.type === "bodyweight") {
       return "BW";
     }
+
     return "";
   };
 

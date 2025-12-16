@@ -1,131 +1,109 @@
-# 16-Week Progressive Kettlebell Program
-# MIT License - Feel free to customize for your own training
-
 program:
-  name: "16-Week Progressive Kettlebell Program"
-  description: "4-Day Weekly Split with Strategic Deloads and Progressive Overload"
+  name: 16-Week Progressive Kettlebell Program
+  description: 4-Day Weekly Split with Strategic Deloads and Progressive Overload
   weeks: 16
   days_per_week: 4
-
-# Exercise definitions with kettlebell weight classifications
 exercises:
   kb-deadlift:
-    name: "KB Deadlift"
+    name: KB Deadlift
     type: kettlebell
     bells:
       moderate: 45
       heavy: 70
       very_heavy: 88
-
   2-hand-swing:
-    name: "2-Hand Swing"
+    name: 2-Hand Swing
     type: kettlebell
     bells:
       moderate: 53
       heavy: 70
       very_heavy: 88
-
   turkish-getup:
-    name: "Turkish Getup"
+    name: Turkish Getup
     type: kettlebell
     bells:
       moderate: 35
       heavy: 45
       very_heavy: 53
-
   goblet-squat:
-    name: "Goblet Squat"
+    name: Goblet Squat
     type: kettlebell
     bells:
       moderate: 35
       heavy: 45
       very_heavy: 53
-
   cpg-gsq-pry:
-    name: "CPG - GSQ Pry"
+    name: CPG - GSQ Pry
     type: kettlebell
     bells:
       moderate: 35
       heavy: 45
       very_heavy: 53
-
   cpg-deadbug-arms:
-    name: "CPG - DeadBug Arms"
+    name: CPG - DeadBug Arms
     type: bodyweight
     bells: null
-
   cpg-suitcase-march:
-    name: "CPG Suitcase March"
+    name: CPG Suitcase March
     type: kettlebell
     bells:
       moderate: 45
       heavy: 53
       very_heavy: 70
-
   wall-press-abs:
-    name: "Wall Press Abs"
+    name: Wall Press Abs
     type: bodyweight
     bells: null
-
   push-ups:
-    name: "Push-ups"
+    name: Push-ups
     type: bodyweight
     bells: null
-
-# 16 weeks of programming
 weeks:
-  # WEEK 1 - Foundation Phase
   - number: 1
-    phase: "Foundation Phase"
+    phase: Foundation Phase
     is_deload: false
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 45
             weight_type: moderate
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 35
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets total"
+            notes: 3 sets total
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "60 total swings"
+            notes: 60 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "Superset 2 - 3 rounds"
+            notes: Superset 2 - 3 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "30 sec"
-            notes: "Superset 2 - 3 rounds"
-
+            duration: 30 sec
+            notes: Superset 2 - 3 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 3
@@ -133,99 +111,86 @@ weeks:
             weight: null
             weight_type: null
             duration: null
-            notes: "5 sets total"
+            notes: 5 sets total
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 45
             weight_type: moderate
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "60 total swings"
+            notes: 60 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "5 sets, Moderate"
+            notes: 5 sets, Moderate
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "4 sets"
-
+            notes: 4 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 3
             reps: 6
-            weight: 35
             weight_type: moderate
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 53
-            weight_type: null
-            duration: null
-            notes: "60 total swings"
-          - exercise_id: turkish-getup
-            sets: "1-2-2"
-            reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets progressive"
+            notes: 60 total swings
+          - exercise_id: turkish-getup
+            sets: 1-2-2
+            reps: null
+            weight_type: moderate
+            duration: null
+            notes: 3 sets progressive
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "20 sec"
-            notes: "Superset - 3 rounds"
+            duration: 20 sec
+            notes: Superset - 3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 45
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 3 rounds, on/off"
-
+            weight_type: moderate
+            duration: 20s
+            notes: Superset - 3 rounds, on/off
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 35
             weight_type: moderate
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "60 total swings"
+            notes: 60 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -233,14 +198,12 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 2 - Foundation Phase
   - number: 2
-    phase: "Foundation Phase"
+    phase: Foundation Phase
     is_deload: false
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -248,45 +211,40 @@ weeks:
             weight: 53
             weight_type: null
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 35
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "4 sets total"
+            notes: 4 sets total
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "60 total swings"
+            notes: 60 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "Superset 2 - 3 rounds"
+            notes: Superset 2 - 3 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "35 sec"
-            notes: "Superset 2 - 3 rounds"
-
+            duration: 35 sec
+            notes: Superset 2 - 3 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 3
@@ -294,99 +252,87 @@ weeks:
             weight: null
             weight_type: null
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
             weight: 53
             weight_type: null
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "60 total swings"
+            notes: 60 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "4 sets"
-
+            notes: 4 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 3
             reps: 6
-            weight: 35
             weight_type: moderate
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 53
-            weight_type: null
-            duration: null
-            notes: "60 total swings"
-          - exercise_id: turkish-getup
-            sets: "1-2-2"
-            reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets"
+            notes: 60 total swings
+          - exercise_id: turkish-getup
+            sets: 1-2-2
+            reps: null
+            weight_type: moderate
+            duration: null
+            notes: 3 sets
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "20 sec"
-            notes: "Superset - 3 rounds"
+            duration: 20 sec
+            notes: Superset - 3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 45
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 3 rounds"
-
+            weight_type: moderate
+            duration: 20s
+            notes: Superset - 3 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 35
             weight_type: moderate
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "60 total swings"
+            notes: 60 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -394,14 +340,12 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 3 - Foundation Phase
   - number: 3
-    phase: "Foundation Phase"
+    phase: Foundation Phase
     is_deload: false
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -409,45 +353,40 @@ weeks:
             weight: 53
             weight_type: null
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 35
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "80 total swings"
+            notes: 80 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 2 - 3 rounds"
+            notes: Superset 2 - 3 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "40 sec"
-            notes: "Superset 2 - 3 rounds"
-
+            duration: 40 sec
+            notes: Superset 2 - 3 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 4
@@ -455,99 +394,87 @@ weeks:
             weight: null
             weight_type: null
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
             weight: 53
             weight_type: null
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "80 total swings"
+            notes: 80 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "4 sets"
-
+            notes: 4 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 3
             reps: 6
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 53
-            weight_type: null
-            duration: null
-            notes: "80 total swings"
-          - exercise_id: turkish-getup
-            sets: "1-2-3"
-            reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets"
+            notes: 80 total swings
+          - exercise_id: turkish-getup
+            sets: 1-2-3
+            reps: null
+            weight_type: moderate
+            duration: null
+            notes: 3 sets
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "25 sec"
-            notes: "Superset - 3 rounds"
+            duration: 25 sec
+            notes: Superset - 3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 53
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 3 rounds"
-
+            weight_type: heavy
+            duration: 20s
+            notes: Superset - 3 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "80 total swings"
+            notes: 80 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -555,60 +482,52 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 4 - Foundation Phase
   - number: 4
-    phase: "Foundation Phase"
+    phase: Foundation Phase
     is_deload: false
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 70
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "80 total swings"
+            notes: 80 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 2 - 3 rounds"
+            notes: Superset 2 - 3 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "45 sec"
-            notes: "Superset 2 - 3 rounds"
-
+            duration: 45 sec
+            notes: Superset 2 - 3 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 4
@@ -616,99 +535,86 @@ weeks:
             weight: null
             weight_type: null
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 70
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "80 total swings"
+            notes: 80 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "5 sets"
-
+            notes: 5 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 3
             reps: 6
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 53
-            weight_type: null
-            duration: null
-            notes: "80 total swings"
-          - exercise_id: turkish-getup
-            sets: "1-2-4"
-            reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets"
+            notes: 80 total swings
+          - exercise_id: turkish-getup
+            sets: 1-2-4
+            reps: null
+            weight_type: moderate
+            duration: null
+            notes: 3 sets
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "25 sec"
-            notes: "Superset - 3 rounds"
+            duration: 25 sec
+            notes: Superset - 3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 53
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 3 rounds"
-
+            weight_type: heavy
+            duration: 20s
+            notes: Superset - 3 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "80 total swings"
+            notes: 80 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -716,60 +622,52 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 5 - DELOAD
   - number: 5
-    phase: "Deload Week"
+    phase: Deload Week
     is_deload: true
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 45
             weight_type: moderate
             duration: null
-            notes: "Light - Superset 1 - 2 rounds"
+            notes: Light - Superset 1 - 2 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 35
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "Superset 1 - 2 rounds"
+            notes: Superset 1 - 2 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 8
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "48 total swings"
+            notes: 48 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "Superset 2 - 2 rounds"
+            notes: Superset 2 - 2 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "30 sec"
-            notes: "Superset 2 - 2 rounds"
-
+            duration: 30 sec
+            notes: Superset 2 - 2 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 3
@@ -777,99 +675,86 @@ weeks:
             weight: null
             weight_type: null
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 45
             weight_type: moderate
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 8
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "48 total swings"
+            notes: 48 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets"
-
+            notes: 3 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 2
             reps: 6
-            weight: 35
             weight_type: moderate
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 8
-            weight: 53
-            weight_type: null
-            duration: null
-            notes: "48 total swings"
-          - exercise_id: turkish-getup
-            sets: "1-2"
-            reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "2 sets"
+            notes: 48 total swings
+          - exercise_id: turkish-getup
+            sets: 1-2
+            reps: null
+            weight_type: moderate
+            duration: null
+            notes: 2 sets
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "20 sec"
-            notes: "Superset - 2 rounds"
+            duration: 20 sec
+            notes: Superset - 2 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 45
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 2 rounds"
-
+            weight_type: moderate
+            duration: 20s
+            notes: Superset - 2 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 4
             reps: 5
-            weight: 35
             weight_type: moderate
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 8
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "48 total swings"
+            notes: 48 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: push-ups
             sets: 2
             reps: 5
@@ -877,60 +762,52 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 6 - Strength Building Phase
   - number: 6
-    phase: "Strength Building Phase"
+    phase: Strength Building Phase
     is_deload: false
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "80 total swings - Heavy"
+            notes: 80 total swings - Heavy
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "Superset 2 - 3 rounds"
+            notes: Superset 2 - 3 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "45 sec"
-            notes: "Superset 2 - 3 rounds"
-
+            duration: 45 sec
+            notes: Superset 2 - 3 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -942,95 +819,82 @@ weeks:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "80 total swings"
+            notes: 80 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "4 sets"
-
+            notes: 4 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 3
             reps: 6
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "80 total swings"
+            notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: "1-2-4"
+            sets: 1-2-4
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "25 sec"
-            notes: "Superset - 3 rounds"
+            duration: 25 sec
+            notes: Superset - 3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 53
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 3 rounds"
-
+            weight_type: heavy
+            duration: 20s
+            notes: Superset - 3 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "80 total swings"
+            notes: 80 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -1038,60 +902,52 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 7 - Strength Building Phase
   - number: 7
-    phase: "Strength Building Phase"
+    phase: Strength Building Phase
     is_deload: false
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "80 total swings"
+            notes: 80 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "Superset 2 - 3 rounds"
+            notes: Superset 2 - 3 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "50 sec"
-            notes: "Superset 2 - 3 rounds"
-
+            duration: 50 sec
+            notes: Superset 2 - 3 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -1103,95 +959,82 @@ weeks:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "80 total swings"
+            notes: 80 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "5 sets"
-
+            notes: 5 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 3
             reps: 6
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "80 total swings"
+            notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: "1-2-4"
+            sets: 1-2-4
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "25 sec"
-            notes: "Superset - 3 rounds"
+            duration: 25 sec
+            notes: Superset - 3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 53
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 3 rounds"
-
+            weight_type: heavy
+            duration: 20s
+            notes: Superset - 3 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "80 total swings"
+            notes: 80 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -1199,60 +1042,52 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 8 - Strength Building Phase
   - number: 8
-    phase: "Strength Building Phase"
+    phase: Strength Building Phase
     is_deload: false
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets, Heavy"
+            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "100 total swings"
+            notes: 100 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "Superset 2 - 3 rounds"
+            notes: Superset 2 - 3 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "50 sec"
-            notes: "Superset 2 - 3 rounds"
-
+            duration: 50 sec
+            notes: Superset 2 - 3 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -1264,95 +1099,82 @@ weeks:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "100 total swings"
+            notes: 100 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "5 sets"
-
+            notes: 5 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 3
             reps: 6
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "100 total swings"
+            notes: 100 total swings
           - exercise_id: turkish-getup
-            sets: "1-2-4"
+            sets: 1-2-4
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "3 sets, Heavy"
+            notes: 3 sets, Heavy
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "30 sec"
-            notes: "Superset - 3 rounds"
+            duration: 30 sec
+            notes: Superset - 3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 70
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 3 rounds"
-
+            weight_type: very_heavy
+            duration: 20s
+            notes: Superset - 3 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "100 total swings"
+            notes: 100 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets, Heavy"
+            notes: 5 sets, Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -1360,60 +1182,52 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 9 - Strength Building Phase
   - number: 9
-    phase: "Strength Building Phase"
+    phase: Strength Building Phase
     is_deload: false
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - Superset 1 - 3 rounds"
+            notes: Very Heavy - Superset 1 - 3 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets, Heavy"
+            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "100 total swings"
+            notes: 100 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "Superset 2 - 3 rounds"
+            notes: Superset 2 - 3 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "55 sec"
-            notes: "Superset 2 - 3 rounds"
-
+            duration: 55 sec
+            notes: Superset 2 - 3 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -1425,95 +1239,84 @@ weeks:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "100 total swings"
+            notes: 100 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "5 sets"
-
+            notes: 5 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 3
             reps: 6
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "100 total swings"
+            notes: 100 total swings
           - exercise_id: turkish-getup
-            sets: "1-2-4"
+            sets: 1-2-4
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: "3 sets, Heavy"
+            notes: 3 sets, Heavy
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "30 sec"
-            notes: "Superset - 3 rounds"
+            duration: 30 sec
+            notes: Superset - 3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 70
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 3 rounds"
-
+            weight_type: very_heavy
+            duration: 20s
+            notes: Superset - 3 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 70
             weight_type: heavy
             duration: null
-            notes: "100 total swings"
+            notes: 100 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: "5 sets, Heavy"
+            notes: 5 sets, Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -1521,14 +1324,12 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 10 - DELOAD
   - number: 10
-    phase: "Deload Week"
+    phase: Deload Week
     is_deload: true
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -1536,45 +1337,40 @@ weeks:
             weight: 53
             weight_type: null
             duration: null
-            notes: "Light - Superset 1 - 2 rounds"
+            notes: Light - Superset 1 - 2 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 35
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "Superset 1 - 2 rounds"
+            notes: Superset 1 - 2 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "60 total swings"
+            notes: 60 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 2 - 2 rounds"
+            notes: Superset 2 - 2 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "30 sec"
-            notes: "Superset 2 - 2 rounds"
-
+            duration: 30 sec
+            notes: Superset 2 - 2 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 3
@@ -1589,92 +1385,80 @@ weeks:
             weight: 53
             weight_type: null
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "60 total swings"
+            notes: 60 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "3 sets"
-
+            notes: 3 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 2
             reps: 6
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 53
-            weight_type: null
-            duration: null
-            notes: "60 total swings"
-          - exercise_id: turkish-getup
-            sets: "1-2"
-            reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "2 sets"
+            notes: 60 total swings
+          - exercise_id: turkish-getup
+            sets: 1-2
+            reps: null
+            weight_type: moderate
+            duration: null
+            notes: 2 sets
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "20 sec"
-            notes: "Superset - 2 rounds"
+            duration: 20 sec
+            notes: Superset - 2 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 53
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 2 rounds"
-
+            weight_type: heavy
+            duration: 20s
+            notes: Superset - 2 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 4
             reps: 5
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 53
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "60 total swings"
+            notes: 60 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: push-ups
             sets: 2
             reps: 5
@@ -1682,60 +1466,52 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 11 - Peak Performance Phase
   - number: 11
-    phase: "Peak Performance Phase"
+    phase: Peak Performance Phase
     is_deload: false
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - Superset 1 - 3 rounds"
+            notes: Very Heavy - Superset 1 - 3 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets, Heavy"
+            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "Superset 2 - 3 rounds"
+            notes: Superset 2 - 3 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "45 sec"
-            notes: "Superset 2 - 3 rounds"
-
+            duration: 45 sec
+            notes: Superset 2 - 3 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -1747,95 +1523,84 @@ weeks:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "4 sets"
-
+            notes: 4 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 3
             reps: 6
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: "1-2-4"
+            sets: 1-2-4
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: "3 sets, Heavy"
+            notes: 3 sets, Heavy
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "30 sec"
-            notes: "Superset - 3 rounds"
+            duration: 30 sec
+            notes: Superset - 3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 70
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 3 rounds"
-
+            weight_type: very_heavy
+            duration: 20s
+            notes: Superset - 3 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: "5 sets, Heavy"
+            notes: 5 sets, Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -1843,60 +1608,52 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 12 - Peak Performance Phase
   - number: 12
-    phase: "Peak Performance Phase"
+    phase: Peak Performance Phase
     is_deload: false
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - Superset 1 - 3 rounds"
+            notes: Very Heavy - Superset 1 - 3 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets, Heavy"
+            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "Superset 2 - 3 rounds"
+            notes: Superset 2 - 3 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "50 sec"
-            notes: "Superset 2 - 3 rounds"
-
+            duration: 50 sec
+            notes: Superset 2 - 3 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -1908,95 +1665,84 @@ weeks:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
             weight: 45
             weight_type: moderate
             duration: null
-            notes: "5 sets, Moderate"
+            notes: 5 sets, Moderate
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "5 sets"
-
+            notes: 5 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 3
             reps: 6
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: "1-2-4"
+            sets: 1-2-4
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: "3 sets, Heavy"
+            notes: 3 sets, Heavy
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "30 sec"
-            notes: "Superset - 3 rounds"
+            duration: 30 sec
+            notes: Superset - 3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 70
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 3 rounds"
-
+            weight_type: very_heavy
+            duration: 20s
+            notes: Superset - 3 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 53
             weight_type: very_heavy
             duration: null
-            notes: "5 sets, Very Heavy"
+            notes: 5 sets, Very Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -2004,60 +1750,52 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 13 - Peak Performance Phase
   - number: 13
-    phase: "Peak Performance Phase"
+    phase: Peak Performance Phase
     is_deload: false
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - Superset 1 - 3 rounds"
+            notes: Very Heavy - Superset 1 - 3 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets, Heavy"
+            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "Superset 2 - 3 rounds"
+            notes: Superset 2 - 3 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "55 sec"
-            notes: "Superset 2 - 3 rounds"
-
+            duration: 55 sec
+            notes: Superset 2 - 3 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -2069,95 +1807,84 @@ weeks:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
             weight: 45
             weight_type: moderate
             duration: null
-            notes: "5 sets, Moderate"
+            notes: 5 sets, Moderate
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "5 sets"
-
+            notes: 5 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 3
             reps: 6
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: "1-2-4"
+            sets: 1-2-4
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: "3 sets, Heavy"
+            notes: 3 sets, Heavy
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "30 sec"
-            notes: "Superset - 3 rounds"
+            duration: 30 sec
+            notes: Superset - 3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 70
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 3 rounds"
-
+            weight_type: very_heavy
+            duration: 20s
+            notes: Superset - 3 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 53
             weight_type: very_heavy
             duration: null
-            notes: "5 sets, Very Heavy"
+            notes: 5 sets, Very Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -2165,60 +1892,52 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 14 - Peak Performance Phase
   - number: 14
-    phase: "Peak Performance Phase"
+    phase: Peak Performance Phase
     is_deload: false
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - Superset 1 - 3 rounds"
+            notes: Very Heavy - Superset 1 - 3 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets, Heavy"
+            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "Superset 2 - 3 rounds"
+            notes: Superset 2 - 3 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "60 sec"
-            notes: "Superset 2 - 3 rounds"
-
+            duration: 60 sec
+            notes: Superset 2 - 3 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -2230,95 +1949,84 @@ weeks:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
             weight: 45
             weight_type: moderate
             duration: null
-            notes: "5 sets, Moderate"
+            notes: 5 sets, Moderate
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "5 sets"
-
+            notes: 5 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 3
             reps: 6
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: "1-2-4"
+            sets: 1-2-4
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: "3 sets, Heavy"
+            notes: 3 sets, Heavy
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "30 sec"
-            notes: "Superset - 3 rounds"
+            duration: 30 sec
+            notes: Superset - 3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 70
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 3 rounds"
-
+            weight_type: very_heavy
+            duration: 20s
+            notes: Superset - 3 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 53
             weight_type: very_heavy
             duration: null
-            notes: "5 sets, Very Heavy"
+            notes: 5 sets, Very Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -2326,14 +2034,12 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 15 - DELOAD
   - number: 15
-    phase: "Deload Week"
+    phase: Deload Week
     is_deload: true
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -2341,45 +2047,40 @@ weeks:
             weight: 53
             weight_type: null
             duration: null
-            notes: "Light - Superset 1 - 2 rounds"
+            notes: Light - Superset 1 - 2 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 35
-            weight_type: null
+            weight_type: moderate
             duration: null
-            notes: "Superset 1 - 2 rounds"
+            notes: Superset 1 - 2 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 70
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "60 total swings"
+            notes: 60 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 2 - 2 rounds"
+            notes: Superset 2 - 2 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "30 sec"
-            notes: "Superset 2 - 2 rounds"
-
+            duration: 30 sec
+            notes: Superset 2 - 2 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 3
@@ -2394,92 +2095,80 @@ weeks:
             weight: 53
             weight_type: null
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 70
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "60 total swings"
+            notes: 60 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "3 sets"
-
+            notes: 3 sets
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 2
             reps: 6
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 70
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "60 total swings"
+            notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: "1-2"
+            sets: 1-2
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "2 sets"
+            notes: 2 sets
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "20 sec"
-            notes: "Superset - 2 rounds"
+            duration: 20 sec
+            notes: Superset - 2 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 53
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 2 rounds"
-
+            weight_type: heavy
+            duration: 20s
+            notes: Superset - 2 rounds
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 4
             reps: 5
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
-            weight: 70
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "60 total swings"
+            notes: 60 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 35
             weight_type: moderate
             duration: null
-            notes: "3 sets"
+            notes: 3 sets
           - exercise_id: push-ups
             sets: 2
             reps: 5
@@ -2487,60 +2176,52 @@ weeks:
             weight_type: null
             duration: null
             notes: null
-
-  # WEEK 16 - PEAK WEEK
   - number: 16
-    phase: "Peak Week"
+    phase: Peak Week
     is_deload: false
     days:
       - number: 1
-        name: "Turkish Getups + Swings"
+        name: Turkish Getups + Swings
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - Superset 1 - 3 rounds"
+            notes: Very Heavy - Superset 1 - 3 rounds
           - exercise_id: cpg-gsq-pry
-            sets: "2-3"
+            sets: 2-3
             reps: null
-            weight: 45
-            weight_type: null
+            weight_type: heavy
             duration: null
-            notes: "Superset 1 - 3 rounds"
+            notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
             sets: 2
             reps: null
-            weight: 45
             weight_type: heavy
             duration: null
-            notes: "5 sets, Heavy"
+            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
-            notes: "Superset 2 - 3 rounds"
+            notes: Superset 2 - 3 rounds
           - exercise_id: wall-press-abs
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "30-60 sec"
-            notes: "Superset 2 - 3 rounds"
-
+            duration: 30-60 sec
+            notes: Superset 2 - 3 rounds
       - number: 2
-        name: "Swings + Turkish Getups"
+        name: Swings + Turkish Getups
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -2548,77 +2229,70 @@ weeks:
             weight: null
             weight_type: null
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "5 sets"
+            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
             sets: 2
             reps: null
             weight: 45
             weight_type: moderate
             duration: null
-            notes: "5 sets, Moderate"
+            notes: 5 sets, Moderate
           - exercise_id: goblet-squat
-            sets: "5+4"
+            sets: 5+4
             reps: 5
-            weight: "45→53"
+            weight: 45→53
             weight_type: null
             duration: null
-            notes: "Progressive weight"
-
+            notes: Progressive weight
       - number: 3
-        name: "Turkish Getup Practice + Swings"
+        name: Turkish Getup Practice + Swings
         exercises:
           - exercise_id: goblet-squat
             sets: 3
             reps: 6
-            weight: 53
-            weight_type: null
+            weight_type: very_heavy
             duration: null
             notes: null
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: "1-2/2-4/4"
+            sets: 1-2/2-4/4
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: "3 sets, Heavy"
+            notes: 3 sets, Heavy
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
             weight: null
             weight_type: null
-            duration: "30 sec"
-            notes: "Superset - 3 rounds"
+            duration: 30 sec
+            notes: Superset - 3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
-            weight: 70
-            weight_type: null
-            duration: "20s"
-            notes: "Superset - 3 rounds, on/off"
-
+            weight_type: very_heavy
+            duration: 20s
+            notes: Superset - 3 rounds, on/off
       - number: 4
-        name: "Swing Volume + Getups"
+        name: Swing Volume + Getups
         exercises:
           - exercise_id: goblet-squat
             sets: 5
@@ -2630,17 +2304,15 @@ weeks:
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
-            weight: 88
             weight_type: very_heavy
             duration: null
-            notes: "Very Heavy - 100 total swings"
+            notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
             sets: 1
             reps: null
-            weight: 53
             weight_type: very_heavy
             duration: null
-            notes: "5 sets, Very Heavy"
+            notes: 5 sets, Very Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5

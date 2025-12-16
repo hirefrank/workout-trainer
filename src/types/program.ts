@@ -37,7 +37,7 @@ export interface WorkoutExercise {
   sets: number | string | null;
   reps: number | null;
   duration?: string;
-  weight: number | null;
+  weight?: number | string | null;  // Optional: only needed to override bells definition
   weight_type: "moderate" | "heavy" | "very_heavy" | null;
   notes: string | null;
 }
