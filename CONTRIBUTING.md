@@ -26,7 +26,7 @@ pnpm build
 
 ### Adding Exercises
 
-Exercise definitions live in `src/data/program.yaml`. Follow the existing pattern:
+Exercise definitions live in `program.yaml` (in the project root). Follow the existing pattern:
 
 ```yaml
 exercises:

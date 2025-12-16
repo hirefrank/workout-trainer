@@ -129,7 +129,7 @@ See `docs/RATE_LIMITING.md` for rate limiting configuration guide.
 
 ### Customizing the Program
 
-Edit `src/data/program.yaml` to customize:
+Edit `program.yaml` to customize:
 
 1. **Exercise Definitions** - Add or modify exercises with their kettlebell weight classifications:
 
@@ -204,7 +204,7 @@ pnpm cf-typegen   # Generate Cloudflare types
 
 ### Adding New Exercises
 
-1. Add exercise definition to `src/data/program.yaml`:
+1. Add exercise definition to `program.yaml`:
 
 ```yaml
 exercises:

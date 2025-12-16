@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import programData from "~/data/program.yaml";
+import programData from "../../program.yaml";
 import type { ProgramData } from "~/types/program";
 import { WorkoutCard } from "~/components/WorkoutCard";
 import {
