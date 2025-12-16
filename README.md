@@ -41,23 +41,16 @@ npx wrangler secret put AUTH_PASSWORD
 
 ### Development
 
-**Two development modes:**
-
-1. **Quick UI development** (no KV/authentication):
-   ```bash
-   pnpm dev
-   # Fast hot-reload for UI changes
-   # Authentication and workout tracking won't work (no KV access)
-   ```
-
-2. **Full-stack development** (with KV/authentication):
-   ```bash
-   npx wrangler dev
-   # Runs in Workers runtime with KV and secrets
-   # Slower but fully functional
-   ```
+```bash
+pnpm dev
+# Full-stack development with remote bindings
+# Uses real KV and secrets via Wrangler's getPlatformProxy()
+# Fast hot-reload + full functionality
+```
 
 Visit http://localhost:3000 to see the app.
+
+**Alternative:** You can also use `wrangler dev` to run in the full Workers runtime environment.
 
 ### Deployment
 
@@ -218,9 +211,9 @@ src/
 ### Commands
 
 ```bash
-# Development servers
-pnpm dev          # Fast Vite dev server (UI only, no KV/auth)
-wrangler dev      # Full Workers runtime (with KV and secrets)
+# Development
+pnpm dev          # Dev server with remote bindings (KV + secrets)
+wrangler dev      # Alternative: Full Workers runtime
 
 # Build and deploy
 pnpm build        # Build for production

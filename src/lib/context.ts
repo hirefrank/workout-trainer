@@ -3,30 +3,39 @@ import type { WorkerEnv } from "~/types/env";
 
 /**
  * Get the Cloudflare environment from the request context
- * Works in both dev (Vite) and production (Cloudflare Workers)
+ * Works in both dev (Vite with remote bindings) and production (Cloudflare Workers)
  */
 export function getEnv(): WorkerEnv {
+  // Check for Vite dev mode with remote bindings (set by vite.config.ts)
+  // @ts-expect-error - Set by cloudflareBindings() Vite plugin
+  if (globalThis.__cloudflareEnv) {
+    // @ts-expect-error - Set by cloudflareBindings() Vite plugin
+    return globalThis.__cloudflareEnv as WorkerEnv;
+  }
+
   try {
-    // Try vinxi/http event context first (works in dev and production)
+    // Try vinxi/http event context
     const event = getEvent();
     if (event?.context?.cloudflare?.env) {
       return event.context.cloudflare.env as WorkerEnv;
     }
   } catch {
-    // Fallback to Cloudflare Workers async context (production only)
-    try {
-      // @ts-expect-error - Cloudflare Workers async context
-      const env = globalThis[Symbol.for("cloudflare:env")];
-      if (env) return env;
-    } catch {
-      // Continue to mock
-    }
+    // Continue to next fallback
   }
 
-  // Development fallback - return empty mock
-  // In dev, you'll need to set env vars via .env or wrangler dev
-  console.warn("No Cloudflare environment available - using mock");
-  return {} as WorkerEnv;
+  // Fallback to Cloudflare Workers async context (production)
+  try {
+    // @ts-expect-error - Cloudflare Workers async context
+    const env = globalThis[Symbol.for("cloudflare:env")];
+    if (env) return env;
+  } catch {
+    // Continue to error
+  }
+
+  throw new Error(
+    "Cloudflare environment not available. " +
+    "This should not happen with remote bindings enabled in vite.config.ts"
+  );
 }
 
 /**
@@ -39,7 +48,7 @@ export function getEnvVar<K extends keyof WorkerEnv>(key: K): WorkerEnv[K] {
   if (value === undefined) {
     throw new Error(
       `Environment variable ${String(key)} is not defined. ` +
-      `In dev mode, run 'wrangler dev' instead of 'pnpm dev' to access KV and secrets.`
+      `Check wrangler.jsonc and .dev.vars configuration.`
     );
   }
 
