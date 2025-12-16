@@ -17,10 +17,10 @@ export const Route = createFileRoute("/")({
     meta: [
       {
         name: "description",
-        content: "Track your 16-week progressive kettlebell training program. View workout details, mark exercises complete, and monitor your progress through each training phase.",
+        content: `Track your ${program.program.name.toLowerCase()}. View workout details, mark exercises complete, and monitor your progress through each training phase.`,
       },
     ],
-    title: "Workout Trainer - 16-Week Kettlebell Program",
+    title: `${program.program.name} - Workout Tracker`,
   }),
   component: HomePage,
 });

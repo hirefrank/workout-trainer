@@ -1,17 +1,27 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "workout-trainer",
-  "compatibility_date": "2025-12-15",
-  "compatibility_flags": [],
-  // TanStack Start server entry point
-  "main": "dist/server/server.js",
+  "compatibility_date": "2025-12-10",
+  "compatibility_flags": ["nodejs_compat"],
+  "account_id": "6034f1c5d23e5503f6573740480cf0d6",
+  // Use TanStack Start's default entry point
+  "main": "./node_modules/@tanstack/react-start/dist/default-entry/esm/server.js",
   // Static assets configuration
   "assets": {
     "directory": "./dist/client/",
     "not_found_handling": "404-page"
   },
-  // Enable workers.dev subdomain for testing
-  "workers_dev": true,
+  // Route patterns for /workout on hirefrank.com
+  "routes": [
+    {
+      "pattern": "hirefrank.com/workout*",
+      "zone_name": "hirefrank.com"
+    },
+    {
+      "pattern": "www.hirefrank.com/workout*",
+      "zone_name": "hirefrank.com"
+    }
+  ],
   // KV namespace for workout completions (always use remote)
   "kv_namespaces": [
     {

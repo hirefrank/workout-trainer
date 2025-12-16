@@ -5,7 +5,11 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import programData from "../../program.yaml";
+import type { ProgramData } from "~/types/program";
 import appCss from "~/styles/app.css?url";
+
+const program = programData as ProgramData;
 
 export const Route = createRootRoute({
   head: () => ({
@@ -18,16 +22,16 @@ export const Route = createRootRoute({
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
         name: "description",
-        content: "A fully customizable workout program tracker with a complete 16-week progressive kettlebell training program. Built with TanStack Start and Cloudflare Workers.",
+        content: `${program.program.description}. Built with TanStack Start and Cloudflare Workers.`,
       },
       { name: "theme-color", content: "#000000" },
 
       // Open Graph
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "Workout Trainer - Customizable Kettlebell Program Tracker" },
+      { property: "og:title", content: `${program.program.name} - Workout Tracker` },
       {
         property: "og:description",
-        content: "Track your workout progress with a fully customizable program tracker. Includes a complete 16-week progressive kettlebell program with strategic deload weeks.",
+        content: program.program.description,
       },
       { property: "og:site_name", content: "Workout Trainer" },
       // TODO: Add og:url with your deployed URL
@@ -36,24 +40,24 @@ export const Route = createRootRoute({
       // { property: "og:image", content: "https://your-domain.com/og-image.png" },
       // { property: "og:image:width", content: "1200" },
       // { property: "og:image:height", content: "630" },
-      // { property: "og:image:alt", content: "Workout Trainer - Kettlebell Program" },
+      // { property: "og:image:alt", content: program.program.name },
 
       // Twitter Card
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Workout Trainer - Customizable Kettlebell Program Tracker" },
+      { name: "twitter:title", content: `${program.program.name} - Workout Tracker` },
       {
         name: "twitter:description",
-        content: "Track your workout progress with a fully customizable program tracker. Includes a complete 16-week progressive kettlebell program with strategic deload weeks.",
+        content: program.program.description,
       },
       // TODO: Add twitter:image (same as og:image)
       // { name: "twitter:image", content: "https://your-domain.com/og-image.png" },
-      // { name: "twitter:image:alt", content: "Workout Trainer - Kettlebell Program" },
+      // { name: "twitter:image:alt", content: program.program.name },
 
       // Additional meta
       { name: "author", content: "Workout Trainer" },
-      { name: "keywords", content: "workout tracker, kettlebell training, progressive program, fitness app, strength training, workout planner" },
+      { name: "keywords", content: "workout tracker, fitness app, training program, strength training, workout planner" },
     ],
-    title: "Workout Trainer",
+    title: program.program.name,
   }),
   component: RootComponent,
 });
