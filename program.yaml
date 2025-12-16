@@ -80,7 +80,7 @@ weeks:
     is_deload: false
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -125,7 +125,7 @@ weeks:
             notes: "Superset 2 - 3 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 3
@@ -164,7 +164,7 @@ weeks:
             notes: "4 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 3
@@ -203,7 +203,7 @@ weeks:
             notes: "Superset - 3 rounds, on/off"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 5
@@ -240,7 +240,7 @@ weeks:
     is_deload: false
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -286,7 +286,7 @@ weeks:
             notes: "Superset 2 - 3 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 3
@@ -325,7 +325,7 @@ weeks:
             notes: "4 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 3
@@ -364,7 +364,7 @@ weeks:
             notes: "Superset - 3 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 5
@@ -401,7 +401,7 @@ weeks:
     is_deload: false
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -447,7 +447,7 @@ weeks:
             notes: "Superset 2 - 3 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 4
@@ -486,7 +486,7 @@ weeks:
             notes: "4 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 3
@@ -525,7 +525,7 @@ weeks:
             notes: "Superset - 3 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 5
@@ -562,7 +562,7 @@ weeks:
     is_deload: false
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -608,7 +608,7 @@ weeks:
             notes: "Superset 2 - 3 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 4
@@ -647,7 +647,7 @@ weeks:
             notes: "5 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 3
@@ -686,7 +686,7 @@ weeks:
             notes: "Superset - 3 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 5
@@ -723,7 +723,7 @@ weeks:
     is_deload: true
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -769,7 +769,7 @@ weeks:
             notes: "Superset 2 - 2 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 3
@@ -808,7 +808,7 @@ weeks:
             notes: "3 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 2
@@ -847,7 +847,7 @@ weeks:
             notes: "Superset - 2 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 4
@@ -884,7 +884,7 @@ weeks:
     is_deload: false
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -930,7 +930,7 @@ weeks:
             notes: "Superset 2 - 3 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -969,7 +969,7 @@ weeks:
             notes: "4 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 3
@@ -1008,7 +1008,7 @@ weeks:
             notes: "Superset - 3 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 5
@@ -1045,7 +1045,7 @@ weeks:
     is_deload: false
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -1091,7 +1091,7 @@ weeks:
             notes: "Superset 2 - 3 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -1130,7 +1130,7 @@ weeks:
             notes: "5 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 3
@@ -1169,7 +1169,7 @@ weeks:
             notes: "Superset - 3 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 5
@@ -1206,7 +1206,7 @@ weeks:
     is_deload: false
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -1252,7 +1252,7 @@ weeks:
             notes: "Superset 2 - 3 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -1291,7 +1291,7 @@ weeks:
             notes: "5 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 3
@@ -1330,7 +1330,7 @@ weeks:
             notes: "Superset - 3 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 5
@@ -1367,7 +1367,7 @@ weeks:
     is_deload: false
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -1413,7 +1413,7 @@ weeks:
             notes: "Superset 2 - 3 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -1452,7 +1452,7 @@ weeks:
             notes: "5 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 3
@@ -1491,7 +1491,7 @@ weeks:
             notes: "Superset - 3 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 5
@@ -1528,7 +1528,7 @@ weeks:
     is_deload: true
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -1574,7 +1574,7 @@ weeks:
             notes: "Superset 2 - 2 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 3
@@ -1613,7 +1613,7 @@ weeks:
             notes: "3 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 2
@@ -1652,7 +1652,7 @@ weeks:
             notes: "Superset - 2 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 4
@@ -1689,7 +1689,7 @@ weeks:
     is_deload: false
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -1735,7 +1735,7 @@ weeks:
             notes: "Superset 2 - 3 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -1774,7 +1774,7 @@ weeks:
             notes: "4 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 3
@@ -1813,7 +1813,7 @@ weeks:
             notes: "Superset - 3 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 5
@@ -1850,7 +1850,7 @@ weeks:
     is_deload: false
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -1896,7 +1896,7 @@ weeks:
             notes: "Superset 2 - 3 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -1935,7 +1935,7 @@ weeks:
             notes: "5 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 3
@@ -1974,7 +1974,7 @@ weeks:
             notes: "Superset - 3 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 5
@@ -2011,7 +2011,7 @@ weeks:
     is_deload: false
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -2057,7 +2057,7 @@ weeks:
             notes: "Superset 2 - 3 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -2096,7 +2096,7 @@ weeks:
             notes: "5 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 3
@@ -2135,7 +2135,7 @@ weeks:
             notes: "Superset - 3 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 5
@@ -2172,7 +2172,7 @@ weeks:
     is_deload: false
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -2218,7 +2218,7 @@ weeks:
             notes: "Superset 2 - 3 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -2257,7 +2257,7 @@ weeks:
             notes: "5 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 3
@@ -2296,7 +2296,7 @@ weeks:
             notes: "Superset - 3 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 5
@@ -2333,7 +2333,7 @@ weeks:
     is_deload: true
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -2379,7 +2379,7 @@ weeks:
             notes: "Superset 2 - 2 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 3
@@ -2418,7 +2418,7 @@ weeks:
             notes: "3 sets"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 2
@@ -2457,7 +2457,7 @@ weeks:
             notes: "Superset - 2 rounds"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 4
@@ -2494,7 +2494,7 @@ weeks:
     is_deload: false
     days:
       - number: 1
-        name: "Deadlift Focus + Accessories"
+        name: "Turkish Getups + Swings"
         exercises:
           - exercise_id: kb-deadlift
             sets: 5
@@ -2540,7 +2540,7 @@ weeks:
             notes: "Superset 2 - 3 rounds"
 
       - number: 2
-        name: "Push-up + Main Work"
+        name: "Swings + Turkish Getups"
         exercises:
           - exercise_id: push-ups
             sets: 5
@@ -2579,7 +2579,7 @@ weeks:
             notes: "Progressive weight"
 
       - number: 3
-        name: "Goblet Squat + Core"
+        name: "Turkish Getup Practice + Swings"
         exercises:
           - exercise_id: goblet-squat
             sets: 3
@@ -2618,7 +2618,7 @@ weeks:
             notes: "Superset - 3 rounds, on/off"
 
       - number: 4
-        name: "Volume Day"
+        name: "Swing Volume + Getups"
         exercises:
           - exercise_id: goblet-squat
             sets: 5
