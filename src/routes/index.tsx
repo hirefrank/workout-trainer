@@ -13,6 +13,15 @@ import { login, logout, checkAuth } from "~/server/auth";
 const program = programData as ProgramData;
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      {
+        name: "description",
+        content: "Track your 16-week progressive kettlebell training program. View workout details, mark exercises complete, and monitor your progress through each training phase.",
+      },
+    ],
+    title: "Workout Trainer - 16-Week Kettlebell Program",
+  }),
   component: HomePage,
 });
 
