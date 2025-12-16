@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getWorkoutsKV } from "~/lib/context";
 import type { CompletedWorkout } from "~/types/program";
+import { verifyToken } from "~/server/auth";
 
 /**
  * Get all completed workouts
@@ -10,14 +11,18 @@ export const getCompletedWorkouts = createServerFn({ method: "GET" }).handler(
     const kv = getWorkoutsKV();
     const { keys } = await kv.list({ prefix: "workout:" });
 
-    const completions: Record<string, CompletedWorkout> = {};
+    // Parallel KV operations for better performance (vs sequential loop)
+    const values = await Promise.all(
+      keys.map(key => kv.get(key.name, "json"))
+    );
 
-    for (const key of keys) {
-      const value = await kv.get(key.name, "json");
+    const completions: Record<string, CompletedWorkout> = {};
+    keys.forEach((key, index) => {
+      const value = values[index];
       if (value) {
         completions[key.name] = value as CompletedWorkout;
       }
-    }
+    });
 
     return completions;
   }
@@ -29,8 +34,7 @@ export const getCompletedWorkouts = createServerFn({ method: "GET" }).handler(
  */
 export const markWorkoutComplete = createServerFn({ method: "POST" }).handler(
   async ({ week, day, token }: { week: number; day: number; token: string }) => {
-    // Verify auth token
-    const { verifyToken } = await import("~/server/auth");
+    // Verify auth token (now using static import)
     const isValid = await verifyToken(token);
 
     if (!isValid) {
@@ -44,7 +48,10 @@ export const markWorkoutComplete = createServerFn({ method: "POST" }).handler(
       completedAt: new Date().toISOString(),
     };
 
-    await kv.put(key, JSON.stringify(completion));
+    // Add TTL: 6 months (reasonable for workout history)
+    await kv.put(key, JSON.stringify(completion), {
+      expirationTtl: 60 * 60 * 24 * 180  // 180 days
+    });
 
     return { success: true, key, completion };
   }
@@ -56,8 +63,7 @@ export const markWorkoutComplete = createServerFn({ method: "POST" }).handler(
  */
 export const unmarkWorkout = createServerFn({ method: "POST" }).handler(
   async ({ week, day, token }: { week: number; day: number; token: string }) => {
-    // Verify auth token
-    const { verifyToken } = await import("~/server/auth");
+    // Verify auth token (now using static import)
     const isValid = await verifyToken(token);
 
     if (!isValid) {

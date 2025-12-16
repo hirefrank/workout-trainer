@@ -1,8 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "workout-trainer",
-  "compatibility_date": "2025-09-24",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_date": "2025-12-15",
+  "compatibility_flags": [],
   // TanStack Start server entry point
   "main": "dist/server/server.js",
   // Static assets configuration

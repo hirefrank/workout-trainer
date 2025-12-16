@@ -17,8 +17,8 @@ export const login = createServerFn({ method: "POST" }).handler(
       throw new Error("Invalid password");
     }
 
-    // Generate a simple token (in production, use JWT or similar)
-    const token = Buffer.from(`${password}:${Date.now()}`).toString("base64");
+    // Generate a simple token using Web Standard btoa (Workers-compatible)
+    const token = btoa(`${password}:${Date.now()}`);
 
     return { success: true, token };
   }
@@ -35,8 +35,8 @@ export const verifyToken = async (token: string): Promise<boolean> => {
       return false;
     }
 
-    // Decode token and verify password matches
-    const decoded = Buffer.from(token, "base64").toString("utf-8");
+    // Decode token using Web Standard atob (Workers-compatible)
+    const decoded = atob(token);
     const [password] = decoded.split(":");
 
     return password === authPassword;
