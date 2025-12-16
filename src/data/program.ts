@@ -108,11 +108,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "3 sets total"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -172,11 +171,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "5 sets, Moderate"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -210,11 +208,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2-2",
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
               "duration": null,
-              "notes": "3 sets progressive"
+              "notes": "Progressive: 1-2-2 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -257,11 +255,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 5,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -304,11 +301,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 4,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "4 sets total"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -369,11 +365,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -454,11 +449,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 5,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -501,11 +495,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -566,11 +559,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -651,11 +643,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 5,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -697,11 +688,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -761,11 +751,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -846,11 +835,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -892,11 +880,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "3 sets"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -956,11 +943,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "3 sets"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -1041,11 +1027,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "3 sets"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -1087,11 +1072,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -1151,11 +1135,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -1236,11 +1219,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -1282,11 +1264,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -1346,11 +1327,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -1431,11 +1411,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -1477,11 +1456,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets, Heavy"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -1541,11 +1519,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -1626,11 +1603,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets, Heavy"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -1672,11 +1648,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets, Heavy"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -1736,11 +1711,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -1822,12 +1796,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 5,
               "reps": null,
               "weight": 53,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets, Heavy"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -1870,11 +1843,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "3 sets"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -1935,11 +1907,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "3 sets"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -2020,11 +1991,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "3 sets"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -2066,11 +2036,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets, Heavy"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -2130,11 +2099,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -2216,12 +2184,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 5,
               "reps": null,
               "weight": 53,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets, Heavy"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -2263,11 +2230,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets, Heavy"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -2327,12 +2293,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight": 45,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "5 sets, Moderate"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -2414,11 +2379,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 5,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": null,
-              "notes": "5 sets, Very Heavy"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -2460,11 +2424,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets, Heavy"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -2524,12 +2487,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight": 45,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "5 sets, Moderate"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -2611,11 +2573,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 5,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": null,
-              "notes": "5 sets, Very Heavy"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -2657,11 +2618,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets, Heavy"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -2721,12 +2681,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight": 45,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "5 sets, Moderate"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -2808,11 +2767,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 5,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": null,
-              "notes": "5 sets, Very Heavy"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -2855,11 +2813,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "3 sets"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -2920,11 +2877,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "3 sets"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -3005,11 +2961,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "3 sets"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",
@@ -3051,11 +3006,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight_type": "heavy",
-              "duration": null,
-              "notes": "5 sets, Heavy"
+              "duration": null
             },
             {
               "exercise_id": "2-hand-swing",
@@ -3115,12 +3069,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 5,
               "reps": null,
               "weight": 45,
               "weight_type": "moderate",
-              "duration": null,
-              "notes": "5 sets, Moderate"
+              "duration": null
             },
             {
               "exercise_id": "goblet-squat",
@@ -3204,11 +3157,10 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 1,
+              "sets": 5,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": null,
-              "notes": "5 sets, Very Heavy"
+              "duration": null
             },
             {
               "exercise_id": "push-ups",

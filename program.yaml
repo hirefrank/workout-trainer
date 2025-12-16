@@ -78,11 +78,10 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets total
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
@@ -125,11 +124,10 @@ weeks:
             duration: null
             notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: moderate
             duration: null
-            notes: 5 sets, Moderate
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -152,11 +150,11 @@ weeks:
             duration: null
             notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: 1-2-2
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets progressive
+            notes: 'Progressive: 1-2-2 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -186,11 +184,10 @@ weeks:
             duration: null
             notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 5
             reps: null
             weight_type: moderate
             duration: null
-            notes: 5 sets
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -219,11 +216,10 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 4
             reps: null
             weight_type: moderate
             duration: null
-            notes: 4 sets total
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
@@ -267,11 +263,10 @@ weeks:
             duration: null
             notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: moderate
             duration: null
-            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -328,11 +323,10 @@ weeks:
             duration: null
             notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 5
             reps: null
             weight_type: moderate
             duration: null
-            notes: 5 sets
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -361,11 +355,10 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: moderate
             duration: null
-            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
@@ -409,11 +402,10 @@ weeks:
             duration: null
             notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: moderate
             duration: null
-            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -470,11 +462,10 @@ weeks:
             duration: null
             notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 5
             reps: null
             weight_type: moderate
             duration: null
-            notes: 5 sets
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -502,11 +493,10 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
@@ -549,11 +539,10 @@ weeks:
             duration: null
             notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -610,11 +599,10 @@ weeks:
             duration: null
             notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -642,11 +630,10 @@ weeks:
             duration: null
             notes: Superset 1 - 2 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 8
@@ -689,11 +676,10 @@ weeks:
             duration: null
             notes: 48 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -750,11 +736,10 @@ weeks:
             duration: null
             notes: 48 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets
           - exercise_id: push-ups
             sets: 2
             reps: 5
@@ -782,11 +767,10 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
@@ -829,11 +813,10 @@ weeks:
             duration: null
             notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -890,11 +873,10 @@ weeks:
             duration: null
             notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -922,11 +904,10 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets
           - exercise_id: 2-hand-swing
             sets: 8
             reps: 10
@@ -969,11 +950,10 @@ weeks:
             duration: null
             notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -1030,11 +1010,10 @@ weeks:
             duration: null
             notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -1062,11 +1041,10 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
@@ -1109,11 +1087,10 @@ weeks:
             duration: null
             notes: 100 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -1170,11 +1147,10 @@ weeks:
             duration: null
             notes: 100 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets, Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -1202,11 +1178,10 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
@@ -1249,11 +1224,10 @@ weeks:
             duration: null
             notes: 100 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -1311,12 +1285,11 @@ weeks:
             duration: null
             notes: 100 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 5
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: 5 sets, Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -1345,11 +1318,10 @@ weeks:
             duration: null
             notes: Superset 1 - 2 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
@@ -1393,11 +1365,10 @@ weeks:
             duration: null
             notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -1454,11 +1425,10 @@ weeks:
             duration: null
             notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets
           - exercise_id: push-ups
             sets: 2
             reps: 5
@@ -1486,11 +1456,10 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
@@ -1533,11 +1502,10 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -1595,12 +1563,11 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 5
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: 5 sets, Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -1628,11 +1595,10 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
@@ -1675,12 +1641,11 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight: 45
             weight_type: moderate
             duration: null
-            notes: 5 sets, Moderate
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -1738,11 +1703,10 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 5
             reps: null
             weight_type: very_heavy
             duration: null
-            notes: 5 sets, Very Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -1770,11 +1734,10 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
@@ -1817,12 +1780,11 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight: 45
             weight_type: moderate
             duration: null
-            notes: 5 sets, Moderate
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -1880,11 +1842,10 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 5
             reps: null
             weight_type: very_heavy
             duration: null
-            notes: 5 sets, Very Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -1912,11 +1873,10 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
@@ -1959,12 +1919,11 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight: 45
             weight_type: moderate
             duration: null
-            notes: 5 sets, Moderate
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -2022,11 +1981,10 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 5
             reps: null
             weight_type: very_heavy
             duration: null
-            notes: 5 sets, Very Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5
@@ -2055,11 +2013,10 @@ weeks:
             duration: null
             notes: Superset 1 - 2 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
@@ -2103,11 +2060,10 @@ weeks:
             duration: null
             notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets
           - exercise_id: goblet-squat
             sets: 5
             reps: 5
@@ -2164,11 +2120,10 @@ weeks:
             duration: null
             notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets
           - exercise_id: push-ups
             sets: 2
             reps: 5
@@ -2196,11 +2151,10 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight_type: heavy
             duration: null
-            notes: 5 sets, Heavy
           - exercise_id: 2-hand-swing
             sets: 10
             reps: 10
@@ -2243,12 +2197,11 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 5
             reps: null
             weight: 45
             weight_type: moderate
             duration: null
-            notes: 5 sets, Moderate
           - exercise_id: goblet-squat
             sets: 5+4
             reps: 5
@@ -2308,11 +2261,10 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 1
+            sets: 5
             reps: null
             weight_type: very_heavy
             duration: null
-            notes: 5 sets, Very Heavy
           - exercise_id: push-ups
             sets: 3
             reps: 5

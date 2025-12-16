@@ -83,9 +83,21 @@ export function exerciseRow(exercise: WorkoutExercise, exerciseData: Exercise): 
     weight = "BW";
   }
 
+  // Unilateral exercises where "sets" means "per side"
+  const unilateralExercises = ['turkish-getup', 'cpg-suitcase-march'];
+  const isUnilateral = unilateralExercises.includes(exercise.exercise_id);
+
   // Build sets/reps/duration string
   const parts = [];
-  if (exercise.sets) parts.push(`${exercise.sets} sets`);
+  if (exercise.sets) {
+    if (isUnilateral) {
+      const setsPerSide = typeof exercise.sets === 'number' ? exercise.sets : parseInt(String(exercise.sets));
+      const totalSets = setsPerSide * 2;
+      parts.push(`${setsPerSide} sets per side (${totalSets} total)`);
+    } else {
+      parts.push(`${exercise.sets} sets`);
+    }
+  }
   if (exercise.reps) parts.push(`${exercise.reps} reps`);
   if (exercise.duration) parts.push(exercise.duration);
   const setsReps = parts.length > 0 ? parts.join(" × ") : "—";
