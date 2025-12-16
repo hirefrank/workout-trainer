@@ -48,7 +48,7 @@ export const programData: ProgramData = {
       }
     },
     "cpg-gsq-pry": {
-      "name": "CPG - GSQ Pry",
+      "name": "Prying Goblet Squat",
       "type": "kettlebell",
       "bells": {
         "moderate": 35,
@@ -57,12 +57,12 @@ export const programData: ProgramData = {
       }
     },
     "cpg-deadbug-arms": {
-      "name": "CPG - DeadBug Arms",
+      "name": "DeadBug Arms",
       "type": "bodyweight",
       "bells": null
     },
     "cpg-suitcase-march": {
-      "name": "CPG Suitcase March",
+      "name": "Suitcase March",
       "type": "kettlebell",
       "bells": {
         "moderate": 45,

@@ -62,62 +62,163 @@ export function workoutCard(
         <span class="expand-text">Show exercises ↓</span>
       </div>
 
-      <div class="exercise-list mt-4 space-y-2 hidden">
-        ${day.exercises.map((ex) => exerciseRow(ex, exercises[ex.exercise_id])).join("")}
+      <div class="exercise-list mt-4 space-y-3 hidden">
+        ${renderExerciseGroups(day.exercises, exercises)}
       </div>
     </div>
   `;
 }
 
 /**
+ * Group and render exercises with superset headers
+ */
+function renderExerciseGroups(exercises: WorkoutExercise[], exerciseData: Record<string, Exercise>): string {
+  const groups: Array<{type: 'superset' | 'single', exercises: WorkoutExercise[], rounds?: number}> = [];
+  let currentSuperset: WorkoutExercise[] = [];
+  let supersetRounds = 0;
+  let lastSupersetId = '';
+
+  for (const ex of exercises) {
+    // Check if exercise is part of a superset (notes contain "Superset X - Y rounds")
+    const supersetMatch = ex.notes?.match(/Superset\s+(\d+)\s*-\s*(\d+)\s+rounds?/i);
+
+    if (supersetMatch) {
+      const supersetId = `superset-${supersetMatch[1]}`;
+      const rounds = parseInt(supersetMatch[2]);
+
+      if (lastSupersetId && lastSupersetId !== supersetId) {
+        // Different superset - save previous one
+        groups.push({type: 'superset', exercises: currentSuperset, rounds: supersetRounds});
+        currentSuperset = [ex];
+        lastSupersetId = supersetId;
+        supersetRounds = rounds;
+      } else {
+        // Same superset or first exercise in new superset
+        currentSuperset.push(ex);
+        lastSupersetId = supersetId;
+        supersetRounds = rounds;
+      }
+    } else {
+      // Not a superset exercise
+      if (currentSuperset.length > 0) {
+        // Save previous superset
+        groups.push({type: 'superset', exercises: currentSuperset, rounds: supersetRounds});
+        currentSuperset = [];
+        lastSupersetId = '';
+      }
+      // Add as single exercise
+      groups.push({type: 'single', exercises: [ex]});
+    }
+  }
+
+  // Don't forget last superset if any
+  if (currentSuperset.length > 0) {
+    groups.push({type: 'superset', exercises: currentSuperset, rounds: supersetRounds});
+  }
+
+  // Render groups
+  return groups.map(group => {
+    if (group.type === 'superset') {
+      const labels = ['A', 'B', 'C', 'D', 'E'];
+      return `
+        <div class="superset-group border-2 border-zinc-400 p-3 bg-zinc-50">
+          <p class="text-xs font-bold uppercase tracking-wider text-zinc-700 mb-2">Superset, ${group.rounds} ${group.rounds === 1 ? 'round' : 'rounds'}</p>
+          ${group.exercises.map((ex, idx) => {
+            const label = labels[idx] || `${idx + 1}`;
+            return `
+              <div class="superset-exercise mb-2 last:mb-0">
+                <p class="text-xs font-bold text-zinc-600 mb-1">${label}.</p>
+                ${exerciseRow(ex, exerciseData[ex.exercise_id])}
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    } else {
+      // Single exercise
+      return exerciseRow(group.exercises[0], exerciseData[group.exercises[0].exercise_id]);
+    }
+  }).join('');
+}
+
+/**
  * Generate HTML for an exercise row (part of WorkoutCard)
  */
 export function exerciseRow(exercise: WorkoutExercise, exerciseData: Exercise): string {
-  // Calculate weight display
-  let weight = "";
-  if (exercise.weight) {
-    weight = `${exercise.weight} lbs`;
-  } else if (exercise.weight_type && exerciseData.bells) {
-    weight = `${exerciseData.bells[exercise.weight_type]} lbs`;
-  } else if (exerciseData.type === "bodyweight") {
-    weight = "BW";
-  }
-
-  // Unilateral exercises where "sets" means "per side"
-  const unilateralExercises = ['turkish-getup', 'cpg-suitcase-march'];
+  // Unilateral exercises
+  const unilateralExercises = ['turkish-getup', 'suitcase-march'];
   const isUnilateral = unilateralExercises.includes(exercise.exercise_id);
 
-  // Build sets/reps/duration string
-  const parts = [];
-  if (exercise.sets) {
+  // Calculate weight display
+  let weightDisplay = "";
+  if (exercise.weight) {
+    // Handle progressive weight notation (e.g., "45→53")
+    weightDisplay = String(exercise.weight).includes('→')
+      ? `${exercise.weight} lbs`
+      : `${exercise.weight} lbs`;
+  } else if (exercise.weight_type && exerciseData.bells) {
+    weightDisplay = `${exerciseData.bells[exercise.weight_type]} lbs`;
+  } else if (exerciseData.type === "bodyweight") {
+    weightDisplay = "BW";
+  }
+
+  // Weight type label (moderate/heavy/very heavy)
+  const weightTypeLabel = exercise.weight_type
+    ? ` (${exercise.weight_type.replace(/_/g, " ")})`
+    : "";
+
+  // Build exercise description line by line
+  let mainLine = "";
+  let setsLine = "";
+
+  // Duration-based exercises (DeadBug Arms, Wall Press Abs, etc.)
+  if (exercise.duration) {
+    mainLine = `${exercise.duration} per set`;
+    setsLine = exercise.sets ? `${exercise.sets} sets` : "";
+  }
+  // Standard rep-based exercises
+  else if (exercise.reps) {
     if (isUnilateral) {
-      const setsPerSide = typeof exercise.sets === 'number' ? exercise.sets : parseInt(String(exercise.sets));
-      const totalSets = setsPerSide * 2;
-      parts.push(`${setsPerSide} sets per side (${totalSets} total)`);
+      // Unilateral: "X reps per side • weight"
+      mainLine = `${exercise.reps} ${exercise.reps === 1 ? 'rep' : 'reps'} per side • ${weightDisplay}${weightTypeLabel}`;
     } else {
-      parts.push(`${exercise.sets} sets`);
+      // Standard: "X reps per set • weight"
+      mainLine = `${exercise.reps} ${exercise.reps === 1 ? 'rep' : 'reps'} per set • ${weightDisplay}${weightTypeLabel}`;
+    }
+
+    // Handle progressive sets (e.g., "5+4" means 1 set at first weight, 4 sets at second)
+    const setsValue = String(exercise.sets || '');
+    if (setsValue.includes('+')) {
+      const [first, rest] = setsValue.split('+');
+      setsLine = `${parseInt(first) + parseInt(rest)} sets total`;
+    } else {
+      setsLine = exercise.sets ? `${exercise.sets} ${exercise.sets === 1 ? 'set' : 'sets'}` : "";
     }
   }
-  if (exercise.reps) parts.push(`${exercise.reps} reps`);
-  if (exercise.duration) parts.push(exercise.duration);
-  const setsReps = parts.length > 0 ? parts.join(" × ") : "—";
+  // Turkish Getup with no reps specified (standard 1 rep per side)
+  else if (isUnilateral && exercise.sets) {
+    mainLine = `1 rep per side • ${weightDisplay}${weightTypeLabel}`;
+    setsLine = `${exercise.sets} ${exercise.sets === 1 ? 'set' : 'sets'}`;
+  }
+  // Other exercises with just sets
+  else if (exercise.sets) {
+    mainLine = weightDisplay ? `${weightDisplay}${weightTypeLabel}` : "";
+    setsLine = `${exercise.sets} ${exercise.sets === 1 ? 'set' : 'sets'}`;
+  }
 
-  // Weight type label
-  const weightTypeLabel = exercise.weight_type
-    ? `<span class="ml-2 text-xs uppercase text-zinc-500">(${escapeHtml(
-        exercise.weight_type.replace(/_/g, " ")
-      )})</span>`
-    : "";
+  // Progressive notation notes (e.g., "Progressive: 1→2→4 reps per side")
+  let notesDisplay = "";
+  if (exercise.notes) {
+    notesDisplay = `<p class="text-xs text-zinc-500 mt-1">${escapeHtml(exercise.notes)}</p>`;
+  }
 
   return `
     <div class="flex items-start gap-3 p-2 bg-white border border-zinc-300">
       <div class="flex-1">
         <p class="font-medium">${escapeHtml(exerciseData.name)}</p>
-        <p class="text-sm text-zinc-600">
-          ${escapeHtml(setsReps)} • ${escapeHtml(weight)}
-          ${weightTypeLabel}
-        </p>
-        ${exercise.notes ? `<p class="text-xs text-zinc-500 mt-1">${escapeHtml(exercise.notes)}</p>` : ""}
+        ${mainLine ? `<p class="text-sm text-zinc-600">${escapeHtml(mainLine)}</p>` : ""}
+        ${setsLine ? `<p class="text-sm font-medium text-zinc-700">${escapeHtml(setsLine)}</p>` : ""}
+        ${notesDisplay}
       </div>
     </div>
   `;
