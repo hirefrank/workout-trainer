@@ -58,7 +58,15 @@ export const verifyToken = async (token: string): Promise<boolean> => {
 
     // Decode token using Web Standard atob (Workers-compatible)
     const decoded = atob(token);
-    const [password] = decoded.split(":");
+    const [password, timestamp] = decoded.split(":");
+
+    // Check token expiration (24 hours)
+    const tokenAge = Date.now() - parseInt(timestamp, 10);
+    const MAX_AGE = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+    if (tokenAge > MAX_AGE) {
+      return false; // Token expired
+    }
 
     // Use constant-time comparison to prevent timing attacks
     return constantTimeEqual(password, authPassword);
