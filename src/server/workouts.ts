@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { getWorkoutsKV } from "~/lib/context";
 import type { CompletedWorkout } from "~/types/program";
 import { verifyToken } from "~/server/auth";
+import { WorkoutCompletionSchema, WorkoutQuerySchema } from "~/server/schemas";
 
 /**
  * Get all completed workouts
@@ -33,7 +34,10 @@ export const getCompletedWorkouts = createServerFn({ method: "GET" }).handler(
  * Requires authentication token
  */
 export const markWorkoutComplete = createServerFn({ method: "POST" }).handler(
-  async ({ week, day, token }: { week: number; day: number; token: string }) => {
+  async (input) => {
+    // Validate input to prevent injection and type confusion
+    const { week, day, token } = WorkoutCompletionSchema.parse(input);
+
     // Verify auth token (now using static import)
     const isValid = await verifyToken(token);
 
@@ -62,7 +66,10 @@ export const markWorkoutComplete = createServerFn({ method: "POST" }).handler(
  * Requires authentication token
  */
 export const unmarkWorkout = createServerFn({ method: "POST" }).handler(
-  async ({ week, day, token }: { week: number; day: number; token: string }) => {
+  async (input) => {
+    // Validate input to prevent injection and type confusion
+    const { week, day, token } = WorkoutCompletionSchema.parse(input);
+
     // Verify auth token (now using static import)
     const isValid = await verifyToken(token);
 
@@ -83,7 +90,10 @@ export const unmarkWorkout = createServerFn({ method: "POST" }).handler(
  * Check if a specific workout is complete
  */
 export const isWorkoutComplete = createServerFn({ method: "GET" }).handler(
-  async ({ week, day }: { week: number; day: number }) => {
+  async (input) => {
+    // Validate input to prevent injection and type confusion
+    const { week, day } = WorkoutQuerySchema.parse(input);
+
     const kv = getWorkoutsKV();
     const key = `workout:${week}-${day}`;
 

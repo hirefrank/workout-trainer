@@ -1,19 +1,40 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getEnvVar } from "~/lib/context";
+import { LoginSchema } from "~/server/schemas";
+
+/**
+ * Constant-time string comparison to prevent timing attacks
+ */
+function constantTimeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) {
+    return false;
+  }
+
+  let result = 0;
+  for (let i = 0; i < a.length; i++) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+
+  return result === 0;
+}
 
 /**
  * Simple authentication using a password
  * In production, use a proper auth system
  */
 export const login = createServerFn({ method: "POST" }).handler(
-  async ({ password }: { password: string }) => {
+  async (input) => {
+    // Validate input to prevent injection and type confusion
+    const { password } = LoginSchema.parse(input);
+
     const authPassword = getEnvVar("AUTH_PASSWORD");
 
     if (!authPassword) {
       throw new Error("Authentication not configured");
     }
 
-    if (password !== authPassword) {
+    // Use constant-time comparison to prevent timing attacks
+    if (!constantTimeEqual(password, authPassword)) {
       throw new Error("Invalid password");
     }
 
@@ -39,7 +60,8 @@ export const verifyToken = async (token: string): Promise<boolean> => {
     const decoded = atob(token);
     const [password] = decoded.split(":");
 
-    return password === authPassword;
+    // Use constant-time comparison to prevent timing attacks
+    return constantTimeEqual(password, authPassword);
   } catch {
     return false;
   }
