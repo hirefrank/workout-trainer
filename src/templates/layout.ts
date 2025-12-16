@@ -59,6 +59,57 @@ export function htmlLayout(
     </main>
   </div>
 
+  <!-- Modals - Outside main content for proper fixed positioning -->
+  ${content.includes('auth-modal') ? '' : `
+    <div id="auth-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[100]">
+      <div class="bg-white border-2 border-black p-6 max-w-sm w-full shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]" onclick="event.stopPropagation()">
+        <h3 class="text-xl font-bold mb-4">Enter Password</h3>
+        <form id="login-form" class="space-y-4">
+          <input type="password" id="password-input"
+                 class="w-full px-3 py-2 border-2 border-black"
+                 placeholder="Password" autofocus>
+          <div class="flex gap-2">
+            <button type="submit"
+                    class="flex-1 px-4 py-2 font-bold border-2 border-black bg-green-400 hover:bg-green-500 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
+              Login
+            </button>
+            <button type="button" id="cancel-auth"
+                    class="px-4 py-2 font-bold border-2 border-black bg-white hover:bg-zinc-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="notes-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[100]">
+      <div class="bg-white border-2 border-black p-6 max-w-md w-full shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]" onclick="event.stopPropagation()">
+        <h3 class="text-xl font-bold mb-2">Add Notes (Optional)</h3>
+        <p class="text-sm text-zinc-600 mb-4">How did the workout feel?</p>
+        <form id="notes-form" class="space-y-4">
+          <textarea id="notes-input"
+                    class="w-full px-3 py-2 border-2 border-black min-h-[100px] resize-y"
+                    placeholder="e.g., Felt strong today, increased weight on swings..."
+                    maxlength="500"></textarea>
+          <div class="flex gap-2">
+            <button type="submit"
+                    class="flex-1 px-4 py-2 font-bold border-2 border-black bg-green-400 hover:bg-green-500 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
+              Complete
+            </button>
+            <button type="button" id="skip-notes"
+                    class="px-4 py-2 font-bold border-2 border-black bg-white hover:bg-zinc-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
+              Skip
+            </button>
+            <button type="button" id="cancel-notes"
+                    class="px-4 py-2 font-bold border-2 border-black bg-white hover:bg-zinc-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  `}
+
   <script src="/workout/app.js"></script>
 </body>
 </html>`;

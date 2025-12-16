@@ -125,9 +125,6 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
         </div>
       </div>
 
-      ${authModal()}
-      ${notesModal()}
-
       <!-- Workouts -->
       <div class="space-y-4">
         ${week.days
