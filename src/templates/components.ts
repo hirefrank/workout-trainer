@@ -115,7 +115,7 @@ export function exerciseRow(exercise: WorkoutExercise, exerciseData: Exercise): 
  */
 export function authModal(): string {
   return `
-    <div id="auth-modal" class="hidden fixed inset-0 top-0 bg-black/50 flex items-center justify-center p-4 z-50">
+    <div id="auth-modal" class="hidden fixed inset-0 left-0 right-0 top-0 bottom-0 bg-black/50 flex items-center justify-center p-4 z-[100]">
       <div class="bg-white border-2 border-black p-6 max-w-sm w-full shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
         <h3 class="text-xl font-bold mb-4">Enter Password</h3>
         <form id="login-form" class="space-y-4">
@@ -143,7 +143,7 @@ export function authModal(): string {
  */
 export function notesModal(): string {
   return `
-    <div id="notes-modal" class="hidden fixed inset-0 top-0 bg-black/50 flex items-center justify-center p-4 z-50">
+    <div id="notes-modal" class="hidden fixed inset-0 left-0 right-0 top-0 bottom-0 bg-black/50 flex items-center justify-center p-4 z-[100]">
       <div class="bg-white border-2 border-black p-6 max-w-md w-full shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
         <h3 class="text-xl font-bold mb-2">Add Notes (Optional)</h3>
         <p class="text-sm text-zinc-600 mb-4">How did the workout feel?</p>
