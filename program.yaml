@@ -78,11 +78,11 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets total
+            notes: Alternate sides
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10
@@ -106,12 +106,11 @@ weeks:
         name: Volume baseline | Lower Body Strength
         exercises:
           - exercise_id: push-ups
-            sets: 3
+            sets: 5
             reps: 5
             weight: null
             weight_type: null
             duration: null
-            notes: 5 sets total
           - exercise_id: kb-deadlift
             sets: 5
             reps: 5
@@ -152,11 +151,11 @@ weeks:
             duration: null
             notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: 1-2-2
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets progressive
+            notes: 'Progressive: 1-2-2 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -219,11 +218,11 @@ weeks:
             duration: null
             notes: Superset 1 - 3 rounds
           - exercise_id: turkish-getup
-            sets: 2
+            sets: 4
             reps: null
             weight_type: moderate
             duration: null
-            notes: 4 sets total
+            notes: Alternate sides
           - exercise_id: 2-hand-swing
             sets: 6
             reps: 10

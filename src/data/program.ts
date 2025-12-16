@@ -108,11 +108,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
               "duration": null,
-              "notes": "3 sets total"
+              "notes": "Alternate sides"
             },
             {
               "exercise_id": "2-hand-swing",
@@ -147,12 +147,11 @@ export const programData: ProgramData = {
           "exercises": [
             {
               "exercise_id": "push-ups",
-              "sets": 3,
+              "sets": 5,
               "reps": 5,
               "weight": null,
               "weight_type": null,
-              "duration": null,
-              "notes": "5 sets total"
+              "duration": null
             },
             {
               "exercise_id": "kb-deadlift",
@@ -210,11 +209,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2-2",
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
               "duration": null,
-              "notes": "3 sets progressive"
+              "notes": "Progressive: 1-2-2 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -304,11 +303,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": 2,
+              "sets": 4,
               "reps": null,
               "weight_type": "moderate",
               "duration": null,
-              "notes": "4 sets total"
+              "notes": "Alternate sides"
             },
             {
               "exercise_id": "2-hand-swing",
