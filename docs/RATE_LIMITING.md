@@ -296,4 +296,4 @@ For most applications, dashboard rules + KV-based rate limiting provides the bes
 3. Add client IP identification helpers
 4. Test rate limits before production deployment
 
-See `FIXES_APPLIED.md` for tracking of security implementations.
+See `SECURITY_AUDIT.md` for tracking of security implementations.

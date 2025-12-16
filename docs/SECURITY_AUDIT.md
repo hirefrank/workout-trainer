@@ -1,4 +1,4 @@
-# Code Review Fixes Applied
+# Security Audit Report
 
 **Date:** 2025-12-15
 **Review Type:** Comprehensive Cloudflare Workers compatibility and security audit
@@ -248,7 +248,7 @@ ALL 12 CRITICAL AND HIGH-PRIORITY ISSUES RESOLVED ✅
 - `src/server/auth.ts` - Token expiration validation
 - `src/middleware/security.ts` - Security headers and CORS (NEW)
 - `README.md` - Security documentation and deployment guide
-- `FIXES_APPLIED.md` - Updated with P2 resolutions
+- `docs/SECURITY_AUDIT.md` - Updated with P2 resolutions
 
 ### Phase 4: P2 Security Fixes - HMAC & HttpOnly Cookies (Commit 5c58dda)
 - `src/server/auth.ts` - HMAC-SHA256 signed tokens, HttpOnly cookies, logout function
@@ -258,7 +258,7 @@ ALL 12 CRITICAL AND HIGH-PRIORITY ISSUES RESOLVED ✅
 - `src/routes/index.tsx` - Removed localStorage, updated to use cookies
 - `docs/RATE_LIMITING.md` - Complete rate limiting guide (NEW)
 - `README.md` - Updated production readiness status
-- `FIXES_APPLIED.md` - Final status updates
+- `docs/SECURITY_AUDIT.md` - Final status updates
 
 ---
 

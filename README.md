@@ -122,7 +122,7 @@ The application is production-ready! All critical security measures are implemen
 - Review and tighten CSP directives for your specific use case
 - Consider implementing Durable Objects for distributed rate limiting
 
-See `FIXES_APPLIED.md` for complete security audit details and performance metrics.
+See `docs/SECURITY_AUDIT.md` for complete security audit details and performance metrics.
 See `docs/RATE_LIMITING.md` for rate limiting configuration guide.
 
 ## Configuration
