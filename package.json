@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "vite build && node scripts/post-build.mjs",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
     "deploy": "pnpm build && wrangler deploy",
