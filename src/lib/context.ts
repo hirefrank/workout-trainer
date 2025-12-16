@@ -3,18 +3,11 @@ import type { WorkerEnv } from "~/types/env";
 
 /**
  * Get the Cloudflare environment from the request context
- * Works in both dev (Vite with remote bindings) and production (Cloudflare Workers)
+ * Works in both dev (via @cloudflare/vite-plugin) and production (Cloudflare Workers)
  */
 export function getEnv(): WorkerEnv {
-  // Check for Vite dev mode with remote bindings (set by vite.config.ts)
-  // @ts-expect-error - Set by cloudflareBindings() Vite plugin
-  if (globalThis.__cloudflareEnv) {
-    // @ts-expect-error - Set by cloudflareBindings() Vite plugin
-    return globalThis.__cloudflareEnv as WorkerEnv;
-  }
-
   try {
-    // Try vinxi/http event context
+    // Try vinxi/http event context (works with @cloudflare/vite-plugin)
     const event = getEvent();
     if (event?.context?.cloudflare?.env) {
       return event.context.cloudflare.env as WorkerEnv;
@@ -34,7 +27,7 @@ export function getEnv(): WorkerEnv {
 
   throw new Error(
     "Cloudflare environment not available. " +
-    "This should not happen with remote bindings enabled in vite.config.ts"
+    "Make sure @cloudflare/vite-plugin is properly configured in vite.config.ts"
   );
 }
 

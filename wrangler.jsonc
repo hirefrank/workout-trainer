@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "workout-trainer",
-  "compatibility_date": "2025-12-10",
+  "compatibility_date": "2025-01-01",
   "compatibility_flags": ["nodejs_compat"],
   "account_id": "6034f1c5d23e5503f6573740480cf0d6",
   // Use TanStack Start's default entry point
