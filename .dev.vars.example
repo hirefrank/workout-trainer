@@ -1,0 +1,5 @@
+# Local development environment variables
+# Copy to .dev.vars and set your values
+
+# Authentication password for marking workouts complete
+AUTH_PASSWORD=your-password-here

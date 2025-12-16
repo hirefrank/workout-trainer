@@ -1,0 +1,10 @@
+node_modules
+dist
+.wrangler
+.tanstack
+.env
+.dev.vars
+pnpm-lock.yaml
+*.log
+.DS_Store
+worker-configuration.d.ts

@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "workout-trainer",
+  "compatibility_date": "2025-09-24",
+  "compatibility_flags": ["nodejs_compat"],
+  // TanStack Start server entry point
+  "main": "dist/server/server.js",
+  // Static assets configuration
+  "assets": {
+    "directory": "./dist/client/",
+    "not_found_handling": "404-page"
+  },
+  // Enable workers.dev subdomain for testing
+  "workers_dev": true,
+  // KV namespace for workout completions (always use remote)
+  "kv_namespaces": [
+    {
+      "binding": "WORKOUTS_KV",
+      "id": "cf9e891fc895458883fa2ebb048202fb"
+    }
+  ]
+  // Set auth password with: wrangler secret put AUTH_PASSWORD
+}
