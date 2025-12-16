@@ -45,22 +45,27 @@ for (const week of data.weeks) {
         }
       }
 
-      // Pattern: Progressive notation like "1-2-2" with "X sets progressive"
-      if (sets.match(/^\d+-\d+/) && notes.match(/(\d+)\s+sets?\s+prog/i)) {
-        const totalSetsFromNotes = parseInt(notes.match(/(\d+)\s+sets?\s+prog/i)[1]);
+      // Pattern: Progressive notation like "1-2-2" with "X sets" in notes
+      if (sets.match(/^\d+-\d+/)) {
+        // Extract total sets from notes (e.g., "3 sets" or "3 sets progressive")
+        const setsMatch = notes.match(/(\d+)\s+sets?/i);
 
-        fixes.push({
-          week: week.number,
-          day: day.number,
-          exercise: exId,
-          old: `sets: "${sets}", notes: "${notes}"`,
-          new: `sets: ${totalSetsFromNotes} (per side), notes: "Progressive: ${sets} reps"`
-        });
+        if (setsMatch) {
+          const totalSetsFromNotes = parseInt(setsMatch[1]);
 
-        const oldSets = sets;
-        ex.sets = totalSetsFromNotes;
-        ex.notes = `Progressive: ${oldSets} reps per side`;
-        fixCount++;
+          fixes.push({
+            week: week.number,
+            day: day.number,
+            exercise: exId,
+            old: `sets: "${sets}", notes: "${notes}"`,
+            new: `sets: ${totalSetsFromNotes} (per side), notes: "Progressive: ${sets} reps per side"`
+          });
+
+          const oldSets = sets;
+          ex.sets = totalSetsFromNotes;
+          ex.notes = `Progressive: ${oldSets} reps per side`;
+          fixCount++;
+        }
       }
     }
   }

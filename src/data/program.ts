@@ -402,11 +402,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2-2",
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
               "duration": null,
-              "notes": "3 sets"
+              "notes": "Progressive: 1-2-2 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -596,11 +596,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2-3",
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
               "duration": null,
-              "notes": "3 sets"
+              "notes": "Progressive: 1-2-3 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -788,11 +788,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2-4",
+              "sets": 3,
               "reps": null,
               "weight_type": "moderate",
               "duration": null,
-              "notes": "3 sets"
+              "notes": "Progressive: 1-2-4 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -980,11 +980,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2",
+              "sets": 2,
               "reps": null,
               "weight_type": "moderate",
               "duration": null,
-              "notes": "2 sets"
+              "notes": "Progressive: 1-2 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -1172,11 +1172,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2-4",
+              "sets": 3,
               "reps": null,
               "weight_type": "heavy",
               "duration": null,
-              "notes": "3 sets"
+              "notes": "Progressive: 1-2-4 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -1364,11 +1364,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2-4",
+              "sets": 3,
               "reps": null,
               "weight_type": "heavy",
               "duration": null,
-              "notes": "3 sets"
+              "notes": "Progressive: 1-2-4 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -1556,11 +1556,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2-4",
+              "sets": 3,
               "reps": null,
               "weight_type": "heavy",
               "duration": null,
-              "notes": "3 sets, Heavy"
+              "notes": "Progressive: 1-2-4 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -1748,12 +1748,12 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2-4",
+              "sets": 3,
               "reps": null,
               "weight": 53,
               "weight_type": "heavy",
               "duration": null,
-              "notes": "3 sets, Heavy"
+              "notes": "Progressive: 1-2-4 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -1944,11 +1944,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2",
+              "sets": 2,
               "reps": null,
               "weight_type": "moderate",
               "duration": null,
-              "notes": "2 sets"
+              "notes": "Progressive: 1-2 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -2136,12 +2136,12 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2-4",
+              "sets": 3,
               "reps": null,
               "weight": 53,
               "weight_type": "heavy",
               "duration": null,
-              "notes": "3 sets, Heavy"
+              "notes": "Progressive: 1-2-4 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -2331,12 +2331,12 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2-4",
+              "sets": 3,
               "reps": null,
               "weight": 53,
               "weight_type": "heavy",
               "duration": null,
-              "notes": "3 sets, Heavy"
+              "notes": "Progressive: 1-2-4 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -2525,12 +2525,12 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2-4",
+              "sets": 3,
               "reps": null,
               "weight": 53,
               "weight_type": "heavy",
               "duration": null,
-              "notes": "3 sets, Heavy"
+              "notes": "Progressive: 1-2-4 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -2719,12 +2719,12 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2-4",
+              "sets": 3,
               "reps": null,
               "weight": 53,
               "weight_type": "heavy",
               "duration": null,
-              "notes": "3 sets, Heavy"
+              "notes": "Progressive: 1-2-4 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -2914,11 +2914,11 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2",
+              "sets": 2,
               "reps": null,
               "weight_type": "moderate",
               "duration": null,
-              "notes": "2 sets"
+              "notes": "Progressive: 1-2 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",
@@ -3108,12 +3108,12 @@ export const programData: ProgramData = {
             },
             {
               "exercise_id": "turkish-getup",
-              "sets": "1-2/2-4/4",
+              "sets": 3,
               "reps": null,
               "weight": 53,
               "weight_type": "heavy",
               "duration": null,
-              "notes": "3 sets, Heavy"
+              "notes": "Progressive: 1-2/2-4/4 reps per side"
             },
             {
               "exercise_id": "cpg-deadbug-arms",

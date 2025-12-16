@@ -289,11 +289,11 @@ weeks:
             duration: null
             notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: 1-2-2
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets
+            notes: 'Progressive: 1-2-2 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -428,11 +428,11 @@ weeks:
             duration: null
             notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: 1-2-3
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets
+            notes: 'Progressive: 1-2-3 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -565,11 +565,11 @@ weeks:
             duration: null
             notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: 1-2-4
+            sets: 3
             reps: null
             weight_type: moderate
             duration: null
-            notes: 3 sets
+            notes: 'Progressive: 1-2-4 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -702,11 +702,11 @@ weeks:
             duration: null
             notes: 48 total swings
           - exercise_id: turkish-getup
-            sets: 1-2
+            sets: 2
             reps: null
             weight_type: moderate
             duration: null
-            notes: 2 sets
+            notes: 'Progressive: 1-2 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -839,11 +839,11 @@ weeks:
             duration: null
             notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: 1-2-4
+            sets: 3
             reps: null
             weight_type: heavy
             duration: null
-            notes: 3 sets
+            notes: 'Progressive: 1-2-4 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -976,11 +976,11 @@ weeks:
             duration: null
             notes: 80 total swings
           - exercise_id: turkish-getup
-            sets: 1-2-4
+            sets: 3
             reps: null
             weight_type: heavy
             duration: null
-            notes: 3 sets
+            notes: 'Progressive: 1-2-4 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -1113,11 +1113,11 @@ weeks:
             duration: null
             notes: 100 total swings
           - exercise_id: turkish-getup
-            sets: 1-2-4
+            sets: 3
             reps: null
             weight_type: heavy
             duration: null
-            notes: 3 sets, Heavy
+            notes: 'Progressive: 1-2-4 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -1250,12 +1250,12 @@ weeks:
             duration: null
             notes: 100 total swings
           - exercise_id: turkish-getup
-            sets: 1-2-4
+            sets: 3
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: 3 sets, Heavy
+            notes: 'Progressive: 1-2-4 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -1391,11 +1391,11 @@ weeks:
             duration: null
             notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: 1-2
+            sets: 2
             reps: null
             weight_type: moderate
             duration: null
-            notes: 2 sets
+            notes: 'Progressive: 1-2 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -1528,12 +1528,12 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 1-2-4
+            sets: 3
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: 3 sets, Heavy
+            notes: 'Progressive: 1-2-4 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -1668,12 +1668,12 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 1-2-4
+            sets: 3
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: 3 sets, Heavy
+            notes: 'Progressive: 1-2-4 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -1807,12 +1807,12 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 1-2-4
+            sets: 3
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: 3 sets, Heavy
+            notes: 'Progressive: 1-2-4 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -1946,12 +1946,12 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 1-2-4
+            sets: 3
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: 3 sets, Heavy
+            notes: 'Progressive: 1-2-4 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -2086,11 +2086,11 @@ weeks:
             duration: null
             notes: 60 total swings
           - exercise_id: turkish-getup
-            sets: 1-2
+            sets: 2
             reps: null
             weight_type: moderate
             duration: null
-            notes: 2 sets
+            notes: 'Progressive: 1-2 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
@@ -2225,12 +2225,12 @@ weeks:
             duration: null
             notes: Very Heavy - 100 total swings
           - exercise_id: turkish-getup
-            sets: 1-2/2-4/4
+            sets: 3
             reps: null
             weight: 53
             weight_type: heavy
             duration: null
-            notes: 3 sets, Heavy
+            notes: 'Progressive: 1-2/2-4/4 reps per side'
           - exercise_id: cpg-deadbug-arms
             sets: null
             reps: null
