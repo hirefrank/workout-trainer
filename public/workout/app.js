@@ -11,6 +11,12 @@ const loginTrigger = document.getElementById("login-trigger");
 const cancelAuth = document.getElementById("cancel-auth");
 const logoutBtn = document.getElementById("logout-btn");
 
+// Helper to close auth modal
+function closeAuthModal() {
+  authModal.classList.add("hidden");
+  passwordInput.value = "";
+}
+
 // Show auth modal
 if (loginTrigger) {
   loginTrigger.addEventListener("click", () => {
@@ -21,9 +27,21 @@ if (loginTrigger) {
 
 // Hide auth modal
 if (cancelAuth) {
-  cancelAuth.addEventListener("click", () => {
-    authModal.classList.add("hidden");
-    passwordInput.value = "";
+  cancelAuth.addEventListener("click", closeAuthModal);
+}
+
+// Close auth modal on ESC key or click outside
+if (authModal) {
+  authModal.addEventListener("click", (e) => {
+    if (e.target === authModal) {
+      closeAuthModal();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !authModal.classList.contains("hidden")) {
+      closeAuthModal();
+    }
   });
 }
 
@@ -159,12 +177,30 @@ if (skipNotes) {
   });
 }
 
+// Helper to close notes modal
+function closeNotesModal() {
+  notesModal.classList.add("hidden");
+  notesInput.value = "";
+  pendingWorkout = null;
+}
+
 // Cancel notes button (close modal)
 if (cancelNotes) {
-  cancelNotes.addEventListener("click", () => {
-    notesModal.classList.add("hidden");
-    notesInput.value = "";
-    pendingWorkout = null;
+  cancelNotes.addEventListener("click", closeNotesModal);
+}
+
+// Close notes modal on ESC key or click outside
+if (notesModal) {
+  notesModal.addEventListener("click", (e) => {
+    if (e.target === notesModal) {
+      closeNotesModal();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !notesModal.classList.contains("hidden")) {
+      closeNotesModal();
+    }
   });
 }
 

@@ -78,6 +78,10 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
     (day) => !!completions[`workout:${currentWeek}-${day.number}`]
   ).length;
 
+  // Calculate total completed workouts across all weeks
+  const totalWorkouts = programData.weeks.reduce((sum, w) => sum + w.days.length, 0);
+  const totalCompleted = Object.keys(completions).filter((key) => key.startsWith("workout:")).length;
+
   // Generate page HTML
   const content = `
     <div class="space-y-6" data-current-week="${currentWeek}">
@@ -144,10 +148,17 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
     </div>
   `;
 
-  return new Response(htmlLayout(content, `${programData.program.name} - Week ${currentWeek}`), {
-    headers: {
-      "Content-Type": "text/html; charset=utf-8",
-      "Cache-Control": "public, max-age=60, s-maxage=60",
-    },
-  });
+  return new Response(
+    htmlLayout(
+      content,
+      `${programData.program.name} - Week ${currentWeek}`,
+      { completed: totalCompleted, total: totalWorkouts }
+    ),
+    {
+      headers: {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=60, s-maxage=60",
+      },
+    }
+  );
 }
