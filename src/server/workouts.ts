@@ -1,8 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getWorkoutsKV } from "~/lib/context";
 import type { CompletedWorkout } from "~/types/program";
-import { verifyToken } from "~/server/auth";
-import { WorkoutCompletionSchema, WorkoutQuerySchema } from "~/server/schemas";
+import { isUserAuthenticated } from "~/server/auth";
+import { WorkoutQuerySchema } from "~/server/schemas";
 
 /**
  * Get all completed workouts
@@ -31,19 +31,19 @@ export const getCompletedWorkouts = createServerFn({ method: "GET" }).handler(
 
 /**
  * Mark a workout as complete
- * Requires authentication token
+ * Requires authentication (HttpOnly cookie)
  */
 export const markWorkoutComplete = createServerFn({ method: "POST" }).handler(
   async (input) => {
-    // Validate input to prevent injection and type confusion
-    const { week, day, token } = WorkoutCompletionSchema.parse(input);
+    // Check authentication from HttpOnly cookie
+    const isAuthenticated = await isUserAuthenticated();
 
-    // Verify auth token (now using static import)
-    const isValid = await verifyToken(token);
-
-    if (!isValid) {
+    if (!isAuthenticated) {
       throw new Error("Unauthorized");
     }
+
+    // Validate input to prevent injection and type confusion
+    const { week, day } = WorkoutQuerySchema.parse(input);
 
     const kv = getWorkoutsKV();
     const key = `workout:${week}-${day}`;
@@ -63,19 +63,19 @@ export const markWorkoutComplete = createServerFn({ method: "POST" }).handler(
 
 /**
  * Unmark a workout (remove completion)
- * Requires authentication token
+ * Requires authentication (HttpOnly cookie)
  */
 export const unmarkWorkout = createServerFn({ method: "POST" }).handler(
   async (input) => {
-    // Validate input to prevent injection and type confusion
-    const { week, day, token } = WorkoutCompletionSchema.parse(input);
+    // Check authentication from HttpOnly cookie
+    const isAuthenticated = await isUserAuthenticated();
 
-    // Verify auth token (now using static import)
-    const isValid = await verifyToken(token);
-
-    if (!isValid) {
+    if (!isAuthenticated) {
       throw new Error("Unauthorized");
     }
+
+    // Validate input to prevent injection and type confusion
+    const { week, day } = WorkoutQuerySchema.parse(input);
 
     const kv = getWorkoutsKV();
     const key = `workout:${week}-${day}`;

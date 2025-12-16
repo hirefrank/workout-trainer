@@ -8,7 +8,7 @@ import {
   markWorkoutComplete,
   unmarkWorkout,
 } from "~/server/workouts";
-import { login } from "~/server/auth";
+import { login, logout, checkAuth } from "~/server/auth";
 
 const program = programData as ProgramData;
 
@@ -18,20 +18,19 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   const [currentWeek, setCurrentWeek] = useState(1);
-  const [authToken, setAuthToken] = useState<string | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [showAuth, setShowAuth] = useState(false);
   const [completions, setCompletions] = useState<Record<string, any>>({});
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load completions and auth token from storage
+  // Load completions and check authentication
   useEffect(() => {
     const loadData = async () => {
       try {
-        const stored = localStorage.getItem("authToken");
-        if (stored) {
-          setAuthToken(stored);
-        }
+        // Check auth status from HttpOnly cookie
+        const { isAuthenticated: authStatus } = await checkAuth();
+        setIsAuthenticated(authStatus);
 
         const data = await getCompletedWorkouts();
         setCompletions(data);
@@ -48,9 +47,8 @@ function HomePage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const result = await login({ password });
-      setAuthToken(result.token);
-      localStorage.setItem("authToken", result.token);
+      await login({ password });
+      setIsAuthenticated(true);
       setPassword("");
       setShowAuth(false);
     } catch (error) {
@@ -58,13 +56,17 @@ function HomePage() {
     }
   };
 
-  const handleLogout = () => {
-    setAuthToken(null);
-    localStorage.removeItem("authToken");
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setIsAuthenticated(false);
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
 
   const handleToggleComplete = async (week: number, day: number) => {
-    if (!authToken) {
+    if (!isAuthenticated) {
       setShowAuth(true);
       return;
     }
@@ -74,12 +76,12 @@ function HomePage() {
 
     try {
       if (isComplete) {
-        await unmarkWorkout({ week, day, token: authToken });
+        await unmarkWorkout({ week, day });
         const newCompletions = { ...completions };
         delete newCompletions[key];
         setCompletions(newCompletions);
       } else {
-        const result = await markWorkoutComplete({ week, day, token: authToken });
+        const result = await markWorkoutComplete({ week, day });
         setCompletions({
           ...completions,
           [key]: result.completion,
@@ -87,7 +89,7 @@ function HomePage() {
       }
     } catch (error) {
       alert("Failed to update workout. Please try logging in again.");
-      handleLogout();
+      await handleLogout();
     }
   };
 
@@ -130,7 +132,7 @@ function HomePage() {
             <p className="text-sm font-medium">
               {completedCount} / {week.days.length} days
             </p>
-            {authToken ? (
+            {isAuthenticated ? (
               <button
                 onClick={handleLogout}
                 className="text-xs text-zinc-600 hover:text-black mt-1"
@@ -175,7 +177,7 @@ function HomePage() {
       </div>
 
       {/* Auth Modal */}
-      {showAuth && !authToken && (
+      {showAuth && !isAuthenticated && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="bg-white border-2 border-black p-6 max-w-sm w-full shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
             <h3 className="text-xl font-bold mb-4">Enter Password</h3>
@@ -218,7 +220,7 @@ function HomePage() {
             exercises={program.exercises}
             isComplete={!!completions[`workout:${currentWeek}-${day.number}`]}
             onToggleComplete={() => handleToggleComplete(currentWeek, day.number)}
-            canEdit={!!authToken}
+            canEdit={isAuthenticated}
           />
         ))}
       </div>
