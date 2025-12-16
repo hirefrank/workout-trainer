@@ -88,7 +88,7 @@
 ## ✅ RESOLVED - P2 High Priority Issues
 
 ### #007: Missing Security Headers
-**Status:** ✅ FIXED (Commit: TBD)
+**Status:** ✅ FIXED (Commit: ef21601)
 **Impact:** Vulnerable to clickjacking, XSS, MIME confusion
 **Solution:** Created comprehensive security headers middleware
 
@@ -103,7 +103,7 @@
 ---
 
 ### #008: Missing CORS Configuration
-**Status:** ✅ FIXED (Commit: TBD)
+**Status:** ✅ FIXED (Commit: ef21601)
 **Impact:** API access limited to same-origin
 **Solution:** Created CORS middleware with origin validation
 
@@ -118,7 +118,7 @@
 ---
 
 ### #009: Token Expiration Not Enforced
-**Status:** ✅ FIXED (Commit: TBD)
+**Status:** ✅ FIXED (Commit: ef21601)
 **Impact:** Tokens valid forever
 **Solution:** Added 24-hour token expiration validation
 
@@ -200,7 +200,7 @@
 - `src/server/workouts.ts` - Input validation
 - `src/server/schemas.ts` - Validation schemas (NEW)
 
-### Phase 3: P2 Security Fixes (Commit TBD)
+### Phase 3: P2 Security Fixes (Commit ef21601)
 - `src/server/auth.ts` - Token expiration validation
 - `src/middleware/security.ts` - Security headers and CORS (NEW)
 - `README.md` - Security documentation and deployment guide
