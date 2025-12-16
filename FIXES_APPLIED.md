@@ -88,7 +88,7 @@
 ## ✅ RESOLVED - P2 High Priority Issues
 
 ### #002: Insecure Token Generation (Password Embedded)
-**Status:** ✅ FIXED (Commit: TBD)
+**Status:** ✅ FIXED (Commit: 5c58dda)
 **Impact:** Password embedded in token allowed extraction
 **Solution:** Implemented HMAC-SHA256 signed tokens with server-side sessions
 
@@ -149,7 +149,7 @@
 ---
 
 ### #010: localStorage Token Storage
-**Status:** ✅ FIXED (Commit: TBD)
+**Status:** ✅ FIXED (Commit: 5c58dda)
 **Impact:** Vulnerable to XSS token theft
 **Solution:** Switched to HttpOnly cookies for token storage
 
@@ -168,7 +168,7 @@
 ---
 
 ### #011: No Rate Limiting
-**Status:** ✅ FIXED (Commit: TBD)
+**Status:** ✅ FIXED (Commit: 5c58dda)
 **Impact:** Vulnerable to brute force and DoS
 **Solution:** Created comprehensive rate limiting documentation and configuration guide
 
@@ -250,7 +250,7 @@ ALL 12 CRITICAL AND HIGH-PRIORITY ISSUES RESOLVED ✅
 - `README.md` - Security documentation and deployment guide
 - `FIXES_APPLIED.md` - Updated with P2 resolutions
 
-### Phase 4: P2 Security Fixes - HMAC & HttpOnly Cookies (Commit TBD)
+### Phase 4: P2 Security Fixes - HMAC & HttpOnly Cookies (Commit 5c58dda)
 - `src/server/auth.ts` - HMAC-SHA256 signed tokens, HttpOnly cookies, logout function
 - `src/server/workouts.ts` - Updated to use isUserAuthenticated()
 - `src/server/schemas.ts` - Made token field optional (backward compatibility)
