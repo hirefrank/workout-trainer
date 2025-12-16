@@ -4,7 +4,7 @@
  */
 
 import type { WorkerEnv } from "~/types/env";
-import { WorkoutQuerySchema, WorkoutCompletionWithNotesSchema } from "~/server/schemas";
+import { WorkoutQuerySchema, WorkoutCompletionWithNotesSchema } from "~/lib/schemas";
 import { isUserAuthenticated } from "./api";
 
 /**

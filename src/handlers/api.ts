@@ -6,7 +6,7 @@
 import type { WorkerEnv } from "~/types/env";
 import { parseCookie, createCookieHeader, deleteCookieHeader } from "~/lib/cookies";
 import { constantTimeEqual, hmacSign, hmacVerify } from "~/lib/auth-utils";
-import { LoginSchema } from "~/server/schemas";
+import { LoginSchema } from "~/lib/schemas";
 
 /**
  * Session data stored in KV
