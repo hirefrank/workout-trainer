@@ -37,10 +37,25 @@ npx wrangler kv:namespace create WORKOUTS_KV
 # Set authentication password
 npx wrangler secret put AUTH_PASSWORD
 # Enter your desired password when prompted
-
-# Run development server
-pnpm dev
 ```
+
+### Development
+
+**Two development modes:**
+
+1. **Quick UI development** (no KV/authentication):
+   ```bash
+   pnpm dev
+   # Fast hot-reload for UI changes
+   # Authentication and workout tracking won't work (no KV access)
+   ```
+
+2. **Full-stack development** (with KV/authentication):
+   ```bash
+   npx wrangler dev
+   # Runs in Workers runtime with KV and secrets
+   # Slower but fully functional
+   ```
 
 Visit http://localhost:3000 to see the app.
 
@@ -49,9 +64,6 @@ Visit http://localhost:3000 to see the app.
 ```bash
 # Build the application
 pnpm build
-
-# Test locally with Workers runtime
-npx wrangler dev
 
 # Deploy to Cloudflare Workers
 pnpm deploy
@@ -206,10 +218,13 @@ src/
 ### Commands
 
 ```bash
-pnpm dev          # Start dev server
+# Development servers
+pnpm dev          # Fast Vite dev server (UI only, no KV/auth)
+wrangler dev      # Full Workers runtime (with KV and secrets)
+
+# Build and deploy
 pnpm build        # Build for production
 pnpm typecheck    # Run TypeScript checks
-pnpm preview      # Preview production build
 pnpm deploy       # Deploy to Cloudflare Workers
 pnpm cf-typegen   # Generate Cloudflare types
 ```

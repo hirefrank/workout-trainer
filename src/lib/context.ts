@@ -1,11 +1,32 @@
+import { getEvent } from "vinxi/http";
 import type { WorkerEnv } from "~/types/env";
 
 /**
- * Get the Cloudflare environment from the async context
+ * Get the Cloudflare environment from the request context
+ * Works in both dev (Vite) and production (Cloudflare Workers)
  */
 export function getEnv(): WorkerEnv {
-  // @ts-expect-error - Cloudflare Workers async context
-  return globalThis[Symbol.for("cloudflare:env")];
+  try {
+    // Try vinxi/http event context first (works in dev and production)
+    const event = getEvent();
+    if (event?.context?.cloudflare?.env) {
+      return event.context.cloudflare.env as WorkerEnv;
+    }
+  } catch {
+    // Fallback to Cloudflare Workers async context (production only)
+    try {
+      // @ts-expect-error - Cloudflare Workers async context
+      const env = globalThis[Symbol.for("cloudflare:env")];
+      if (env) return env;
+    } catch {
+      // Continue to mock
+    }
+  }
+
+  // Development fallback - return empty mock
+  // In dev, you'll need to set env vars via .env or wrangler dev
+  console.warn("No Cloudflare environment available - using mock");
+  return {} as WorkerEnv;
 }
 
 /**
@@ -13,7 +34,16 @@ export function getEnv(): WorkerEnv {
  */
 export function getEnvVar<K extends keyof WorkerEnv>(key: K): WorkerEnv[K] {
   const env = getEnv();
-  return env[key];
+  const value = env[key];
+
+  if (value === undefined) {
+    throw new Error(
+      `Environment variable ${String(key)} is not defined. ` +
+      `In dev mode, run 'wrangler dev' instead of 'pnpm dev' to access KV and secrets.`
+    );
+  }
+
+  return value;
 }
 
 /**
@@ -24,11 +54,27 @@ export function getWorkoutsKV(): KVNamespace {
 }
 
 /**
- * Get the current request from async context
+ * Get the current request from context
  */
 export function getRequest(): Request {
-  // @ts-expect-error - Cloudflare Workers async context
-  return globalThis[Symbol.for("cloudflare:request")];
+  try {
+    // Try vinxi/http event first
+    const event = getEvent();
+    if (event?.node?.req) {
+      return event.node.req as unknown as Request;
+    }
+  } catch {
+    // Try Cloudflare Workers context
+    try {
+      // @ts-expect-error - Cloudflare Workers async context
+      const request = globalThis[Symbol.for("cloudflare:request")];
+      if (request) return request;
+    } catch {
+      // Continue
+    }
+  }
+
+  throw new Error("Request not available in current context");
 }
 
 /**
