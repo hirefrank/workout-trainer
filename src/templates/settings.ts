@@ -130,7 +130,7 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
                  class="inline-block px-4 py-2 font-bold text-sm border-2 border-black bg-blue-400 hover:bg-blue-500 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-colors">
                 <span id="buy-kb-text">Buy Kettlebells (${unit})</span>
               </a>
-              <p class="text-xs text-zinc-600 mt-2">Rep Fitness affiliate link</p>
+              <!-- <p class="text-xs text-zinc-600 mt-2">Rep Fitness affiliate link</p> -->
             </div>
           </div>
           ${bellsFormRows}
