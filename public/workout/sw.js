@@ -3,10 +3,11 @@
  * Handles caching and push notifications
  */
 
-const CACHE_NAME = 'workout-trainer-v1';
+const CACHE_NAME = 'workout-trainer-v2'; // Bump version to force cache invalidation
 const ASSETS_TO_CACHE = [
   '/workout/',
   '/workout/app.js',
+  '/workout/styles.css',
 ];
 
 // Install event - cache assets
@@ -16,7 +17,7 @@ self.addEventListener('install', (event) => {
       return cache.addAll(ASSETS_TO_CACHE);
     })
   );
-  self.skipWaiting();
+  self.skipWaiting(); // Force new SW to activate immediately
 });
 
 // Activate event - clean old caches
@@ -30,16 +31,46 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
-  self.clients.claim();
+  self.clients.claim(); // Take control of all pages immediately
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - network-first for HTML, cache-first for assets
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
-    })
-  );
+  const { request } = event;
+  const url = new URL(request.url);
+
+  // Network-first strategy for HTML pages (always get fresh content)
+  if (request.mode === 'navigate' || request.headers.get('accept').includes('text/html')) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          // Update cache with fresh content
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, responseClone);
+          });
+          return response;
+        })
+        .catch(() => {
+          // Fallback to cache if offline
+          return caches.match(request);
+        })
+    );
+  } else {
+    // Cache-first for CSS, JS, images (faster loading)
+    event.respondWith(
+      caches.match(request).then((response) => {
+        return response || fetch(request).then((response) => {
+          // Cache new assets
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, responseClone);
+          });
+          return response;
+        });
+      })
+    );
+  }
 });
 
 // Push notification event
