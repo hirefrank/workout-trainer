@@ -220,7 +220,7 @@ export function exerciseRow(exercise: WorkoutExercise, exerciseData: Exercise): 
       <div class="flex-1">
         <p class="font-medium">
           ${escapeHtml(exerciseData.name)}
-          ${exerciseData.youtube_url ? `<a href="${escapeHtml(exerciseData.youtube_url)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center justify-center ml-2 w-6 h-6 bg-red-600 hover:bg-red-700 text-white rounded-sm border border-black shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all" aria-label="Watch ${escapeHtml(exerciseData.name)} tutorial on YouTube" title="Watch tutorial"><span class="text-[10px] ml-[1px]">▶</span></a>` : ''}
+          ${exerciseData.youtube_url ? `<a href="${escapeHtml(exerciseData.youtube_url)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center justify-center ml-1.5 w-4 h-4 bg-red-600 hover:bg-red-700 text-white rounded-sm border border-black shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all" aria-label="Watch ${escapeHtml(exerciseData.name)} tutorial on YouTube" title="Watch tutorial"><span class="text-[8px] ml-[0.5px]">▶</span></a>` : ''}
         </p>
         ${mainLine ? `<p class="text-sm text-zinc-600">${escapeHtml(mainLine)}</p>` : ""}
         ${setsLine ? `<p class="text-sm font-medium text-zinc-700">${escapeHtml(setsLine)}</p>` : ""}
