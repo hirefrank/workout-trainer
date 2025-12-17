@@ -36,10 +36,10 @@ export interface WorkoutExercise {
   exercise_id: string;
   sets: number | string | null;
   reps: number | null;
-  duration?: string;
+  duration?: string | null;
   weight?: number | string | null;  // Optional: only needed to override bells definition
   weight_type: "moderate" | "heavy" | "very_heavy" | null;
-  notes: string | null;
+  notes?: string | null;
 }
 
 export interface CompletedWorkout {

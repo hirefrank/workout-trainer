@@ -1,12 +1,14 @@
 /**
  * Main dashboard page generator
  * Replaces routes/index.tsx with server-rendered HTML
+ * Updated for multi-user support
  */
 
 import type { WorkerEnv } from "~/types/env";
-import { isUserAuthenticated } from "~/handlers/api";
+import type { ActivityEntry } from "~/types/user";
+import { getAuthenticatedUser } from "~/handlers/api";
 import { htmlLayout } from "./layout";
-import { workoutCard, authModal, notesModal } from "./components";
+import { workoutCard, authModal, notesModal, activityFeed } from "./components";
 import { escapeHtml } from "~/lib/html";
 import programData from "~/data/program";
 
@@ -41,19 +43,29 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
     );
   }
 
-  // Check authentication
-  const isAuth = await isUserAuthenticated(request, env);
+  // Check authentication and get user handle
+  const authResult = await getAuthenticatedUser(request, env);
+  const isAuth = authResult.authenticated;
+  const userHandle = authResult.handle;
 
-  // Load completions from KV
-  const { keys } = await env.WORKOUTS_KV.list({ prefix: "workout:" });
-  const values = await Promise.all(keys.map((key) => env.WORKOUTS_KV.get(key.name, "json")));
+  // Load user-specific completions from KV
+  let completions: Record<string, any> = {};
+  if (userHandle) {
+    const prefix = `workout:${userHandle}:`;
+    const { keys } = await env.WORKOUTS_KV.list({ prefix });
+    const values = await Promise.all(keys.map((key) => env.WORKOUTS_KV.get(key.name, "json")));
 
-  const completions: Record<string, any> = {};
-  keys.forEach((key, index) => {
-    if (values[index]) {
-      completions[key.name] = values[index];
-    }
-  });
+    keys.forEach((key, index) => {
+      if (values[index]) {
+        // Convert workout:handle:1-2 back to workout:1-2 for consistency
+        const simpleKey = key.name.replace(`workout:${userHandle}:`, "workout:");
+        completions[simpleKey] = values[index];
+      }
+    });
+  }
+
+  // Load activity feed for community display
+  const activityData = await env.WORKOUTS_KV.get("activity:recent", "json") as ActivityEntry[] | null;
 
   // Find week data
   const week = programData.weeks.find((w) => w.number === currentWeek);
@@ -103,12 +115,16 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
           <div class="text-right">
             <p class="text-sm font-medium">${completedCount} / ${week.days.length} days</p>
             ${
-              isAuth
+              isAuth && userHandle
                 ? `
-              <button id="logout-btn" class="text-xs text-zinc-600 hover:text-black mt-1">Logout</button>
+              <p class="text-xs text-zinc-500">@${escapeHtml(userHandle)}</p>
+              <div class="flex gap-2 justify-end mt-1">
+                <a href="/workout/settings" class="text-xs text-zinc-600 hover:text-black">Settings</a>
+                <button id="logout-btn" class="text-xs text-zinc-600 hover:text-black">Logout</button>
+              </div>
             `
                 : `
-              <button id="login-trigger" class="text-xs text-blue-600 hover:text-blue-800 mt-1">Login to track</button>
+              <button id="login-trigger" class="text-xs text-blue-600 hover:text-blue-800 mt-1">Join to track</button>
             `
             }
           </div>
@@ -148,6 +164,9 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
           })
           .join("")}
       </div>
+
+      <!-- Community Activity Feed -->
+      ${activityFeed(activityData, userHandle)}
     </div>
   `;
 
