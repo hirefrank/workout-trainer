@@ -218,7 +218,10 @@ export function exerciseRow(exercise: WorkoutExercise, exerciseData: Exercise): 
   return `
     <div class="flex items-start gap-3 p-2 bg-white border border-zinc-300">
       <div class="flex-1">
-        <p class="font-medium">${escapeHtml(exerciseData.name)}</p>
+        <p class="font-medium">
+          ${escapeHtml(exerciseData.name)}
+          ${exerciseData.youtube_url ? `<a href="${escapeHtml(exerciseData.youtube_url)}" target="_blank" rel="noopener noreferrer" class="inline-block ml-2 text-red-600 hover:text-red-700" aria-label="Watch ${escapeHtml(exerciseData.name)} tutorial on YouTube" title="Watch tutorial">▶</a>` : ''}
+        </p>
         ${mainLine ? `<p class="text-sm text-zinc-600">${escapeHtml(mainLine)}</p>` : ""}
         ${setsLine ? `<p class="text-sm font-medium text-zinc-700">${escapeHtml(setsLine)}</p>` : ""}
         ${notesDisplay}

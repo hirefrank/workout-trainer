@@ -18,7 +18,8 @@ export const programData: ProgramData = {
         "moderate": 45,
         "heavy": 70,
         "very_heavy": 88
-      }
+      },
+      "youtube_url": "https://www.youtube.com/watch?v=lqy8R5MG4cI"
     },
     "2-hand-swing": {
       "name": "2-Hand Swing",
@@ -27,7 +28,8 @@ export const programData: ProgramData = {
         "moderate": 53,
         "heavy": 70,
         "very_heavy": 88
-      }
+      },
+      "youtube_url": "https://www.youtube.com/watch?v=YSxHifyI6s8"
     },
     "turkish-getup": {
       "name": "Turkish Getup",
@@ -36,7 +38,8 @@ export const programData: ProgramData = {
         "moderate": 35,
         "heavy": 45,
         "very_heavy": 53
-      }
+      },
+      "youtube_url": "https://www.youtube.com/watch?v=0bWRPC49-KI"
     },
     "goblet-squat": {
       "name": "Goblet Squat",
@@ -45,7 +48,8 @@ export const programData: ProgramData = {
         "moderate": 35,
         "heavy": 45,
         "very_heavy": 53
-      }
+      },
+      "youtube_url": "https://www.youtube.com/watch?v=MeHQ0WiCw6c"
     },
     "cpg-gsq-pry": {
       "name": "Prying Goblet Squat",
@@ -54,12 +58,14 @@ export const programData: ProgramData = {
         "moderate": 35,
         "heavy": 45,
         "very_heavy": 53
-      }
+      },
+      "youtube_url": "https://www.youtube.com/watch?v=btJe1CVdW4M"
     },
     "cpg-deadbug-arms": {
       "name": "DeadBug Arms",
       "type": "bodyweight",
-      "bells": null
+      "bells": null,
+      "youtube_url": "https://www.youtube.com/watch?v=4XLEnwUr1d8"
     },
     "cpg-suitcase-march": {
       "name": "Suitcase March",
@@ -68,17 +74,20 @@ export const programData: ProgramData = {
         "moderate": 45,
         "heavy": 53,
         "very_heavy": 70
-      }
+      },
+      "youtube_url": "https://www.youtube.com/watch?v=gj8qQYHgkQM"
     },
     "wall-press-abs": {
       "name": "Wall Press Abs",
       "type": "bodyweight",
-      "bells": null
+      "bells": null,
+      "youtube_url": "https://www.youtube.com/watch?v=RH18nu5fZCo"
     },
     "push-ups": {
       "name": "Push-ups",
       "type": "bodyweight",
-      "bells": null
+      "bells": null,
+      "youtube_url": "https://www.youtube.com/watch?v=IODxDxX7oi4"
     }
   },
   "weeks": [

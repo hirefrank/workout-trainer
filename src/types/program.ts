@@ -17,6 +17,7 @@ export interface Exercise {
     heavy: number;
     very_heavy: number;
   } | null;
+  youtube_url?: string;
 }
 
 export interface Week {
