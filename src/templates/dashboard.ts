@@ -52,6 +52,7 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
   let completions: Record<string, any> = {};
   let activityData: ActivityEntry[] | null = null;
   let userUnit = "lbs"; // default unit
+  let exercises = { ...programData.exercises }; // Start with defaults
 
   try {
     if (userHandle) {
@@ -67,10 +68,23 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
         }
       });
 
-      // Load user's unit preference from their bells
+      // Load user's custom bells and unit preference
       const userBells = await env.WORKOUTS_KV.get(`user-bells:${userHandle}`, "json") as any;
-      if (userBells?.unit) {
-        userUnit = userBells.unit;
+      if (userBells) {
+        // Extract unit preference
+        if (userBells.unit) {
+          userUnit = userBells.unit;
+        }
+
+        // Merge user's custom bells with program defaults
+        Object.keys(userBells).forEach((exerciseId) => {
+          if (exerciseId !== 'unit' && exercises[exerciseId]) {
+            exercises[exerciseId] = {
+              ...exercises[exerciseId],
+              bells: userBells[exerciseId]
+            };
+          }
+        });
       }
     }
 
@@ -190,7 +204,7 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
             return workoutCard(
               currentWeek,
               day,
-              programData.exercises,
+              exercises,
               !!completion,
               isAuth,
               completion?.notes,
