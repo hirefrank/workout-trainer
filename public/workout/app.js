@@ -4,6 +4,9 @@
  */
 
 // Service Worker Registration
+// Disabled during development to avoid caching issues
+// Uncomment for production deployment
+/*
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
@@ -16,6 +19,7 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+*/
 
 // PWA Install Prompt
 let deferredPrompt;
