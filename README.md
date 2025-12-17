@@ -5,9 +5,14 @@ A fully customizable workout program tracker built with TanStack Start and deplo
 ## Features
 
 - **Fully Customizable Program** - Complete control over exercises, weights, sets, reps, and weekly structure via YAML
-- **16-Week Example Program** - Includes a structured kettlebell program with strategic deload weeks (easily adaptable)
+  - **Supports**: Kettlebell and bodyweight exercises
+  - **Flexible**: Sets, reps, duration, supersets, progressive schemes, unilateral exercises
+  - **Extensible**: Easy to add new equipment types (barbell, dumbbells, etc.) by extending the schema
+- **16-Week Example Program** - Includes a structured kettlebell program with strategic deload weeks (easily adaptable to any KB/bodyweight program)
+- **Per-User Customization** - Each user can set their own bell weights while sharing the same program structure
 - **Mobile-Optimized** - Brutalist design that works great on phones
-- **Simple Tracking** - Mark workouts as complete with basic authentication
+- **Multi-User Support** - Handle-based user isolation with individual tracking and settings
+- **Video Tutorials** - YouTube links for each exercise with one-click access
 - **Public Viewing** - Anyone can view the program, only authenticated users can track
 - **No Database Setup** - Uses Cloudflare KV for simple completion tracking
 
@@ -248,6 +253,56 @@ exercises:
   notes: "Keep form strict"
 ```
 
+## What Can You Build?
+
+### Supported Workout Types
+
+The system is designed for **kettlebell and bodyweight programs** with full flexibility:
+
+✅ **Exercise Types**
+- Kettlebell exercises (with 3-tier weight system: moderate/heavy/very heavy)
+- Bodyweight exercises
+- Easy to extend for barbell, dumbbells, bands, machines (just add new types)
+
+✅ **Programming Features**
+- Sets × Reps (e.g., `5 × 10`)
+- Progressive sets (e.g., `5+4` = 9 sets with weight changes)
+- Duration-based exercises (e.g., `20s`, `30-60s`)
+- Unilateral exercises (auto "per side" notation for Turkish Getups, Suitcase Marches)
+- Progressive reps (e.g., `1-2-4` reps per side)
+- Supersets with rounds (auto-grouping in UI)
+- Weight types OR explicit weights
+- Custom notes per exercise
+- YouTube tutorial links
+
+✅ **Program Structure**
+- Any number of weeks
+- Any days per week
+- Deload weeks
+- Training phases
+- Week-by-week progression
+
+✅ **User Features**
+- Per-user weight customization (same program, personalized weights)
+- Multi-user support with individual tracking
+- Settings page auto-discovers exercises from YAML
+
+### Example Programs You Can Build
+
+- ✅ Kettlebell strength programs (like the included 16-week program)
+- ✅ Bodyweight calisthenics programs
+- ✅ CrossFit-style WODs (with kettlebells/bodyweight)
+- ✅ Hybrid KB + bodyweight programs
+- ✅ Home workout programs
+
+### What Would Need Extension
+
+To support other training styles, you'd add:
+- Equipment types (barbell, dumbbells, bands, machines, etc.)
+- Advanced features (tempo, RPE, AMRAP, rest periods, etc.)
+
+The YAML schema is designed to be easily extensible - adding new equipment types is straightforward.
+
 ## Customization
 
 ### Styling
@@ -264,9 +319,12 @@ The YAML structure supports:
 
 - **Supersets** - Add notes like "Superset 1 - 3 rounds"
 - **Progressive Sets** - Use strings like "1-2-3" for progressive Turkish Getups
-- **Duration-based** - Use `duration` field instead of reps
+- **Progressive Reps** - Use "1-2-4 reps per side" for Turkish Getup progressions
+- **Duration-based** - Use `duration` field instead of reps (e.g., "20s", "30-60s")
+- **Unilateral exercises** - Auto-detects and shows "per side" notation
 - **Deload Weeks** - Mark with `is_deload: true`
 - **Phase Labels** - Group weeks by training phase
+- **YouTube Links** - Add `youtube_url` to any exercise for tutorial videos
 
 ## Cloudflare Setup
 
