@@ -174,7 +174,9 @@ export function exerciseRow(exercise: WorkoutExercise, exerciseData: Exercise): 
 
   // Duration-based exercises (DeadBug Arms, Wall Press Abs, etc.)
   if (exercise.duration) {
-    mainLine = `${exercise.duration} per set`;
+    mainLine = isUnilateral
+      ? `${exercise.duration} per side`
+      : `${exercise.duration} per set`;
     setsLine = exercise.sets ? `${exercise.sets} sets` : "";
   }
   // Standard rep-based exercises
