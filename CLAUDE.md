@@ -98,6 +98,10 @@ The app includes full PWA support for mobile installation and push notifications
 
 - **Web App Manifest**: `public/manifest.json` defines app metadata and icons
 - **Service Worker**: `public/workout/sw.js` handles caching and push notifications
+  - **DISABLED in development** (`public/workout/app.js`) to prevent caching issues
+  - **Enable for production** by uncommenting service worker registration
+  - Uses network-first strategy for HTML, cache-first for static assets
+  - Bump cache version on each deployment to force updates
 - **Install Prompt**: Custom install banner appears on mobile (Chrome/Edge)
 - **Push Notifications**: VAPID-based web push for workout reminders
   - Subscriptions stored in KV with `push-sub:${hash}` keys
@@ -112,7 +116,8 @@ The app includes full PWA support for mobile installation and push notifications
 3. Set private key: `wrangler secret put VAPID_PRIVATE_KEY`
 4. Create icon files: `public/workout/icon-192.png` and `icon-512.png`
 
-See `docs/PWA_SETUP.md` for complete setup instructions.
+**Important**: See `docs/SERVICE_WORKER.md` for caching strategy and deployment checklist.
+See `docs/PWA_SETUP.md` for complete PWA setup instructions.
 
 ### Project Structure
 
@@ -399,3 +404,4 @@ Regenerate titles: `node scripts/rewrite-titles.mjs`
 - `docs/RATE_LIMITING.md`: Rate limiting implementation guide
 - `docs/PROGRAM_REFERENCE.md`: 16-week program reference
 - `docs/PWA_SETUP.md`: Progressive Web App setup and configuration
+- `docs/SERVICE_WORKER.md`: Service worker caching strategy and troubleshooting
