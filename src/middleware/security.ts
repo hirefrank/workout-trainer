@@ -53,11 +53,11 @@ export function addSecurityHeaders(
     // Tighten this for production if possible
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline'", // React needs inline scripts
+      "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com", // Allow Cloudflare analytics
       "style-src 'self' 'unsafe-inline'", // Tailwind needs inline styles
       "img-src 'self' data:", // Allow data: URIs for images
       "font-src 'self'",
-      "connect-src 'self'",
+      "connect-src 'self' https://cloudflareinsights.com", // Allow analytics beacon requests
       "frame-ancestors 'none'", // Same as X-Frame-Options: DENY
       "base-uri 'self'",
       "form-action 'self'",
