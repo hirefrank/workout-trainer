@@ -365,11 +365,9 @@ export async function handleUpdateBells(request: Request, env: WorkerEnv): Promi
 
     // Parse and validate request body with Zod
     const body = await request.json();
-    console.log('Received bells data:', JSON.stringify(body, null, 2));
     const parseResult = BellsSchema.safeParse(body);
 
     if (!parseResult.success) {
-      console.error('Bells validation failed:', parseResult.error.errors);
       const errorMessage = parseResult.error.errors[0]?.message || "Invalid bells data";
       return new Response(
         JSON.stringify({ error: errorMessage }),
