@@ -65,7 +65,7 @@ export function workoutCard(
       </div>
 
       <div class="exercise-list mt-4 space-y-3 hidden">
-        ${renderExerciseGroups(day.exercises, exercises)}
+        ${renderExerciseGroups(day.exercises, exercises, unit)}
       </div>
     </div>
   `;
@@ -74,7 +74,7 @@ export function workoutCard(
 /**
  * Group and render exercises with superset headers
  */
-function renderExerciseGroups(exercises: WorkoutExercise[], exerciseData: Record<string, Exercise>): string {
+function renderExerciseGroups(exercises: WorkoutExercise[], exerciseData: Record<string, Exercise>, unit: string = "lbs"): string {
   const groups: Array<{type: 'superset' | 'single', exercises: WorkoutExercise[], rounds?: number}> = [];
   let currentSuperset: WorkoutExercise[] = [];
   let supersetRounds = 0;
