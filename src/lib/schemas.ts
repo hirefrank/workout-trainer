@@ -47,9 +47,12 @@ export const PushSubscriptionSchema = z.object({
 /**
  * User bells configuration schema
  * Each exercise has three weight levels: moderate, heavy, very_heavy
+ * Plus optional unit preference (lbs or kg)
  */
 export const BellsSchema = z.object({
-  bells: z.record(
+  bells: z.object({
+    unit: z.enum(["lbs", "kg"]).optional(),
+  }).catchall(
     z.object({
       moderate: z.number().min(0).max(500),
       heavy: z.number().min(0).max(500),

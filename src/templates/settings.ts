@@ -44,8 +44,11 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
 
   // Generate bells form
   const bellsFormRows = Object.entries(bells)
+    .filter(([key]) => key !== 'unit') // Skip the unit field
     .map(([exerciseId, weights]) => {
       const name = exerciseNames[exerciseId] || exerciseId;
+      // Type guard: weights should be exercise bell weights, not unit string
+      if (typeof weights === 'string' || !weights) return '';
       return `
         <div class="border-2 border-black p-4 mb-4">
           <h4 class="font-bold mb-3">${escapeHtml(name)}</h4>
