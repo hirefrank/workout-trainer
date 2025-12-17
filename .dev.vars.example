@@ -3,8 +3,3 @@
 
 # Authentication password for marking workouts complete
 AUTH_PASSWORD=your-password-here
-
-# Control whether new users can register (true/false)
-# Set to "false" to require manual approval, "true" for open registration
-# Default: false (closed registration)
-REGISTRATION_OPEN=false

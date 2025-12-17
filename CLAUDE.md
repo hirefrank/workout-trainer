@@ -293,15 +293,19 @@ To deploy to a different domain:
 - Update `routes` in `wrangler.jsonc`
 - Add `workers_dev: true` for workers.dev deployment
 
+### Environment Variables
+
+Configured in `wrangler.jsonc` under `vars`:
+- `REGISTRATION_OPEN`: Controls whether new users can register (`"true"` or `"false"`)
+  - Set to `"true"` for open registration
+  - Set to `"false"` to require manual user approval
+  - Default: `"true"` (configured in wrangler.jsonc)
+
 ### Secrets
 
 ```bash
 # Set authentication password (required)
 wrangler secret put AUTH_PASSWORD
-
-# Set registration control (optional, defaults to closed)
-# Set to "true" to allow new user registration, "false" to require manual approval
-wrangler secret put REGISTRATION_OPEN
 
 # Set VAPID private key for push notifications (optional, for PWA features)
 wrangler secret put VAPID_PRIVATE_KEY

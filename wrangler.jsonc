@@ -32,7 +32,11 @@
       "binding": "WORKOUTS_KV",
       "id": "cf9e891fc895458883fa2ebb048202fb"
     }
-  ]
+  ],
+  // Environment variables
+  "vars": {
+    "REGISTRATION_OPEN": "true"
+  }
   // Secrets - set with: wrangler secret put <NAME>
   // Required secrets:
   // - AUTH_PASSWORD: Password for workout tracking
