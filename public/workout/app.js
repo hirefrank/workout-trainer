@@ -24,12 +24,16 @@ window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
 
-  // Only show install banner on mobile devices (user agent detection only)
+  // Only show install banner on mobile devices
+  // Desktop Chrome shows install in address bar, so we only show banner on mobile
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
   if (!isMobile) {
-    return; // Don't show on desktop
+    console.log('Install prompt suppressed: desktop browser detected');
+    return; // Don't show on desktop - use browser's native install UI
   }
+
+  console.log('Showing install banner: mobile device detected');
 
   // Show install banner
   const installBanner = document.createElement('div');
