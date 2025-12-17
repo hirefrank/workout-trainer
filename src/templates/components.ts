@@ -5,6 +5,7 @@
 
 import { escapeHtml } from "~/lib/html";
 import type { Day, WorkoutExercise, Exercise } from "~/types/program";
+import type { ActivityEntry } from "~/types/user";
 
 /**
  * Generate HTML for a workout card (replaces WorkoutCard.tsx)
@@ -226,20 +227,37 @@ export function exerciseRow(exercise: WorkoutExercise, exerciseData: Exercise): 
 
 /**
  * Generate HTML for authentication modal
+ * Updated for multi-user: includes handle field
  */
 export function authModal(): string {
   return `
     <div id="auth-modal" class="hidden fixed inset-0 left-0 right-0 top-0 bottom-0 bg-black/50 flex items-center justify-center p-4 z-[100]">
       <div class="bg-white border-2 border-black p-6 max-w-sm w-full shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-        <h3 class="text-xl font-bold mb-4">Enter Password</h3>
+        <h3 class="text-xl font-bold mb-4">Join Workout</h3>
         <form id="login-form" class="space-y-4">
-          <input type="password" id="password-input"
-                 class="w-full px-3 py-2 border-2 border-black"
-                 placeholder="Password" autofocus>
+          <div>
+            <label for="handle-input" class="block text-sm font-medium mb-1">Your Handle</label>
+            <input type="text" id="handle-input"
+                   class="w-full px-3 py-2 border-2 border-black"
+                   placeholder="e.g., frank"
+                   pattern="[a-z0-9][a-z0-9-]{1,18}[a-z0-9]"
+                   minlength="3" maxlength="20"
+                   autocomplete="username"
+                   autofocus>
+            <p class="text-xs text-zinc-500 mt-1">3-20 characters, lowercase letters, numbers, hyphens</p>
+          </div>
+          <div>
+            <label for="password-input" class="block text-sm font-medium mb-1">Password</label>
+            <input type="password" id="password-input"
+                   class="w-full px-3 py-2 border-2 border-black"
+                   placeholder="Shared password"
+                   autocomplete="current-password">
+          </div>
+          <div id="login-error" class="hidden text-red-600 text-sm font-medium"></div>
           <div class="flex gap-2">
             <button type="submit"
                     class="flex-1 px-4 py-2 font-bold border-2 border-black bg-green-400 hover:bg-green-500 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
-              Login
+              Join
             </button>
             <button type="button" id="cancel-auth"
                     class="px-4 py-2 font-bold border-2 border-black bg-white hover:bg-zinc-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
@@ -281,6 +299,60 @@ export function notesModal(): string {
             </button>
           </div>
         </form>
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Generate HTML for the community activity feed
+ */
+export function activityFeed(activities: ActivityEntry[] | null, currentHandle?: string): string {
+  if (!activities || activities.length === 0) {
+    return `
+      <div class="bg-white border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <h3 class="font-bold text-lg mb-2">Community Activity</h3>
+        <p class="text-sm text-zinc-500">No recent activity yet. Be the first to complete a workout!</p>
+      </div>
+    `;
+  }
+
+  // Format relative time
+  function timeAgo(dateString: string): string {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMins / 60);
+    const diffDays = Math.floor(diffHours / 24);
+
+    if (diffMins < 1) return "just now";
+    if (diffMins < 60) return `${diffMins}m ago`;
+    if (diffHours < 24) return `${diffHours}h ago`;
+    if (diffDays < 7) return `${diffDays}d ago`;
+    return date.toLocaleDateString();
+  }
+
+  const activityItems = activities.slice(0, 10).map((activity) => {
+    const isCurrentUser = currentHandle && activity.handle === currentHandle;
+    const handleDisplay = isCurrentUser ? "You" : `@${escapeHtml(activity.handle)}`;
+    const handleClass = isCurrentUser ? "font-bold text-green-600" : "font-medium";
+
+    return `
+      <div class="flex items-center gap-2 py-2 border-b border-zinc-200 last:border-0">
+        <span class="${handleClass}">${handleDisplay}</span>
+        <span class="text-zinc-600">completed</span>
+        <span class="font-medium">Week ${activity.week}, Day ${activity.day}</span>
+        <span class="text-xs text-zinc-400 ml-auto">${timeAgo(activity.completedAt)}</span>
+      </div>
+    `;
+  }).join("");
+
+  return `
+    <div class="bg-white border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+      <h3 class="font-bold text-lg mb-2">Community Activity</h3>
+      <div class="text-sm">
+        ${activityItems}
       </div>
     </div>
   `;

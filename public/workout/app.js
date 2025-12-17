@@ -137,7 +137,9 @@ window.addEventListener('DOMContentLoaded', () => {
 // Auth modal elements
 const authModal = document.getElementById("auth-modal");
 const loginForm = document.getElementById("login-form");
+const handleInput = document.getElementById("handle-input");
 const passwordInput = document.getElementById("password-input");
+const loginError = document.getElementById("login-error");
 const loginTrigger = document.getElementById("login-trigger");
 const cancelAuth = document.getElementById("cancel-auth");
 const logoutBtn = document.getElementById("logout-btn");
@@ -145,7 +147,22 @@ const logoutBtn = document.getElementById("logout-btn");
 // Helper to close auth modal
 function closeAuthModal() {
   authModal.classList.add("hidden");
-  passwordInput.value = "";
+  if (handleInput) handleInput.value = "";
+  if (passwordInput) passwordInput.value = "";
+  if (loginError) {
+    loginError.classList.add("hidden");
+    loginError.textContent = "";
+  }
+}
+
+// Helper to show login error
+function showLoginError(message) {
+  if (loginError) {
+    loginError.textContent = message;
+    loginError.classList.remove("hidden");
+  } else {
+    alert(message);
+  }
 }
 
 // Show auth modal
@@ -180,27 +197,44 @@ if (authModal) {
 if (loginForm) {
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const password = passwordInput.value;
+    const handle = handleInput ? handleInput.value.toLowerCase().trim() : "";
+    const password = passwordInput ? passwordInput.value : "";
+
+    // Client-side validation
+    if (!handle || handle.length < 3) {
+      showLoginError("Handle must be at least 3 characters");
+      if (handleInput) handleInput.focus();
+      return;
+    }
+
+    if (!password) {
+      showLoginError("Password is required");
+      if (passwordInput) passwordInput.focus();
+      return;
+    }
 
     try {
       const res = await fetch("/workout/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ handle, password }),
       });
+
+      const data = await res.json();
 
       if (res.ok) {
         // Login successful - reload page to show authenticated state
         window.location.reload();
       } else {
-        const data = await res.json();
-        alert(data.error || "Invalid password");
-        passwordInput.value = "";
-        passwordInput.focus();
+        showLoginError(data.error || "Login failed");
+        if (passwordInput) {
+          passwordInput.value = "";
+          passwordInput.focus();
+        }
       }
     } catch (error) {
       console.error("Login error:", error);
-      alert("Login failed. Please try again.");
+      showLoginError("Network error. Please try again.");
     }
   });
 }

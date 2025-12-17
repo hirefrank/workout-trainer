@@ -6,7 +6,21 @@ import { programData } from "~/data/program";
  * Note: Max weeks dynamically pulled from program.yaml
  */
 
+/**
+ * Handle validation: lowercase alphanumeric + hyphens, 3-20 chars
+ * Must start and end with alphanumeric
+ */
+const handleRegex = /^[a-z0-9][a-z0-9-]{1,18}[a-z0-9]$/;
+
 export const LoginSchema = z.object({
+  handle: z
+    .string()
+    .min(3, "Handle must be at least 3 characters")
+    .max(20, "Handle must be at most 20 characters")
+    .transform((val) => val.toLowerCase())
+    .refine((val) => handleRegex.test(val), {
+      message: "Handle must be lowercase letters, numbers, and hyphens only (no spaces)",
+    }),
   password: z.string().min(1).max(100),
 });
 

@@ -15,8 +15,13 @@ import {
   handleGetCompletions,
   handleMarkComplete,
   handleUnmark,
-  handleSubscribe
+  handleSubscribe,
+  handleGetActivity,
+  handleGetBells,
+  handleUpdateBells,
+  handleResetBells
 } from "./handlers/workouts";
+import { handleSettings } from "./templates/settings";
 
 export default {
   async fetch(request: Request, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
@@ -54,6 +59,28 @@ export default {
 
       if (path === "/api/subscribe" && request.method === "POST") {
         return await handleSubscribe(request, env);
+      }
+
+      if (path === "/api/activity" && request.method === "GET") {
+        return await handleGetActivity(request, env);
+      }
+
+      // Bells API
+      if (path === "/api/bells" && request.method === "GET") {
+        return await handleGetBells(request, env);
+      }
+
+      if (path === "/api/bells" && request.method === "POST") {
+        return await handleUpdateBells(request, env);
+      }
+
+      if (path === "/api/bells" && request.method === "DELETE") {
+        return await handleResetBells(request, env);
+      }
+
+      // Settings page
+      if (path === "/settings") {
+        return await handleSettings(request, env);
       }
 
       // Main dashboard (all other routes)
