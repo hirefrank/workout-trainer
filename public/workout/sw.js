@@ -39,6 +39,11 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
+  // Only handle HTTP/HTTPS requests (ignore chrome-extension://, etc.)
+  if (!url.protocol.startsWith('http')) {
+    return;
+  }
+
   // Network-first strategy for HTML pages (always get fresh content)
   if (request.mode === 'navigate' || request.headers.get('accept').includes('text/html')) {
     event.respondWith(
