@@ -173,7 +173,11 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
           // Validate and collect all values
           let hasError = false;
           for (const [key, value] of formData.entries()) {
-            const [exerciseId, level] = key.split('-');
+            // Split from the right to handle exercise IDs with hyphens (e.g., "2-hand-swing-moderate")
+            const lastDashIndex = key.lastIndexOf('-');
+            const exerciseId = key.substring(0, lastDashIndex);
+            const level = key.substring(lastDashIndex + 1);
+
             if (!bells[exerciseId]) {
               bells[exerciseId] = {};
             }
