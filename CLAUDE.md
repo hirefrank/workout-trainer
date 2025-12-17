@@ -56,27 +56,39 @@ export default {
 
 ### Authentication System
 
-HMAC-signed tokens with HttpOnly cookies:
+Multi-user authentication with handle-based identity:
 
 - **Login flow**: `src/handlers/api.ts` - HMAC-SHA256 signatures with Web Crypto API
-- **Session storage**: KV namespace stores sessions with 24h TTL
+- **Session storage**: KV namespace stores sessions with handle and 24h TTL
 - **Token format**: `sessionId.hmacSignature` (prevents forgery)
+- **User identity**: Each user has a unique handle (3-20 chars, lowercase alphanumeric + hyphens)
+- **Registration**: Controlled by `REGISTRATION_OPEN` environment variable
 - **Cookie utilities**: `src/lib/cookies.ts` - parseCookie, createCookieHeader, deleteCookieHeader
 - **HMAC utilities**: `src/lib/auth-utils.ts` - hmacSign, hmacVerify, constantTimeEqual
 - **Security**: HttpOnly cookies prevent XSS, constant-time comparison prevents timing attacks
 
 ### Data Storage
 
-- **KV Namespace**: Cloudflare KV stores workout completions and sessions
-- **Completions**: `workout:${week}-${day}` keys with `{ completedAt, notes? }`
-- **TTL**: Workouts expire after 180 days, sessions after 24 hours
+Multi-user system with per-user data isolation:
+
+- **KV Namespace**: Cloudflare KV stores workout completions, sessions, and user data
+- **User isolation**: All user data keyed by handle (e.g., `workout:{handle}:1-2`)
+- **Key patterns**:
+  - `session:{sessionId}` - Session data with handle
+  - `user:{handle}` - User profile (handle, createdAt, lastLogin)
+  - `workout:{handle}:{week}-{day}` - Workout completions with notes
+  - `user-bells:{handle}` - Custom bell weights and unit preference
+  - `activity:recent` - Global activity feed (recent completions)
+  - `push-sub:{hash}` - Push notification subscriptions
+- **TTL**: Workouts expire after 180 days, sessions after 24 hours, user bells after 1 year
 - **Parallel operations**: Use `Promise.all()` for multiple KV reads
 
 ### HTML Template Generation
 
 **`src/templates/`** - Server-rendered HTML without React:
 - **`layout.ts`**: HTML document wrapper with header and compiled Tailwind CSS
-- **`dashboard.ts`**: Main workout page with week navigation
+- **`dashboard.ts`**: Main workout page with week navigation, loads user bells and unit preference
+- **`settings.ts`**: User settings page for customizing bell weights and unit preference
 - **`components.ts`**: workoutCard, exerciseRow, authModal, notesModal
 
 **XSS Protection**: `src/lib/html.ts` provides `escapeHtml()` for all user input
@@ -86,10 +98,14 @@ HMAC-signed tokens with HttpOnly cookies:
 - **YAML-based**: `program.yaml` in root defines exercises and weekly programming
 - **Build-time compilation**: `build.mjs` converts YAML → `src/data/program.ts`
 - **Type definitions**: `src/types/program.ts` defines ProgramData, Exercise, Week, Day
-- **Weight System**: Two-level system
-  - Exercise `bells` define reference weights (moderate/heavy/very_heavy)
+- **Weight System**: Three-level customization
+  - Program defaults in `program.yaml` (moderate/heavy/very_heavy bells)
+  - Per-user overrides in KV (`user-bells:{handle}`)
+  - Dashboard merges user bells with program defaults
   - Workouts use `weight_type` to auto-lookup from bells
   - Explicit `weight` field overrides bells definitions
+- **Unit Preference**: Users can choose lbs or kg (stored in `user-bells:{handle}.unit`)
+- **YouTube Links**: Each exercise can have a `youtube_url` for tutorial videos
 - **Title Generation**: `scripts/rewrite-titles.mjs` generates training-focused titles
 
 ### Progressive Web App (PWA)
@@ -208,7 +224,8 @@ export function workoutCard(
   exercises: Record<string, Exercise>,
   isComplete: boolean,
   canEdit: boolean,
-  completionNotes?: string
+  completionNotes?: string,
+  unit: string = "lbs"
 ): string {
   return `
     <div class="workout-card border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${isComplete ? "bg-green-100" : ""}">
@@ -222,9 +239,35 @@ export function workoutCard(
 
 **Always escape user input**: `escapeHtml()` prevents XSS attacks
 
+**Important**: Template functions pass `unit` parameter through the component chain:
+- `dashboard.ts` loads user's unit preference from KV
+- Passes to `workoutCard()` → `renderExerciseGroups()` → `exerciseRow()`
+- All weight displays use user's preferred unit
+
+**Template Literal Gotcha**: Avoid nesting template literals inside `<script>` tags:
+```typescript
+// ❌ BAD - nested template literal in script
+`<script>showStatus(\`Error: ${msg}\`);</script>`
+
+// ✅ GOOD - use string concatenation
+`<script>showStatus('Error: ' + msg);</script>`
+```
+
+**Settings Form Parsing**: Exercise IDs with hyphens require special handling:
+```typescript
+// Form field names: "2-hand-swing-moderate", "kb-deadlift-heavy"
+// ❌ BAD - splits on first hyphen, breaks "2-hand-swing" → ["2", "hand", "swing", "moderate"]
+const [exerciseId, level] = key.split('-');
+
+// ✅ GOOD - splits on LAST hyphen using lastIndexOf
+const lastDashIndex = key.lastIndexOf('-');
+const exerciseId = key.substring(0, lastDashIndex); // "2-hand-swing"
+const level = key.substring(lastDashIndex + 1);      // "moderate"
+```
+
 ### Input Validation
 
-All handlers validate input with Zod schemas:
+All handlers validate input with Zod schemas in `src/lib/schemas.ts`:
 
 ```typescript
 import { z } from "zod";
@@ -234,21 +277,50 @@ export const WorkoutCompletionWithNotesSchema = z.object({
   day: z.number().int().min(1).max(7),
   notes: z.string().max(500).optional(),
 });
+
+export const BellsSchema = z.object({
+  bells: z.object({
+    unit: z.enum(["lbs", "kg"]).optional(),
+  }).catchall(
+    z.object({
+      moderate: z.number().min(0).max(500),
+      heavy: z.number().min(0).max(500),
+      very_heavy: z.number().min(0).max(500),
+    })
+  ),
+});
 ```
+
+**Important**: `BellsSchema` uses `.catchall()` to accept both the `unit` field and exercise IDs as keys
 
 ### KV Operations
 
 ```typescript
-// Read completions in parallel
-const { keys } = await env.WORKOUTS_KV.list({ prefix: "workout:" });
+// Read user-specific completions in parallel
+const prefix = `workout:${userHandle}:`;
+const { keys } = await env.WORKOUTS_KV.list({ prefix });
 const values = await Promise.all(keys.map(key => env.WORKOUTS_KV.get(key.name, "json")));
 
-// Write with TTL
+// Write with TTL and user isolation
 await env.WORKOUTS_KV.put(
-  `workout:${week}-${day}`,
+  `workout:${userHandle}:${week}-${day}`,
   JSON.stringify({ completedAt: new Date().toISOString(), notes }),
   { expirationTtl: 60 * 60 * 24 * 180 } // 180 days
 );
+
+// Load and merge user's custom bells with program defaults
+const userBells = await env.WORKOUTS_KV.get(`user-bells:${userHandle}`, "json");
+const exercises = { ...programData.exercises };
+if (userBells) {
+  Object.keys(userBells).forEach((exerciseId) => {
+    if (exerciseId !== 'unit' && exercises[exerciseId]) {
+      exercises[exerciseId] = {
+        ...exercises[exerciseId],
+        bells: userBells[exerciseId]
+      };
+    }
+  });
+}
 ```
 
 ### Client JavaScript
@@ -338,6 +410,7 @@ exercises:
       moderate: 35
       heavy: 45
       very_heavy: 53
+    youtube_url: "https://www.youtube.com/watch?v=..." # optional tutorial
 ```
 
 ### Workout Programming
