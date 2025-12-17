@@ -221,15 +221,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "20 sec",
-              "notes": "Superset - 3 rounds"
+              "notes": "Superset 1 -3 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "moderate",
-              "duration": "20s",
-              "notes": "Superset - 3 rounds, on/off"
+              "duration": "20 sec",
+              "notes": "Superset 1 -3 rounds, on/off"
             }
           ]
         },
@@ -415,15 +415,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "20 sec",
-              "notes": "Superset - 3 rounds"
+              "notes": "Superset 1 -3 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "moderate",
-              "duration": "20s",
-              "notes": "Superset - 3 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -3 rounds"
             }
           ]
         },
@@ -609,15 +609,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "25 sec",
-              "notes": "Superset - 3 rounds"
+              "notes": "Superset 1 -3 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "heavy",
-              "duration": "20s",
-              "notes": "Superset - 3 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -3 rounds"
             }
           ]
         },
@@ -801,15 +801,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "25 sec",
-              "notes": "Superset - 3 rounds"
+              "notes": "Superset 1 -3 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "heavy",
-              "duration": "20s",
-              "notes": "Superset - 3 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -3 rounds"
             }
           ]
         },
@@ -993,15 +993,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "20 sec",
-              "notes": "Superset - 2 rounds"
+              "notes": "Superset 1 -2 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "moderate",
-              "duration": "20s",
-              "notes": "Superset - 2 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -2 rounds"
             }
           ]
         },
@@ -1185,15 +1185,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "25 sec",
-              "notes": "Superset - 3 rounds"
+              "notes": "Superset 1 -3 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "heavy",
-              "duration": "20s",
-              "notes": "Superset - 3 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -3 rounds"
             }
           ]
         },
@@ -1377,15 +1377,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "25 sec",
-              "notes": "Superset - 3 rounds"
+              "notes": "Superset 1 -3 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "heavy",
-              "duration": "20s",
-              "notes": "Superset - 3 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -3 rounds"
             }
           ]
         },
@@ -1569,15 +1569,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "30 sec",
-              "notes": "Superset - 3 rounds"
+              "notes": "Superset 1 -3 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20s",
-              "notes": "Superset - 3 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -3 rounds"
             }
           ]
         },
@@ -1762,15 +1762,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "30 sec",
-              "notes": "Superset - 3 rounds"
+              "notes": "Superset 1 -3 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20s",
-              "notes": "Superset - 3 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -3 rounds"
             }
           ]
         },
@@ -1957,15 +1957,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "20 sec",
-              "notes": "Superset - 2 rounds"
+              "notes": "Superset 1 -2 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "heavy",
-              "duration": "20s",
-              "notes": "Superset - 2 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -2 rounds"
             }
           ]
         },
@@ -2150,15 +2150,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "30 sec",
-              "notes": "Superset - 3 rounds"
+              "notes": "Superset 1 -3 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20s",
-              "notes": "Superset - 3 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -3 rounds"
             }
           ]
         },
@@ -2345,15 +2345,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "30 sec",
-              "notes": "Superset - 3 rounds"
+              "notes": "Superset 1 -3 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20s",
-              "notes": "Superset - 3 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -3 rounds"
             }
           ]
         },
@@ -2539,15 +2539,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "30 sec",
-              "notes": "Superset - 3 rounds"
+              "notes": "Superset 1 -3 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20s",
-              "notes": "Superset - 3 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -3 rounds"
             }
           ]
         },
@@ -2733,15 +2733,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "30 sec",
-              "notes": "Superset - 3 rounds"
+              "notes": "Superset 1 -3 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20s",
-              "notes": "Superset - 3 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -3 rounds"
             }
           ]
         },
@@ -2927,15 +2927,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "20 sec",
-              "notes": "Superset - 2 rounds"
+              "notes": "Superset 1 -2 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "heavy",
-              "duration": "20s",
-              "notes": "Superset - 2 rounds"
+              "duration": "20 sec",
+              "notes": "Superset 1 -2 rounds"
             }
           ]
         },
@@ -3122,15 +3122,15 @@ export const programData: ProgramData = {
               "weight": null,
               "weight_type": null,
               "duration": "30 sec",
-              "notes": "Superset - 3 rounds"
+              "notes": "Superset 1 -3 rounds"
             },
             {
               "exercise_id": "cpg-suitcase-march",
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20s",
-              "notes": "Superset - 3 rounds, on/off"
+              "duration": "20 sec",
+              "notes": "Superset 1 -3 rounds, on/off"
             }
           ]
         },
