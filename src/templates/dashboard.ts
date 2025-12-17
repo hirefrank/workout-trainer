@@ -195,6 +195,10 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
       <!-- Community Activity Feed -->
       ${activityFeed(activityData, userHandle)}
     </div>
+
+    <!-- Auth and Notes Modals -->
+    ${authModal()}
+    ${notesModal()}
   `;
 
   return new Response(
