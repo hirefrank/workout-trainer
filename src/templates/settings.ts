@@ -216,7 +216,7 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
             }
             const numValue = parseInt(value, 10);
             if (isNaN(numValue) || numValue < 0 || numValue > 500) {
-              showStatus(`All weights must be between 0 and 500 ${selectedUnit}`, true);
+              showStatus('All weights must be between 0 and 500 ' + selectedUnit, true);
               hasError = true;
               break;
             }
