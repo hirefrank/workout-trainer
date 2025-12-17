@@ -54,7 +54,7 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
               <div class="flex items-center gap-1">
                 <input type="number" name="${exerciseId}-moderate" value="${weights.moderate}"
                        class="w-full px-2 py-1 border-2 border-black text-center"
-                       min="0" max="500" step="1">
+                       min="0" max="500" step="1" required>
                 <span class="text-xs">lbs</span>
               </div>
             </div>
@@ -63,7 +63,7 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
               <div class="flex items-center gap-1">
                 <input type="number" name="${exerciseId}-heavy" value="${weights.heavy}"
                        class="w-full px-2 py-1 border-2 border-black text-center"
-                       min="0" max="500" step="1">
+                       min="0" max="500" step="1" required>
                 <span class="text-xs">lbs</span>
               </div>
             </div>
@@ -72,7 +72,7 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
               <div class="flex items-center gap-1">
                 <input type="number" name="${exerciseId}-very_heavy" value="${weights.very_heavy}"
                        class="w-full px-2 py-1 border-2 border-black text-center"
-                       min="0" max="500" step="1">
+                       min="0" max="500" step="1" required>
                 <span class="text-xs">lbs</span>
               </div>
             </div>
@@ -170,12 +170,26 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
           const formData = new FormData(bellsForm);
           const bells = {};
 
+          // Validate and collect all values
+          let hasError = false;
           for (const [key, value] of formData.entries()) {
             const [exerciseId, level] = key.split('-');
             if (!bells[exerciseId]) {
               bells[exerciseId] = {};
             }
-            bells[exerciseId][level] = parseInt(value, 10) || 0;
+            const numValue = parseInt(value, 10);
+            if (isNaN(numValue) || numValue < 0 || numValue > 500) {
+              showStatus('All weights must be between 0 and 500 lbs', true);
+              hasError = true;
+              break;
+            }
+            bells[exerciseId][level] = numValue;
+          }
+
+          if (hasError) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+            return;
           }
 
           try {
