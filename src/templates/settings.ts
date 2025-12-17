@@ -31,6 +31,7 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
   const bellsKey = `user-bells:${handle}`;
   const userBells = await env.WORKOUTS_KV.get(bellsKey, "json") as UserBells | null;
   const bells = userBells || getDefaultBells();
+  const unit = userBells?.unit || "lbs";
   const isDefault = !userBells;
 
   // Get exercise names for display
@@ -55,7 +56,7 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
                 <input type="number" name="${exerciseId}-moderate" value="${weights.moderate}"
                        class="w-full px-2 py-1 border-2 border-black text-center"
                        min="0" max="500" step="1" required>
-                <span class="text-xs">lbs</span>
+                <span class="text-xs unit-label">${unit}</span>
               </div>
             </div>
             <div>
@@ -64,7 +65,7 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
                 <input type="number" name="${exerciseId}-heavy" value="${weights.heavy}"
                        class="w-full px-2 py-1 border-2 border-black text-center"
                        min="0" max="500" step="1" required>
-                <span class="text-xs">lbs</span>
+                <span class="text-xs unit-label">${unit}</span>
               </div>
             </div>
             <div>
@@ -73,7 +74,7 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
                 <input type="number" name="${exerciseId}-very_heavy" value="${weights.very_heavy}"
                        class="w-full px-2 py-1 border-2 border-black text-center"
                        min="0" max="500" step="1" required>
-                <span class="text-xs">lbs</span>
+                <span class="text-xs unit-label">${unit}</span>
               </div>
             </div>
           </div>
@@ -106,6 +107,20 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
         </p>
 
         <form id="bells-form" class="space-y-4">
+          <!-- Unit Selection -->
+          <div class="pb-4 border-b-2 border-black">
+            <label class="block text-sm font-medium mb-2">Weight Unit</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="unit" value="lbs" ${unit === "lbs" ? "checked" : ""} class="w-4 h-4 border-2 border-black">
+                <span class="font-medium">lbs (pounds)</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="unit" value="kg" ${unit === "kg" ? "checked" : ""} class="w-4 h-4 border-2 border-black">
+                <span class="font-medium">kg (kilograms)</span>
+              </label>
+            </div>
+          </div>
           ${bellsFormRows}
 
           <div id="bells-status" class="hidden text-sm font-medium py-2"></div>
@@ -132,6 +147,17 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
 
       // Track unsaved changes
       let hasUnsavedChanges = false;
+
+      // Update unit labels when radio changes
+      document.querySelectorAll('input[name="unit"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          const newUnit = e.target.value;
+          document.querySelectorAll('.unit-label').forEach(label => {
+            label.textContent = newUnit;
+          });
+          hasUnsavedChanges = true;
+        });
+      });
 
       function showStatus(message, isError = false) {
         bellsStatus.textContent = message;
@@ -170,9 +196,16 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
           const formData = new FormData(bellsForm);
           const bells = {};
 
+          // Get selected unit
+          const selectedUnit = formData.get('unit');
+          bells.unit = selectedUnit;
+
           // Validate and collect all values
           let hasError = false;
           for (const [key, value] of formData.entries()) {
+            // Skip the unit field
+            if (key === 'unit') continue;
+
             // Split from the right to handle exercise IDs with hyphens (e.g., "2-hand-swing-moderate")
             const lastDashIndex = key.lastIndexOf('-');
             const exerciseId = key.substring(0, lastDashIndex);
@@ -183,7 +216,7 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
             }
             const numValue = parseInt(value, 10);
             if (isNaN(numValue) || numValue < 0 || numValue > 500) {
-              showStatus('All weights must be between 0 and 500 lbs', true);
+              showStatus(`All weights must be between 0 and 500 ${selectedUnit}`, true);
               hasError = true;
               break;
             }

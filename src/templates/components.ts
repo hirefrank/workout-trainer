@@ -16,7 +16,8 @@ export function workoutCard(
   exercises: Record<string, Exercise>,
   isComplete: boolean,
   canEdit: boolean,
-  completionNotes?: string
+  completionNotes?: string,
+  unit: string = "lbs"
 ): string {
   const completeClass = isComplete ? "bg-green-100" : "";
   const buttonClass = isComplete
@@ -129,7 +130,7 @@ function renderExerciseGroups(exercises: WorkoutExercise[], exerciseData: Record
             return `
               <div class="superset-exercise mb-2 last:mb-0">
                 <p class="text-xs font-bold text-zinc-600 mb-1">${label}.</p>
-                ${exerciseRow(ex, exerciseData[ex.exercise_id])}
+                ${exerciseRow(ex, exerciseData[ex.exercise_id], unit)}
               </div>
             `;
           }).join('')}
@@ -137,7 +138,7 @@ function renderExerciseGroups(exercises: WorkoutExercise[], exerciseData: Record
       `;
     } else {
       // Single exercise
-      return exerciseRow(group.exercises[0], exerciseData[group.exercises[0].exercise_id]);
+      return exerciseRow(group.exercises[0], exerciseData[group.exercises[0].exercise_id], unit);
     }
   }).join('');
 }
@@ -145,7 +146,7 @@ function renderExerciseGroups(exercises: WorkoutExercise[], exerciseData: Record
 /**
  * Generate HTML for an exercise row (part of WorkoutCard)
  */
-export function exerciseRow(exercise: WorkoutExercise, exerciseData: Exercise): string {
+export function exerciseRow(exercise: WorkoutExercise, exerciseData: Exercise, unit: string = "lbs"): string {
   // Unilateral exercises
   const unilateralExercises = ['turkish-getup', 'suitcase-march'];
   const isUnilateral = unilateralExercises.includes(exercise.exercise_id);
@@ -155,10 +156,10 @@ export function exerciseRow(exercise: WorkoutExercise, exerciseData: Exercise): 
   if (exercise.weight) {
     // Handle progressive weight notation (e.g., "45→53")
     weightDisplay = String(exercise.weight).includes('→')
-      ? `${exercise.weight} lbs`
-      : `${exercise.weight} lbs`;
+      ? `${exercise.weight} ${unit}`
+      : `${exercise.weight} ${unit}`;
   } else if (exercise.weight_type && exerciseData.bells) {
-    weightDisplay = `${exerciseData.bells[exercise.weight_type]} lbs`;
+    weightDisplay = `${exerciseData.bells[exercise.weight_type]} ${unit}`;
   } else if (exerciseData.type === "bodyweight") {
     weightDisplay = "BW";
   }

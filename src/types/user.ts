@@ -23,14 +23,15 @@ export interface Session {
 
 /**
  * User's custom bell configuration stored in KV at `user-bells:{handle}`
- * Maps exercise_id to weight values
+ * Maps exercise_id to weight values with unit preference
  */
 export interface UserBells {
+  unit?: "lbs" | "kg";
   [exerciseId: string]: {
     moderate: number;
     heavy: number;
     very_heavy: number;
-  };
+  } | "lbs" | "kg" | undefined;
 }
 
 /**

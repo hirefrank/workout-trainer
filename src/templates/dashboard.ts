@@ -48,9 +48,10 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
   const isAuth = authResult.authenticated;
   const userHandle = authResult.handle;
 
-  // Load user-specific completions from KV
+  // Load user-specific completions and bells from KV
   let completions: Record<string, any> = {};
   let activityData: ActivityEntry[] | null = null;
+  let userUnit = "lbs"; // default unit
 
   try {
     if (userHandle) {
@@ -65,6 +66,12 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
           completions[simpleKey] = values[index];
         }
       });
+
+      // Load user's unit preference from their bells
+      const userBells = await env.WORKOUTS_KV.get(`user-bells:${userHandle}`, "json") as any;
+      if (userBells?.unit) {
+        userUnit = userBells.unit;
+      }
     }
 
     // Load activity feed for community display
@@ -186,7 +193,8 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
               programData.exercises,
               !!completion,
               isAuth,
-              completion?.notes
+              completion?.notes,
+              userUnit
             );
           })
           .join("")}
