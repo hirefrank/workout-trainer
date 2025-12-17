@@ -24,9 +24,8 @@ window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
 
-  // Only show install banner on mobile devices
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-    || window.matchMedia('(max-width: 768px)').matches;
+  // Only show install banner on mobile devices (user agent detection only)
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
   if (!isMobile) {
     return; // Don't show on desktop
