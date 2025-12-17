@@ -135,7 +135,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "30 sec",
+              "duration": "30s",
               "notes": "Superset 2 - 3 rounds"
             }
           ]
@@ -220,7 +220,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds"
             },
             {
@@ -228,7 +228,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "moderate",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds, on/off"
             }
           ]
@@ -328,7 +328,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "35 sec",
+              "duration": "35s",
               "notes": "Superset 2 - 3 rounds"
             }
           ]
@@ -414,7 +414,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds"
             },
             {
@@ -422,7 +422,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "moderate",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds"
             }
           ]
@@ -522,7 +522,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "40 sec",
+              "duration": "40s",
               "notes": "Superset 2 - 3 rounds"
             }
           ]
@@ -608,7 +608,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "25 sec",
+              "duration": "25s",
               "notes": "Superset 1 -3 rounds"
             },
             {
@@ -616,7 +616,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "heavy",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds"
             }
           ]
@@ -715,7 +715,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "45 sec",
+              "duration": "45s",
               "notes": "Superset 2 - 3 rounds"
             }
           ]
@@ -800,7 +800,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "25 sec",
+              "duration": "25s",
               "notes": "Superset 1 -3 rounds"
             },
             {
@@ -808,7 +808,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "heavy",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds"
             }
           ]
@@ -907,7 +907,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "30 sec",
+              "duration": "30s",
               "notes": "Superset 2 - 2 rounds"
             }
           ]
@@ -992,7 +992,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -2 rounds"
             },
             {
@@ -1000,7 +1000,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "moderate",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -2 rounds"
             }
           ]
@@ -1099,7 +1099,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "45 sec",
+              "duration": "45s",
               "notes": "Superset 2 - 3 rounds"
             }
           ]
@@ -1184,7 +1184,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "25 sec",
+              "duration": "25s",
               "notes": "Superset 1 -3 rounds"
             },
             {
@@ -1192,7 +1192,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "heavy",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds"
             }
           ]
@@ -1291,7 +1291,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "50 sec",
+              "duration": "50s",
               "notes": "Superset 2 - 3 rounds"
             }
           ]
@@ -1376,7 +1376,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "25 sec",
+              "duration": "25s",
               "notes": "Superset 1 -3 rounds"
             },
             {
@@ -1384,7 +1384,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "heavy",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds"
             }
           ]
@@ -1483,7 +1483,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "50 sec",
+              "duration": "50s",
               "notes": "Superset 2 - 3 rounds"
             }
           ]
@@ -1568,7 +1568,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "30 sec",
+              "duration": "30s",
               "notes": "Superset 1 -3 rounds"
             },
             {
@@ -1576,7 +1576,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds"
             }
           ]
@@ -1675,7 +1675,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "55 sec",
+              "duration": "55s",
               "notes": "Superset 2 - 3 rounds"
             }
           ]
@@ -1761,7 +1761,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "30 sec",
+              "duration": "30s",
               "notes": "Superset 1 -3 rounds"
             },
             {
@@ -1769,7 +1769,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds"
             }
           ]
@@ -1870,7 +1870,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "30 sec",
+              "duration": "30s",
               "notes": "Superset 2 - 2 rounds"
             }
           ]
@@ -1956,7 +1956,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -2 rounds"
             },
             {
@@ -1964,7 +1964,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "heavy",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -2 rounds"
             }
           ]
@@ -2063,7 +2063,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "45 sec",
+              "duration": "45s",
               "notes": "Superset 2 - 3 rounds"
             }
           ]
@@ -2149,7 +2149,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "30 sec",
+              "duration": "30s",
               "notes": "Superset 1 -3 rounds"
             },
             {
@@ -2157,7 +2157,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds"
             }
           ]
@@ -2257,7 +2257,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "50 sec",
+              "duration": "50s",
               "notes": "Superset 2 - 3 rounds"
             }
           ]
@@ -2344,7 +2344,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "30 sec",
+              "duration": "30s",
               "notes": "Superset 1 -3 rounds"
             },
             {
@@ -2352,7 +2352,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds"
             }
           ]
@@ -2451,7 +2451,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "55 sec",
+              "duration": "55s",
               "notes": "Superset 2 - 3 rounds"
             }
           ]
@@ -2538,7 +2538,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "30 sec",
+              "duration": "30s",
               "notes": "Superset 1 -3 rounds"
             },
             {
@@ -2546,7 +2546,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds"
             }
           ]
@@ -2645,7 +2645,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "60 sec",
+              "duration": "60s",
               "notes": "Superset 2 - 3 rounds"
             }
           ]
@@ -2732,7 +2732,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "30 sec",
+              "duration": "30s",
               "notes": "Superset 1 -3 rounds"
             },
             {
@@ -2740,7 +2740,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds"
             }
           ]
@@ -2840,7 +2840,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "30 sec",
+              "duration": "30s",
               "notes": "Superset 2 - 2 rounds"
             }
           ]
@@ -2926,7 +2926,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -2 rounds"
             },
             {
@@ -2934,7 +2934,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "heavy",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -2 rounds"
             }
           ]
@@ -3033,7 +3033,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "30-60 sec",
+              "duration": "30-60s",
               "notes": "Superset 2 - 3 rounds"
             }
           ]
@@ -3121,7 +3121,7 @@ export const programData: ProgramData = {
               "reps": null,
               "weight": null,
               "weight_type": null,
-              "duration": "30 sec",
+              "duration": "30s",
               "notes": "Superset 1 -3 rounds"
             },
             {
@@ -3129,7 +3129,7 @@ export const programData: ProgramData = {
               "sets": 2,
               "reps": null,
               "weight_type": "very_heavy",
-              "duration": "20 sec",
+              "duration": "20s",
               "notes": "Superset 1 -3 rounds, on/off"
             }
           ]

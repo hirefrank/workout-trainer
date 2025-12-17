@@ -99,7 +99,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 30 sec
+            duration: 30s
             notes: Superset 2 - 3 rounds
       - number: 2
         name: Volume baseline | Lower Body Strength
@@ -160,13 +160,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: moderate
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds, on/off
       - number: 4
         name: Active recovery day | Strength Maintenance
@@ -237,7 +237,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 35 sec
+            duration: 35s
             notes: Superset 2 - 3 rounds
       - number: 2
         name: Strength consolidation | Lower Body Strength
@@ -299,13 +299,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: moderate
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds
       - number: 4
         name: Maintenance volume | Strength Maintenance
@@ -376,7 +376,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 40 sec
+            duration: 40s
             notes: Superset 2 - 3 rounds
       - number: 2
         name: Strength consolidation | Lower Body Strength
@@ -438,13 +438,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 25 sec
+            duration: 25s
             notes: Superset 1 -3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: heavy
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds
       - number: 4
         name: Maintenance volume | Strength Maintenance
@@ -514,7 +514,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 45 sec
+            duration: 45s
             notes: Superset 2 - 3 rounds
       - number: 2
         name: TGU strength progression | Lower Body Strength
@@ -575,13 +575,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 25 sec
+            duration: 25s
             notes: Superset 1 -3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: heavy
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds
       - number: 4
         name: TGU strength progression | Strength Maintenance
@@ -651,7 +651,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 30 sec
+            duration: 30s
             notes: Superset 2 - 2 rounds
       - number: 2
         name: Recovery & technique | Lower Body Strength
@@ -712,13 +712,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -2 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: moderate
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -2 rounds
       - number: 4
         name: Recovery & technique | Strength Maintenance
@@ -788,7 +788,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 45 sec
+            duration: 45s
             notes: Superset 2 - 3 rounds
       - number: 2
         name: Swing volume +67% | Lower Body Strength
@@ -849,13 +849,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 25 sec
+            duration: 25s
             notes: Superset 1 -3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: heavy
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds
       - number: 4
         name: Swing volume +67% | Strength Maintenance
@@ -925,7 +925,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 50 sec
+            duration: 50s
             notes: Superset 2 - 3 rounds
       - number: 2
         name: Strength consolidation | Lower Body Strength
@@ -986,13 +986,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 25 sec
+            duration: 25s
             notes: Superset 1 -3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: heavy
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds
       - number: 4
         name: Maintenance volume | Strength Maintenance
@@ -1062,7 +1062,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 50 sec
+            duration: 50s
             notes: Superset 2 - 3 rounds
       - number: 2
         name: Strength consolidation | Lower Body Strength
@@ -1123,13 +1123,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 30 sec
+            duration: 30s
             notes: Superset 1 -3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: very_heavy
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds
       - number: 4
         name: Maintenance volume | Strength Maintenance
@@ -1199,7 +1199,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 55 sec
+            duration: 55s
             notes: Superset 2 - 3 rounds
       - number: 2
         name: Strength consolidation | Lower Body Strength
@@ -1261,13 +1261,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 30 sec
+            duration: 30s
             notes: Superset 1 -3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: very_heavy
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds
       - number: 4
         name: Maintenance volume | Strength Maintenance
@@ -1339,7 +1339,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 30 sec
+            duration: 30s
             notes: Superset 2 - 2 rounds
       - number: 2
         name: Recovery & technique | Lower Body Strength
@@ -1401,13 +1401,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -2 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: heavy
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -2 rounds
       - number: 4
         name: Recovery & technique | Strength Maintenance
@@ -1477,7 +1477,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 45 sec
+            duration: 45s
             notes: Superset 2 - 3 rounds
       - number: 2
         name: Swing volume +67% | Lower Body Strength
@@ -1539,13 +1539,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 30 sec
+            duration: 30s
             notes: Superset 1 -3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: very_heavy
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds
       - number: 4
         name: Swing volume +67% | Strength Maintenance
@@ -1616,7 +1616,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 50 sec
+            duration: 50s
             notes: Superset 2 - 3 rounds
       - number: 2
         name: TGU recovery | Lower Body Strength
@@ -1679,13 +1679,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 30 sec
+            duration: 30s
             notes: Superset 1 -3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: very_heavy
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds
       - number: 4
         name: TGU strength progression | Strength Maintenance
@@ -1755,7 +1755,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 55 sec
+            duration: 55s
             notes: Superset 2 - 3 rounds
       - number: 2
         name: Strength consolidation | Lower Body Strength
@@ -1818,13 +1818,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 30 sec
+            duration: 30s
             notes: Superset 1 -3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: very_heavy
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds
       - number: 4
         name: Maintenance volume | Strength Maintenance
@@ -1894,7 +1894,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 60 sec
+            duration: 60s
             notes: Superset 2 - 3 rounds
       - number: 2
         name: Strength consolidation | Lower Body Strength
@@ -1957,13 +1957,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 30 sec
+            duration: 30s
             notes: Superset 1 -3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: very_heavy
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds
       - number: 4
         name: Maintenance volume | Strength Maintenance
@@ -2034,7 +2034,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 30 sec
+            duration: 30s
             notes: Superset 2 - 2 rounds
       - number: 2
         name: Recovery & technique | Lower Body Strength
@@ -2096,13 +2096,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -2 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: heavy
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -2 rounds
       - number: 4
         name: Recovery & technique | Strength Maintenance
@@ -2172,7 +2172,7 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 30-60 sec
+            duration: 30-60s
             notes: Superset 2 - 3 rounds
       - number: 2
         name: Swing volume +67% | Lower Body Strength
@@ -2236,13 +2236,13 @@ weeks:
             reps: null
             weight: null
             weight_type: null
-            duration: 30 sec
+            duration: 30s
             notes: Superset 1 -3 rounds
           - exercise_id: cpg-suitcase-march
             sets: 2
             reps: null
             weight_type: very_heavy
-            duration: 20 sec
+            duration: 20s
             notes: Superset 1 -3 rounds, on/off
       - number: 4
         name: Swing volume +67% | Strength Maintenance
