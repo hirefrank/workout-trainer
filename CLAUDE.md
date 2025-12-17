@@ -299,6 +299,10 @@ To deploy to a different domain:
 # Set authentication password (required)
 wrangler secret put AUTH_PASSWORD
 
+# Set registration control (optional, defaults to closed)
+# Set to "true" to allow new user registration, "false" to require manual approval
+wrangler secret put REGISTRATION_OPEN
+
 # Set VAPID private key for push notifications (optional, for PWA features)
 wrangler secret put VAPID_PRIVATE_KEY
 # Generate keys with: node scripts/generate-vapid-keys.js
