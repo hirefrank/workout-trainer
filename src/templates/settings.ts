@@ -8,25 +8,7 @@ import { getAuthenticatedUser } from "~/handlers/api";
 import { htmlLayout } from "./layout";
 import { escapeHtml } from "~/lib/html";
 import programData from "~/data/program";
-
-/**
- * Get default bells configuration from program data
- */
-function getDefaultBells(): UserBells {
-  const bells: UserBells = {};
-
-  for (const [exerciseId, exercise] of Object.entries(programData.exercises)) {
-    if (exercise.bells) {
-      bells[exerciseId] = {
-        moderate: exercise.bells.moderate,
-        heavy: exercise.bells.heavy,
-        very_heavy: exercise.bells.very_heavy,
-      };
-    }
-  }
-
-  return bells;
-}
+import { getDefaultBells } from "~/lib/bells-utils";
 
 /**
  * Handle settings page request
@@ -66,7 +48,7 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
       return `
         <div class="border-2 border-black p-4 mb-4">
           <h4 class="font-bold mb-3">${escapeHtml(name)}</h4>
-          <div class="grid grid-cols-3 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
               <label class="block text-xs font-medium mb-1">Moderate</label>
               <div class="flex items-center gap-1">
@@ -103,12 +85,12 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
   const content = `
     <div class="space-y-6">
       <!-- Header -->
-      <div class="flex items-center justify-between">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h2 class="text-2xl font-bold">Settings</h2>
           <p class="text-zinc-600">@${escapeHtml(handle)}</p>
         </div>
-        <a href="/workout/" class="px-4 py-2 font-bold border-2 border-black bg-white hover:bg-zinc-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
+        <a href="/workout/" class="w-full sm:w-auto text-center px-4 py-2 font-bold border-2 border-black bg-white hover:bg-zinc-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
           Back
         </a>
       </div>
@@ -128,13 +110,13 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
 
           <div id="bells-status" class="hidden text-sm font-medium py-2"></div>
 
-          <div class="flex gap-2 pt-4 border-t-2 border-black">
+          <div class="flex flex-col sm:flex-row gap-2 pt-4 border-t-2 border-black">
             <button type="submit"
                     class="flex-1 px-4 py-2 font-bold border-2 border-black bg-green-400 hover:bg-green-500 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
               Save Changes
             </button>
             <button type="button" id="reset-bells"
-                    class="px-4 py-2 font-bold border-2 border-black bg-white hover:bg-zinc-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
+                    class="w-full sm:w-auto px-4 py-2 font-bold border-2 border-black bg-white hover:bg-zinc-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
               Reset to Defaults
             </button>
           </div>
@@ -148,6 +130,9 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
       const bellsStatus = document.getElementById('bells-status');
       const resetBellsBtn = document.getElementById('reset-bells');
 
+      // Track unsaved changes
+      let hasUnsavedChanges = false;
+
       function showStatus(message, isError = false) {
         bellsStatus.textContent = message;
         bellsStatus.className = isError
@@ -156,9 +141,30 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
         bellsStatus.classList.remove('hidden');
       }
 
+      // Track input changes
+      if (bellsForm) {
+        bellsForm.addEventListener('input', () => {
+          hasUnsavedChanges = true;
+        });
+
+        // Warn before leaving page with unsaved changes
+        window.addEventListener('beforeunload', (e) => {
+          if (hasUnsavedChanges) {
+            e.preventDefault();
+            e.returnValue = ''; // Chrome requires returnValue to be set
+          }
+        });
+      }
+
       if (bellsForm) {
         bellsForm.addEventListener('submit', async (e) => {
           e.preventDefault();
+
+          // Show loading state
+          const submitBtn = bellsForm.querySelector('button[type="submit"]');
+          const originalText = submitBtn.textContent;
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Saving...';
 
           // Collect form data
           const formData = new FormData(bellsForm);
@@ -180,6 +186,7 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
             });
 
             if (res.ok) {
+              hasUnsavedChanges = false; // Clear unsaved changes flag
               showStatus('Settings saved successfully!');
               setTimeout(() => bellsStatus.classList.add('hidden'), 3000);
             } else {
@@ -189,6 +196,10 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
           } catch (error) {
             console.error('Save bells error:', error);
             showStatus('Network error. Please try again.', true);
+          } finally {
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
           }
         });
       }
@@ -197,24 +208,54 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
         resetBellsBtn.addEventListener('click', async () => {
           if (!confirm('Reset all bells to program defaults?')) return;
 
+          // Show loading state
+          const originalText = resetBellsBtn.textContent;
+          resetBellsBtn.disabled = true;
+          resetBellsBtn.textContent = 'Resetting...';
+
           try {
             const res = await fetch('/workout/api/bells', {
               method: 'DELETE',
             });
 
             if (res.ok) {
+              hasUnsavedChanges = false; // Clear unsaved changes flag before reload
               showStatus('Reset to defaults. Reloading...');
               setTimeout(() => window.location.reload(), 1000);
             } else {
               const data = await res.json();
               showStatus(data.error || 'Failed to reset', true);
+              // Reset button state on error
+              resetBellsBtn.disabled = false;
+              resetBellsBtn.textContent = originalText;
             }
           } catch (error) {
             console.error('Reset bells error:', error);
             showStatus('Network error. Please try again.', true);
+            // Reset button state on error
+            resetBellsBtn.disabled = false;
+            resetBellsBtn.textContent = originalText;
           }
         });
       }
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        // Ctrl+S / Cmd+S: Save changes
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+          if (bellsForm) {
+            bellsForm.requestSubmit();
+          }
+        }
+        // Ctrl+R / Cmd+R: Reset to defaults (with confirmation)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+          e.preventDefault();
+          if (resetBellsBtn && confirm('Reset all bells to program defaults?')) {
+            resetBellsBtn.click();
+          }
+        }
+      });
     </script>
   `;
 

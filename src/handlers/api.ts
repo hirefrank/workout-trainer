@@ -8,6 +8,7 @@ import type { User, Session } from "~/types/user";
 import { parseCookie, createCookieHeader, deleteCookieHeader } from "~/lib/cookies";
 import { constantTimeEqual, hmacSign, hmacVerify } from "~/lib/auth-utils";
 import { LoginSchema } from "~/lib/schemas";
+import { checkRateLimit, rateLimitResponse, RATE_LIMITS } from "~/lib/rate-limit";
 
 /**
  * Result of authentication check
@@ -24,6 +25,12 @@ export interface AuthResult {
  */
 export async function handleLogin(request: Request, env: WorkerEnv): Promise<Response> {
   try {
+    // Check rate limit for login endpoint
+    const isRateLimited = await checkRateLimit(request, env, "login", RATE_LIMITS.LOGIN);
+    if (isRateLimited) {
+      return rateLimitResponse(60);
+    }
+
     const body = await request.json();
     const parseResult = LoginSchema.safeParse(body);
 
@@ -60,34 +67,6 @@ export async function handleLogin(request: Request, env: WorkerEnv): Promise<Res
 
     const now = Date.now();
 
-    if (!existingUser) {
-      // User doesn't exist - check if registration is open
-      const registrationOpen = env.REGISTRATION_OPEN === "true";
-
-      if (!registrationOpen) {
-        return new Response(
-          JSON.stringify({ error: "Registration is closed. Contact admin to join." }),
-          { status: 403, headers: { "Content-Type": "application/json" } }
-        );
-      }
-
-      // Create new user
-      const newUser: User = {
-        handle,
-        createdAt: now,
-        lastLogin: now,
-      };
-
-      await env.WORKOUTS_KV.put(userKey, JSON.stringify(newUser));
-    } else {
-      // Update last login time
-      const updatedUser: User = {
-        ...existingUser,
-        lastLogin: now,
-      };
-      await env.WORKOUTS_KV.put(userKey, JSON.stringify(updatedUser));
-    }
-
     // Generate cryptographically secure session ID
     const sessionId = crypto.randomUUID();
 
@@ -106,10 +85,49 @@ export async function handleLogin(request: Request, env: WorkerEnv): Promise<Res
     // Combine sessionId and signature into token
     const token = `${sessionId}.${signature}`;
 
-    // Store session in KV with 24-hour TTL
-    await env.WORKOUTS_KV.put(`session:${sessionId}`, JSON.stringify(session), {
-      expirationTtl: 60 * 60 * 24, // 24 hours
-    });
+    // Store user and session in parallel
+    if (!existingUser) {
+      // User doesn't exist - check if registration is open
+      const registrationOpen = env.REGISTRATION_OPEN === "true";
+
+      if (!registrationOpen) {
+        return new Response(
+          JSON.stringify({ error: "Registration is closed. Contact admin to join." }),
+          { status: 403, headers: { "Content-Type": "application/json" } }
+        );
+      }
+
+      // Create new user
+      const newUser: User = {
+        handle,
+        createdAt: now,
+        lastLogin: now,
+      };
+
+      await Promise.all([
+        env.WORKOUTS_KV.put(userKey, JSON.stringify(newUser), {
+          expirationTtl: 60 * 60 * 24 * 365 * 2  // 2 years
+        }),
+        env.WORKOUTS_KV.put(`session:${sessionId}`, JSON.stringify(session), {
+          expirationTtl: 60 * 60 * 24, // 24 hours
+        })
+      ]);
+    } else {
+      // Update last login time
+      const updatedUser: User = {
+        ...existingUser,
+        lastLogin: now,
+      };
+
+      await Promise.all([
+        env.WORKOUTS_KV.put(userKey, JSON.stringify(updatedUser), {
+          expirationTtl: 60 * 60 * 24 * 365 * 2  // 2 years
+        }),
+        env.WORKOUTS_KV.put(`session:${sessionId}`, JSON.stringify(session), {
+          expirationTtl: 60 * 60 * 24, // 24 hours
+        })
+      ]);
+    }
 
     // Return success with Set-Cookie header and handle
     return new Response(
@@ -223,11 +241,3 @@ export async function getAuthenticatedUser(request: Request, env: WorkerEnv): Pr
   }
 }
 
-/**
- * Simple boolean check for authentication (backward compatibility)
- * Use getAuthenticatedUser when you need the handle
- */
-export async function isUserAuthenticated(request: Request, env: WorkerEnv): Promise<boolean> {
-  const result = await getAuthenticatedUser(request, env);
-  return result.authenticated;
-}

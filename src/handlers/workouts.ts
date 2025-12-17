@@ -5,9 +5,11 @@
 
 import type { WorkerEnv } from "~/types/env";
 import type { ActivityEntry, UserBells } from "~/types/user";
-import { WorkoutQuerySchema, WorkoutCompletionWithNotesSchema, PushSubscriptionSchema } from "~/lib/schemas";
+import { WorkoutQuerySchema, WorkoutCompletionWithNotesSchema, PushSubscriptionSchema, BellsSchema } from "~/lib/schemas";
 import { getAuthenticatedUser } from "./api";
 import programData from "~/data/program";
+import { checkRateLimit, rateLimitResponse, RATE_LIMITS } from "~/lib/rate-limit";
+import { getDefaultBells } from "~/lib/bells-utils";
 
 /**
  * Workout completion data stored in KV
@@ -78,6 +80,12 @@ export async function handleGetCompletions(request: Request, env: WorkerEnv): Pr
  */
 export async function handleMarkComplete(request: Request, env: WorkerEnv): Promise<Response> {
   try {
+    // Check rate limit for API endpoints
+    const isRateLimited = await checkRateLimit(request, env, "api", RATE_LIMITS.API);
+    if (isRateLimited) {
+      return rateLimitResponse(60);
+    }
+
     // Check authentication and get handle
     const authResult = await getAuthenticatedUser(request, env);
     if (!authResult.authenticated || !authResult.handle) {
@@ -127,6 +135,17 @@ export async function handleMarkComplete(request: Request, env: WorkerEnv): Prom
 /**
  * Update the activity feed with a new completion
  * Keeps last 50 entries
+ *
+ * KNOWN LIMITATION (Race Condition):
+ * This function uses a read-modify-write pattern without locking, which can
+ * lose concurrent writes if multiple users complete workouts simultaneously.
+ * This is acceptable for an activity feed because:
+ * 1. Lost entries are rare (requires exact timing collision)
+ * 2. Activity feed is informational/social, not critical data
+ * 3. Individual workout completions are still stored correctly in user-scoped keys
+ * 4. The complexity of implementing locks (e.g., Durable Objects) isn't justified
+ *
+ * For critical data requiring atomic updates, use Durable Objects or optimistic locking.
  */
 async function updateActivityFeed(env: WorkerEnv, entry: ActivityEntry): Promise<void> {
   const feedKey = "activity:recent";
@@ -244,13 +263,37 @@ export async function handleSubscribe(request: Request, env: WorkerEnv): Promise
 /**
  * Handle GET /api/activity
  * Returns recent activity feed for community display
+ * Supports pagination via ?offset=N&limit=M query parameters
  */
 export async function handleGetActivity(request: Request, env: WorkerEnv): Promise<Response> {
   try {
+    const url = new URL(request.url);
+    const offset = parseInt(url.searchParams.get('offset') || '0', 10);
+    const limit = parseInt(url.searchParams.get('limit') || '50', 10);
+
+    // Validate pagination parameters
+    if (offset < 0 || limit < 1 || limit > 100) {
+      return new Response(
+        JSON.stringify({ error: "Invalid pagination parameters" }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
     const feedKey = "activity:recent";
     const feed = await env.WORKOUTS_KV.get(feedKey, "json") as ActivityEntry[] | null;
 
-    return new Response(JSON.stringify(feed || []), {
+    // Apply pagination
+    const allEntries = feed || [];
+    const paginatedFeed = allEntries.slice(offset, offset + limit);
+    const hasMore = offset + limit < allEntries.length;
+
+    return new Response(JSON.stringify({
+      activities: paginatedFeed,
+      offset,
+      limit,
+      total: allEntries.length,
+      hasMore,
+    }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
@@ -263,24 +306,6 @@ export async function handleGetActivity(request: Request, env: WorkerEnv): Promi
   }
 }
 
-/**
- * Get default bells configuration from program data
- */
-function getDefaultBells(): UserBells {
-  const bells: UserBells = {};
-
-  for (const [exerciseId, exercise] of Object.entries(programData.exercises)) {
-    if (exercise.bells) {
-      bells[exerciseId] = {
-        moderate: exercise.bells.moderate,
-        heavy: exercise.bells.heavy,
-        very_heavy: exercise.bells.very_heavy,
-      };
-    }
-  }
-
-  return bells;
-}
 
 /**
  * Handle GET /api/bells
@@ -338,37 +363,24 @@ export async function handleUpdateBells(request: Request, env: WorkerEnv): Promi
     const { handle } = authResult;
     const bellsKey = `user-bells:${handle}`;
 
-    // Parse request body
-    const body = await request.json() as { bells: UserBells };
+    // Parse and validate request body with Zod
+    const body = await request.json();
+    const parseResult = BellsSchema.safeParse(body);
 
-    if (!body.bells || typeof body.bells !== "object") {
+    if (!parseResult.success) {
+      const errorMessage = parseResult.error.errors[0]?.message || "Invalid bells data";
       return new Response(
-        JSON.stringify({ error: "Invalid bells data" }),
+        JSON.stringify({ error: errorMessage }),
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
 
-    // Validate bell values (must be positive numbers)
-    for (const [exerciseId, weights] of Object.entries(body.bells)) {
-      if (!weights || typeof weights !== "object") {
-        return new Response(
-          JSON.stringify({ error: `Invalid weights for ${exerciseId}` }),
-          { status: 400, headers: { "Content-Type": "application/json" } }
-        );
-      }
+    const { bells } = parseResult.data;
 
-      for (const [level, value] of Object.entries(weights)) {
-        if (typeof value !== "number" || value < 0 || value > 500) {
-          return new Response(
-            JSON.stringify({ error: `Invalid weight value for ${exerciseId}.${level}` }),
-            { status: 400, headers: { "Content-Type": "application/json" } }
-          );
-        }
-      }
-    }
-
-    // Store user's bells (no TTL - permanent until deleted)
-    await env.WORKOUTS_KV.put(bellsKey, JSON.stringify(body.bells));
+    // Store user's bells with 1-year TTL
+    await env.WORKOUTS_KV.put(bellsKey, JSON.stringify(bells), {
+      expirationTtl: 60 * 60 * 24 * 365  // 1 year
+    });
 
     return new Response(
       JSON.stringify({ success: true }),

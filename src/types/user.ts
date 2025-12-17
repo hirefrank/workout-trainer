@@ -42,11 +42,3 @@ export interface ActivityEntry {
   day: number;
   completedAt: string;
 }
-
-/**
- * Active users on a week stored in `active:{week}`
- */
-export interface ActiveWeekUsers {
-  handles: string[];
-  updatedAt: string;
-}

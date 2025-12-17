@@ -210,7 +210,7 @@ export function exerciseRow(exercise: WorkoutExercise, exerciseData: Exercise): 
   // Progressive notation notes (e.g., "Progressive: 1→2→4 reps per side")
   let notesDisplay = "";
   if (exercise.notes) {
-    notesDisplay = `<p class="text-xs text-zinc-500 mt-1">${escapeHtml(exercise.notes)}</p>`;
+    notesDisplay = `<p class="text-xs text-zinc-600 mt-1">${escapeHtml(exercise.notes)}</p>`;
   }
 
   return `
@@ -231,9 +231,9 @@ export function exerciseRow(exercise: WorkoutExercise, exerciseData: Exercise): 
  */
 export function authModal(): string {
   return `
-    <div id="auth-modal" class="hidden fixed inset-0 left-0 right-0 top-0 bottom-0 bg-black/50 flex items-center justify-center p-4 z-[100]">
+    <div id="auth-modal" class="hidden fixed inset-0 left-0 right-0 top-0 bottom-0 bg-black/50 flex items-center justify-center p-4 z-[100]" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
       <div class="bg-white border-2 border-black p-6 max-w-sm w-full shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-        <h3 class="text-xl font-bold mb-4">Join Workout</h3>
+        <h3 id="auth-modal-title" class="text-xl font-bold mb-4">Join Workout</h3>
         <form id="login-form" class="space-y-4">
           <div>
             <label for="handle-input" class="block text-sm font-medium mb-1">Your Handle</label>
@@ -244,14 +244,27 @@ export function authModal(): string {
                    minlength="3" maxlength="20"
                    autocomplete="username"
                    autofocus>
-            <p class="text-xs text-zinc-500 mt-1">3-20 characters, lowercase letters, numbers, hyphens</p>
+            <p class="text-xs text-zinc-600 mt-1">3-20 characters, lowercase letters, numbers, hyphens</p>
           </div>
           <div>
             <label for="password-input" class="block text-sm font-medium mb-1">Password</label>
-            <input type="password" id="password-input"
-                   class="w-full px-3 py-2 border-2 border-black"
-                   placeholder="Shared password"
-                   autocomplete="current-password">
+            <div class="relative">
+              <input type="password" id="password-input"
+                     class="w-full px-3 py-2 pr-10 border-2 border-black"
+                     placeholder="Shared password"
+                     autocomplete="current-password">
+              <button type="button" id="toggle-password"
+                      class="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-black"
+                      aria-label="Toggle password visibility">
+                <svg id="eye-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                <svg id="eye-off-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                </svg>
+              </button>
+            </div>
           </div>
           <div id="login-error" class="hidden text-red-600 text-sm font-medium"></div>
           <div class="flex gap-2">
@@ -275,9 +288,9 @@ export function authModal(): string {
  */
 export function notesModal(): string {
   return `
-    <div id="notes-modal" class="hidden fixed inset-0 left-0 right-0 top-0 bottom-0 bg-black/50 flex items-center justify-center p-4 z-[100]">
+    <div id="notes-modal" class="hidden fixed inset-0 left-0 right-0 top-0 bottom-0 bg-black/50 flex items-center justify-center p-4 z-[100]" role="dialog" aria-modal="true" aria-labelledby="notes-modal-title">
       <div class="bg-white border-2 border-black p-6 max-w-md w-full shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-        <h3 class="text-xl font-bold mb-2">Add Notes (Optional)</h3>
+        <h3 id="notes-modal-title" class="text-xl font-bold mb-2">Add Notes (Optional)</h3>
         <p class="text-sm text-zinc-600 mb-4">How did the workout feel?</p>
         <form id="notes-form" class="space-y-4">
           <textarea id="notes-input"
@@ -310,9 +323,11 @@ export function notesModal(): string {
 export function activityFeed(activities: ActivityEntry[] | null, currentHandle?: string): string {
   if (!activities || activities.length === 0) {
     return `
-      <div class="bg-white border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+      <div id="activity-feed" class="bg-white border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
         <h3 class="font-bold text-lg mb-2">Community Activity</h3>
-        <p class="text-sm text-zinc-500">No recent activity yet. Be the first to complete a workout!</p>
+        <div id="activity-items" class="text-sm">
+          <p class="text-zinc-600">No recent activity yet. Be the first to complete a workout!</p>
+        </div>
       </div>
     `;
   }
@@ -343,15 +358,15 @@ export function activityFeed(activities: ActivityEntry[] | null, currentHandle?:
         <span class="${handleClass}">${handleDisplay}</span>
         <span class="text-zinc-600">completed</span>
         <span class="font-medium">Week ${activity.week}, Day ${activity.day}</span>
-        <span class="text-xs text-zinc-400 ml-auto">${timeAgo(activity.completedAt)}</span>
+        <span class="text-xs text-zinc-600 ml-auto">${timeAgo(activity.completedAt)}</span>
       </div>
     `;
   }).join("");
 
   return `
-    <div class="bg-white border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div id="activity-feed" class="bg-white border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
       <h3 class="font-bold text-lg mb-2">Community Activity</h3>
-      <div class="text-sm">
+      <div id="activity-items" class="text-sm">
         ${activityItems}
       </div>
     </div>

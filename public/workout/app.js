@@ -143,6 +143,44 @@ const loginError = document.getElementById("login-error");
 const loginTrigger = document.getElementById("login-trigger");
 const cancelAuth = document.getElementById("cancel-auth");
 const logoutBtn = document.getElementById("logout-btn");
+const togglePasswordBtn = document.getElementById("toggle-password");
+const eyeIcon = document.getElementById("eye-icon");
+const eyeOffIcon = document.getElementById("eye-off-icon");
+
+// Store focus element to return to after modal closes
+let previousActiveElement = null;
+
+// Helper to get all focusable elements in a container
+function getFocusableElements(container) {
+  const focusableSelectors = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  return Array.from(container.querySelectorAll(focusableSelectors))
+    .filter(el => !el.disabled && !el.hasAttribute('hidden'));
+}
+
+// Focus trap handler
+function handleFocusTrap(e, container) {
+  const focusableElements = getFocusableElements(container);
+  if (focusableElements.length === 0) return;
+
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  if (e.key === 'Tab') {
+    if (e.shiftKey) {
+      // Shift + Tab
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      // Tab
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  }
+}
 
 // Helper to close auth modal
 function closeAuthModal() {
@@ -152,6 +190,12 @@ function closeAuthModal() {
   if (loginError) {
     loginError.classList.add("hidden");
     loginError.textContent = "";
+  }
+
+  // Return focus to trigger element
+  if (previousActiveElement) {
+    previousActiveElement.focus();
+    previousActiveElement = null;
   }
 }
 
@@ -165,11 +209,28 @@ function showLoginError(message) {
   }
 }
 
+// Password visibility toggle
+if (togglePasswordBtn && passwordInput && eyeIcon && eyeOffIcon) {
+  togglePasswordBtn.addEventListener("click", () => {
+    const isPassword = passwordInput.type === "password";
+    passwordInput.type = isPassword ? "text" : "password";
+    eyeIcon.classList.toggle("hidden", isPassword);
+    eyeOffIcon.classList.toggle("hidden", !isPassword);
+  });
+}
+
 // Show auth modal
 if (loginTrigger) {
   loginTrigger.addEventListener("click", () => {
+    previousActiveElement = document.activeElement;
     authModal.classList.remove("hidden");
-    passwordInput.focus();
+
+    // Focus first input field
+    if (handleInput) {
+      handleInput.focus();
+    } else if (passwordInput) {
+      passwordInput.focus();
+    }
   });
 }
 
@@ -186,9 +247,14 @@ if (authModal) {
     }
   });
 
+  // Handle keyboard navigation (ESC to close, Tab to trap focus)
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !authModal.classList.contains("hidden")) {
-      closeAuthModal();
+    if (!authModal.classList.contains("hidden")) {
+      if (e.key === "Escape") {
+        closeAuthModal();
+      } else {
+        handleFocusTrap(e, authModal);
+      }
     }
   });
 }
@@ -207,11 +273,31 @@ if (loginForm) {
       return;
     }
 
+    if (handle.length > 20) {
+      showLoginError("Handle must be 20 characters or less");
+      if (handleInput) handleInput.focus();
+      return;
+    }
+
+    // Pattern: lowercase letters, numbers, hyphens (but not at start/end)
+    const handlePattern = /^[a-z0-9][a-z0-9-]{1,18}[a-z0-9]$/;
+    if (!handlePattern.test(handle)) {
+      showLoginError("Handle must be 3-20 characters (lowercase, numbers, hyphens - not at start/end)");
+      if (handleInput) handleInput.focus();
+      return;
+    }
+
     if (!password) {
       showLoginError("Password is required");
       if (passwordInput) passwordInput.focus();
       return;
     }
+
+    // Show loading state
+    const submitBtn = loginForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Joining...";
 
     try {
       const res = await fetch("/workout/api/login", {
@@ -231,10 +317,16 @@ if (loginForm) {
           passwordInput.value = "";
           passwordInput.focus();
         }
+        // Reset button state
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
       }
     } catch (error) {
       console.error("Login error:", error);
       showLoginError("Network error. Please try again.");
+      // Reset button state
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
     }
   });
 }
@@ -349,6 +441,12 @@ function closeNotesModal() {
   notesModal.classList.add("hidden");
   notesInput.value = "";
   pendingWorkout = null;
+
+  // Return focus to trigger element
+  if (previousActiveElement) {
+    previousActiveElement.focus();
+    previousActiveElement = null;
+  }
 }
 
 // Cancel notes button (close modal)
@@ -364,9 +462,14 @@ if (notesModal) {
     }
   });
 
+  // Handle keyboard navigation (ESC to close, Tab to trap focus)
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !notesModal.classList.contains("hidden")) {
-      closeNotesModal();
+    if (!notesModal.classList.contains("hidden")) {
+      if (e.key === "Escape") {
+        closeNotesModal();
+      } else {
+        handleFocusTrap(e, notesModal);
+      }
     }
   });
 }
@@ -404,10 +507,112 @@ document.querySelectorAll(".complete-btn").forEach((btn) => {
       }
     } else {
       // Complete - show notes modal
+      previousActiveElement = document.activeElement;
       pendingWorkout = { week, day };
       notesInput.value = "";
       notesModal.classList.remove("hidden");
-      notesInput.focus();
+
+      // Focus textarea
+      if (notesInput) {
+        notesInput.focus();
+      }
     }
   });
 });
+
+// Activity Feed Real-Time Updates
+// Poll for new activity every 30 seconds
+const activityFeedContainer = document.getElementById('activity-items');
+let currentHandle = null;
+
+// Get current user handle from auth check
+async function getCurrentHandle() {
+  try {
+    const res = await fetch('/workout/api/check-auth');
+    if (res.ok) {
+      const data = await res.json();
+      return data.handle;
+    }
+  } catch (error) {
+    console.error('Failed to get current handle:', error);
+  }
+  return null;
+}
+
+// Format relative time
+function timeAgo(dateString) {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffMins = Math.floor(diffMs / 60000);
+  const diffHours = Math.floor(diffMins / 60);
+  const diffDays = Math.floor(diffHours / 24);
+
+  if (diffMins < 1) return "just now";
+  if (diffMins < 60) return `${diffMins}m ago`;
+  if (diffHours < 24) return `${diffHours}h ago`;
+  if (diffDays < 7) return `${diffDays}d ago`;
+  return date.toLocaleDateString();
+}
+
+// Update activity feed with new data
+function updateActivityFeed(activities) {
+  if (!activityFeedContainer) return;
+
+  if (!activities || activities.length === 0) {
+    activityFeedContainer.innerHTML = '<p class="text-zinc-600">No recent activity yet. Be the first to complete a workout!</p>';
+    return;
+  }
+
+  const activityItems = activities.slice(0, 10).map((activity) => {
+    const isCurrentUser = currentHandle && activity.handle === currentHandle;
+    const handleDisplay = isCurrentUser ? "You" : `@${escapeHtml(activity.handle)}`;
+    const handleClass = isCurrentUser ? "font-bold text-green-600" : "font-medium";
+
+    return `
+      <div class="flex items-center gap-2 py-2 border-b border-zinc-200 last:border-0">
+        <span class="${handleClass}">${handleDisplay}</span>
+        <span class="text-zinc-600">completed</span>
+        <span class="font-medium">Week ${activity.week}, Day ${activity.day}</span>
+        <span class="text-xs text-zinc-600 ml-auto">${timeAgo(activity.completedAt)}</span>
+      </div>
+    `;
+  }).join("");
+
+  activityFeedContainer.innerHTML = activityItems;
+}
+
+// Basic HTML escaping for XSS protection
+function escapeHtml(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// Poll for activity updates
+async function pollActivityFeed() {
+  try {
+    const res = await fetch('/workout/api/activity?limit=10');
+    if (res.ok) {
+      const data = await res.json();
+      // Handle both old format (array) and new format (object with activities)
+      const activities = Array.isArray(data) ? data : data.activities;
+      updateActivityFeed(activities);
+    }
+  } catch (error) {
+    console.error('Activity feed poll error:', error);
+  }
+}
+
+// Initialize activity feed polling if the container exists
+if (activityFeedContainer) {
+  // Get current handle once
+  getCurrentHandle().then(handle => {
+    currentHandle = handle;
+    // Start polling every 30 seconds
+    setInterval(pollActivityFeed, 30000);
+  });
+}

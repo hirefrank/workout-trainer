@@ -43,3 +43,17 @@ export const PushSubscriptionSchema = z.object({
     auth: z.string(),
   }),
 });
+
+/**
+ * User bells configuration schema
+ * Each exercise has three weight levels: moderate, heavy, very_heavy
+ */
+export const BellsSchema = z.object({
+  bells: z.record(
+    z.object({
+      moderate: z.number().min(0).max(500),
+      heavy: z.number().min(0).max(500),
+      very_heavy: z.number().min(0).max(500),
+    })
+  ),
+});

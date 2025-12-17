@@ -50,22 +50,47 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
 
   // Load user-specific completions from KV
   let completions: Record<string, any> = {};
-  if (userHandle) {
-    const prefix = `workout:${userHandle}:`;
-    const { keys } = await env.WORKOUTS_KV.list({ prefix });
-    const values = await Promise.all(keys.map((key) => env.WORKOUTS_KV.get(key.name, "json")));
+  let activityData: ActivityEntry[] | null = null;
 
-    keys.forEach((key, index) => {
-      if (values[index]) {
-        // Convert workout:handle:1-2 back to workout:1-2 for consistency
-        const simpleKey = key.name.replace(`workout:${userHandle}:`, "workout:");
-        completions[simpleKey] = values[index];
+  try {
+    if (userHandle) {
+      const prefix = `workout:${userHandle}:`;
+      const { keys } = await env.WORKOUTS_KV.list({ prefix });
+      const values = await Promise.all(keys.map((key) => env.WORKOUTS_KV.get(key.name, "json")));
+
+      keys.forEach((key, index) => {
+        if (values[index]) {
+          // Convert workout:handle:1-2 back to workout:1-2 for consistency
+          const simpleKey = key.name.replace(`workout:${userHandle}:`, "workout:");
+          completions[simpleKey] = values[index];
+        }
+      });
+    }
+
+    // Load activity feed for community display
+    activityData = await env.WORKOUTS_KV.get("activity:recent", "json") as ActivityEntry[] | null;
+  } catch (error) {
+    console.error("KV error loading dashboard data:", error);
+    return new Response(
+      htmlLayout(
+        `<div class="text-center py-12">
+          <p class="text-red-600 font-bold">Error loading workout data</p>
+          <p class="mt-2 text-zinc-600">Please try refreshing the page.</p>
+          <p class="mt-4">
+            <a href="/workout/" class="text-blue-600 hover:underline">Refresh</a>
+          </p>
+        </div>`,
+        "Error - Workout Trainer",
+        undefined,
+        undefined,
+        { weeks: programData.program.weeks, daysPerWeek: programData.program.days_per_week }
+      ),
+      {
+        status: 500,
+        headers: { "Content-Type": "text/html; charset=utf-8" },
       }
-    });
+    );
   }
-
-  // Load activity feed for community display
-  const activityData = await env.WORKOUTS_KV.get("activity:recent", "json") as ActivityEntry[] | null;
 
   // Find week data
   const week = programData.weeks.find((w) => w.number === currentWeek);
@@ -117,7 +142,7 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
             ${
               isAuth && userHandle
                 ? `
-              <p class="text-xs text-zinc-500">@${escapeHtml(userHandle)}</p>
+              <p class="text-xs text-zinc-600">@${escapeHtml(userHandle)}</p>
               <div class="flex gap-2 justify-end mt-1">
                 <a href="/workout/settings" class="text-xs text-zinc-600 hover:text-black">Settings</a>
                 <button id="logout-btn" class="text-xs text-zinc-600 hover:text-black">Logout</button>
@@ -132,15 +157,17 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
 
         <div class="flex items-center gap-2">
           <button id="prev-week" ${currentWeek === 1 ? "disabled" : ""}
+                  aria-label="Previous week"
                   class="px-3 py-1 font-bold border-2 border-black bg-white hover:bg-zinc-100 disabled:opacity-50 disabled:cursor-not-allowed shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
             ←
           </button>
 
-          <div class="flex-1 bg-zinc-200 h-2 border border-black">
+          <div class="flex-1 bg-zinc-200 h-2 border border-black" role="progressbar" aria-valuenow="${currentWeek}" aria-valuemin="1" aria-valuemax="${totalWeeks}" aria-label="Program progress">
             <div class="bg-green-500 h-full" style="width: ${(currentWeek / totalWeeks) * 100}%"></div>
           </div>
 
           <button id="next-week" ${currentWeek === totalWeeks ? "disabled" : ""}
+                  aria-label="Next week"
                   class="px-3 py-1 font-bold border-2 border-black bg-white hover:bg-zinc-100 disabled:opacity-50 disabled:cursor-not-allowed shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
             →
           </button>
@@ -181,7 +208,7 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
     {
       headers: {
         "Content-Type": "text/html; charset=utf-8",
-        "Cache-Control": "public, max-age=60, s-maxage=60",
+        "Cache-Control": "private, no-cache",
       },
     }
   );

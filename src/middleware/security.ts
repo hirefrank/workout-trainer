@@ -35,6 +35,9 @@ export function addSecurityHeaders(
     headers.set("X-Content-Type-Options", "nosniff");
   }
 
+  // XSS Protection (legacy, but still useful for older browsers)
+  headers.set("X-XSS-Protection", "1; mode=block");
+
   // Control referrer information leakage
   headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
 
