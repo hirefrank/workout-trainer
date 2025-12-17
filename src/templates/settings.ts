@@ -120,6 +120,18 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
                 <span class="font-medium">kg (kilograms)</span>
               </label>
             </div>
+
+            <!-- Buy Kettlebells Link -->
+            <div class="mt-4 pt-4 border-t-2 border-black">
+              <a id="buy-kb-link"
+                 href="${unit === "lbs" ? "https://repfitness.com/products/kettlebells-lb" : "https://repfitness.com/products/kettlebells-kg"}"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="inline-block px-4 py-2 font-bold text-sm border-2 border-black bg-blue-400 hover:bg-blue-500 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-colors">
+                <span id="buy-kb-text">Buy Kettlebells (${unit})</span>
+              </a>
+              <p class="text-xs text-zinc-600 mt-2">Rep Fitness affiliate link</p>
+            </div>
           </div>
           ${bellsFormRows}
 
@@ -155,6 +167,17 @@ export async function handleSettings(request: Request, env: WorkerEnv): Promise<
           document.querySelectorAll('.unit-label').forEach(label => {
             label.textContent = newUnit;
           });
+
+          // Update buy kettlebells link
+          const buyLink = document.getElementById('buy-kb-link');
+          const buyText = document.getElementById('buy-kb-text');
+          if (buyLink && buyText) {
+            buyLink.href = newUnit === 'lbs'
+              ? 'https://repfitness.com/products/kettlebells-lb'
+              : 'https://repfitness.com/products/kettlebells-kg';
+            buyText.textContent = 'Buy Kettlebells (' + newUnit + ')';
+          }
+
           hasUnsavedChanges = true;
         });
       });
