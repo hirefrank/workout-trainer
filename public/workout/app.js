@@ -24,25 +24,29 @@ if ('serviceWorker' in navigator) {
 // PWA Install Prompt
 let deferredPrompt;
 
-window.addEventListener('beforeinstallprompt', (e) => {
+window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredPrompt = e;
 
   // Only show install banner on mobile devices
   // Desktop Chrome shows install in address bar, so we only show banner on mobile
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const isMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent,
+    );
 
   if (!isMobile) {
-    console.log('Install prompt suppressed: desktop browser detected');
+    console.log("Install prompt suppressed: desktop browser detected");
     return; // Don't show on desktop - use browser's native install UI
   }
 
-  console.log('Showing install banner: mobile device detected');
+  console.log("Showing install banner: mobile device detected");
 
   // Show install banner
-  const installBanner = document.createElement('div');
-  installBanner.id = 'install-banner';
-  installBanner.className = 'fixed bottom-4 left-4 right-4 bg-black text-white p-4 border-2 border-white shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] z-50';
+  const installBanner = document.createElement("div");
+  installBanner.id = "install-banner";
+  installBanner.className =
+    "fixed bottom-4 left-4 right-4 bg-black text-white p-4 border-2 border-white shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] z-50";
   installBanner.innerHTML = `
     <div class="flex items-center justify-between gap-4">
       <div>
@@ -62,7 +66,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
   document.body.appendChild(installBanner);
 
-  document.getElementById('install-btn').addEventListener('click', async () => {
+  document.getElementById("install-btn").addEventListener("click", async () => {
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
     console.log(`User ${outcome} the install prompt`);
@@ -70,25 +74,25 @@ window.addEventListener('beforeinstallprompt', (e) => {
     deferredPrompt = null;
   });
 
-  document.getElementById('dismiss-install').addEventListener('click', () => {
+  document.getElementById("dismiss-install").addEventListener("click", () => {
     installBanner.remove();
   });
 });
 
 // Push Notifications
 async function requestNotificationPermission() {
-  if (!('Notification' in window)) {
-    console.log('This browser does not support notifications');
+  if (!("Notification" in window)) {
+    console.log("This browser does not support notifications");
     return false;
   }
 
-  if (Notification.permission === 'granted') {
+  if (Notification.permission === "granted") {
     return true;
   }
 
-  if (Notification.permission !== 'denied') {
+  if (Notification.permission !== "denied") {
     const permission = await Notification.requestPermission();
-    return permission === 'granted';
+    return permission === "granted";
   }
 
   return false;
@@ -101,29 +105,29 @@ async function subscribeToPushNotifications() {
     const subscription = await registration.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(
-        'YOUR_VAPID_PUBLIC_KEY_HERE' // You'll need to generate VAPID keys
-      )
+        "YOUR_VAPID_PUBLIC_KEY_HERE", // You'll need to generate VAPID keys
+      ),
     });
 
     // Send subscription to server
-    await fetch('/workout/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(subscription)
+    await fetch("/workout/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(subscription),
     });
 
     return true;
   } catch (error) {
-    console.error('Failed to subscribe:', error);
+    console.error("Failed to subscribe:", error);
     return false;
   }
 }
 
 function urlBase64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding)
-    .replace(/\-/g, '+')
-    .replace(/_/g, '/');
+    .replace(/\-/g, "+")
+    .replace(/_/g, "/");
 
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
@@ -135,8 +139,8 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 // Add notification button to header (optional - you can customize this)
-window.addEventListener('DOMContentLoaded', () => {
-  if ('Notification' in window && Notification.permission === 'default') {
+window.addEventListener("DOMContentLoaded", () => {
+  if ("Notification" in window && Notification.permission === "default") {
     // Show notification opt-in after login
   }
 });
@@ -159,9 +163,11 @@ let previousActiveElement = null;
 
 // Helper to get all focusable elements in a container
 function getFocusableElements(container) {
-  const focusableSelectors = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-  return Array.from(container.querySelectorAll(focusableSelectors))
-    .filter(el => !el.disabled && !el.hasAttribute('hidden'));
+  const focusableSelectors =
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  return Array.from(container.querySelectorAll(focusableSelectors)).filter(
+    (el) => !el.disabled && !el.hasAttribute("hidden"),
+  );
 }
 
 // Focus trap handler
@@ -172,7 +178,7 @@ function handleFocusTrap(e, container) {
   const firstElement = focusableElements[0];
   const lastElement = focusableElements[focusableElements.length - 1];
 
-  if (e.key === 'Tab') {
+  if (e.key === "Tab") {
     if (e.shiftKey) {
       // Shift + Tab
       if (document.activeElement === firstElement) {
@@ -289,7 +295,9 @@ if (loginForm) {
     // Pattern: lowercase letters, numbers, hyphens (but not at start/end)
     const handlePattern = /^[a-z0-9][a-z0-9-]{1,18}[a-z0-9]$/;
     if (!handlePattern.test(handle)) {
-      showLoginError("Handle must be 3-20 characters (lowercase, numbers, hyphens - not at start/end)");
+      showLoginError(
+        "Handle must be 3-20 characters (lowercase, numbers, hyphens - not at start/end)",
+      );
       if (handleInput) handleInput.focus();
       return;
     }
@@ -380,7 +388,9 @@ document.querySelectorAll(".workout-card").forEach((card) => {
 
     exerciseList.classList.toggle("hidden");
     if (expandText) {
-      expandText.textContent = isHidden ? "Hide exercises ↑" : "Show exercises ↓";
+      expandText.textContent = isHidden
+        ? "Hide exercises ↑"
+        : "Show exercises ↓";
     }
   });
 });
@@ -429,7 +439,11 @@ if (notesForm) {
     e.preventDefault();
     if (pendingWorkout) {
       const notes = notesInput.value.trim();
-      await markWorkoutComplete(pendingWorkout.week, pendingWorkout.day, notes || undefined);
+      await markWorkoutComplete(
+        pendingWorkout.week,
+        pendingWorkout.day,
+        notes || undefined,
+      );
     }
   });
 }
@@ -438,7 +452,11 @@ if (notesForm) {
 if (skipNotes) {
   skipNotes.addEventListener("click", async () => {
     if (pendingWorkout) {
-      await markWorkoutComplete(pendingWorkout.week, pendingWorkout.day, undefined);
+      await markWorkoutComplete(
+        pendingWorkout.week,
+        pendingWorkout.day,
+        undefined,
+      );
     }
   });
 }
@@ -484,9 +502,9 @@ if (notesModal) {
 // Complete/Undo buttons
 document.querySelectorAll(".complete-btn").forEach((btn) => {
   btn.addEventListener("click", async (e) => {
-    const week = parseInt(e.target.dataset.week, 10);
-    const day = parseInt(e.target.dataset.day, 10);
-    const isComplete = e.target.textContent.trim() === "Undo";
+    const week = parseInt(btn.dataset.week, 10);
+    const day = parseInt(btn.dataset.day, 10);
+    const isComplete = btn.dataset.isComplete === "true";
 
     if (isComplete) {
       // Undo - directly call API
@@ -513,35 +531,32 @@ document.querySelectorAll(".complete-btn").forEach((btn) => {
         alert("Network error. Please try again.");
       }
     } else {
-      // Complete - show notes modal
       previousActiveElement = document.activeElement;
       pendingWorkout = { week, day };
-      notesInput.value = "";
-      notesModal.classList.remove("hidden");
-
-      // Focus textarea
       if (notesInput) {
+        notesInput.value = "";
         notesInput.focus();
       }
+      notesModal.classList.remove("hidden");
     }
   });
 });
 
 // Activity Feed Real-Time Updates
 // Poll for new activity every 30 seconds
-const activityFeedContainer = document.getElementById('activity-items');
+const activityFeedContainer = document.getElementById("activity-items");
 let currentHandle = null;
 
 // Get current user handle from auth check
 async function getCurrentHandle() {
   try {
-    const res = await fetch('/workout/api/check-auth');
+    const res = await fetch("/workout/api/check-auth");
     if (res.ok) {
       const data = await res.json();
       return data.handle;
     }
   } catch (error) {
-    console.error('Failed to get current handle:', error);
+    console.error("Failed to get current handle:", error);
   }
   return null;
 }
@@ -567,16 +582,23 @@ function updateActivityFeed(activities) {
   if (!activityFeedContainer) return;
 
   if (!activities || activities.length === 0) {
-    activityFeedContainer.innerHTML = '<p class="text-zinc-600">No recent activity yet. Be the first to complete a workout!</p>';
+    activityFeedContainer.innerHTML =
+      '<p class="text-zinc-600">No recent activity yet. Be the first to complete a workout!</p>';
     return;
   }
 
-  const activityItems = activities.slice(0, 10).map((activity) => {
-    const isCurrentUser = currentHandle && activity.handle === currentHandle;
-    const handleDisplay = isCurrentUser ? "You" : `@${escapeHtml(activity.handle)}`;
-    const handleClass = isCurrentUser ? "font-bold text-green-600" : "font-medium";
+  const activityItems = activities
+    .slice(0, 10)
+    .map((activity) => {
+      const isCurrentUser = currentHandle && activity.handle === currentHandle;
+      const handleDisplay = isCurrentUser
+        ? "You"
+        : `@${escapeHtml(activity.handle)}`;
+      const handleClass = isCurrentUser
+        ? "font-bold text-green-600"
+        : "font-medium";
 
-    return `
+      return `
       <div class="flex items-center gap-2 py-2 border-b border-zinc-200 last:border-0">
         <span class="${handleClass}">${handleDisplay}</span>
         <span class="text-zinc-600">completed</span>
@@ -584,7 +606,8 @@ function updateActivityFeed(activities) {
         <span class="text-xs text-zinc-600 ml-auto">${timeAgo(activity.completedAt)}</span>
       </div>
     `;
-  }).join("");
+    })
+    .join("");
 
   activityFeedContainer.innerHTML = activityItems;
 }
@@ -602,7 +625,7 @@ function escapeHtml(unsafe) {
 // Poll for activity updates
 async function pollActivityFeed() {
   try {
-    const res = await fetch('/workout/api/activity?limit=10');
+    const res = await fetch("/workout/api/activity?limit=10");
     if (res.ok) {
       const data = await res.json();
       // Handle both old format (array) and new format (object with activities)
@@ -610,14 +633,14 @@ async function pollActivityFeed() {
       updateActivityFeed(activities);
     }
   } catch (error) {
-    console.error('Activity feed poll error:', error);
+    console.error("Activity feed poll error:", error);
   }
 }
 
 // Initialize activity feed polling if the container exists
 if (activityFeedContainer) {
   // Get current handle once
-  getCurrentHandle().then(handle => {
+  getCurrentHandle().then((handle) => {
     currentHandle = handle;
     // Start polling every 30 seconds
     setInterval(pollActivityFeed, 30000);

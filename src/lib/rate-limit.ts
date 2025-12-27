@@ -5,6 +5,8 @@
 
 import type { WorkerEnv } from "~/types/env";
 
+const KV_MIN_TTL_SECONDS = 60;
+
 export interface RateLimitConfig {
   maxRequests: number;
   windowMs: number;
@@ -26,7 +28,7 @@ export async function checkRateLimit(
   request: Request,
   env: WorkerEnv,
   endpoint: string,
-  config: RateLimitConfig
+  config: RateLimitConfig,
 ): Promise<boolean> {
   // Get client IP from Cloudflare headers
   const ip = request.headers.get("CF-Connecting-IP") || "unknown";
@@ -35,7 +37,10 @@ export async function checkRateLimit(
   const key = `ratelimit:${ip}:${endpoint}`;
 
   // Get current count
-  const currentData = await env.WORKOUTS_KV.get(key, "json") as { count: number; resetAt: number } | null;
+  const currentData = (await env.WORKOUTS_KV.get(key, "json")) as {
+    count: number;
+    resetAt: number;
+  } | null;
 
   const now = Date.now();
   const windowEnd = now + config.windowMs;
@@ -45,7 +50,7 @@ export async function checkRateLimit(
     await env.WORKOUTS_KV.put(
       key,
       JSON.stringify({ count: 1, resetAt: windowEnd }),
-      { expirationTtl: Math.ceil(config.windowMs / 1000) }
+      { expirationTtl: Math.ceil(config.windowMs / 1000) },
     );
     return false; // Not rate limited
   }
@@ -57,11 +62,11 @@ export async function checkRateLimit(
     return true; // Rate limit exceeded
   }
 
-  // Update count
+  const remainingTtl = Math.ceil((currentData.resetAt - now) / 1000);
   await env.WORKOUTS_KV.put(
     key,
     JSON.stringify({ count: newCount, resetAt: currentData.resetAt }),
-    { expirationTtl: Math.ceil((currentData.resetAt - now) / 1000) }
+    { expirationTtl: Math.max(KV_MIN_TTL_SECONDS, remainingTtl) },
   );
 
   return false; // Not rate limited
@@ -82,6 +87,6 @@ export function rateLimitResponse(retryAfter: number = 60): Response {
         "Content-Type": "application/json",
         "Retry-After": retryAfter.toString(),
       },
-    }
+    },
   );
 }
