@@ -16,32 +16,12 @@ import programData from "~/data/program";
  * Handle main dashboard page
  * Generates complete HTML for workout tracker
  */
-export async function handleDashboard(request: Request, env: WorkerEnv): Promise<Response> {
+export async function handleDashboard(
+  request: Request,
+  env: WorkerEnv,
+): Promise<Response> {
   const url = new URL(request.url);
   const weekParam = url.searchParams.get("week");
-  const currentWeek = weekParam ? parseInt(weekParam, 10) : 1;
-
-  // Validate week parameter
-  if (isNaN(currentWeek) || currentWeek < 1 || currentWeek > programData.program.weeks) {
-    return new Response(
-      htmlLayout(
-        `<div class="text-center py-12">
-          <p class="text-red-600 font-bold">Invalid week: ${escapeHtml(String(currentWeek))}</p>
-          <p class="mt-2">
-            <a href="/workout/" class="text-blue-600 hover:underline">Go to Week 1</a>
-          </p>
-        </div>`,
-        "Invalid Week",
-        undefined,
-        undefined,
-        { weeks: programData.program.weeks, daysPerWeek: programData.program.days_per_week }
-      ),
-      {
-        status: 404,
-        headers: { "Content-Type": "text/html; charset=utf-8" },
-      }
-    );
-  }
 
   // Check authentication and get user handle
   const authResult = await getAuthenticatedUser(request, env);
@@ -58,18 +38,26 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
     if (userHandle) {
       const prefix = `workout:${userHandle}:`;
       const { keys } = await env.WORKOUTS_KV.list({ prefix });
-      const values = await Promise.all(keys.map((key) => env.WORKOUTS_KV.get(key.name, "json")));
+      const values = await Promise.all(
+        keys.map((key) => env.WORKOUTS_KV.get(key.name, "json")),
+      );
 
       keys.forEach((key, index) => {
         if (values[index]) {
           // Convert workout:handle:1-2 back to workout:1-2 for consistency
-          const simpleKey = key.name.replace(`workout:${userHandle}:`, "workout:");
+          const simpleKey = key.name.replace(
+            `workout:${userHandle}:`,
+            "workout:",
+          );
           completions[simpleKey] = values[index];
         }
       });
 
       // Load user's custom bells and unit preference
-      const userBells = await env.WORKOUTS_KV.get(`user-bells:${userHandle}`, "json") as any;
+      const userBells = (await env.WORKOUTS_KV.get(
+        `user-bells:${userHandle}`,
+        "json",
+      )) as any;
       if (userBells) {
         // Extract unit preference
         if (userBells.unit) {
@@ -78,10 +66,10 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
 
         // Merge user's custom bells with program defaults
         Object.keys(userBells).forEach((exerciseId) => {
-          if (exerciseId !== 'unit' && exercises[exerciseId]) {
+          if (exerciseId !== "unit" && exercises[exerciseId]) {
             exercises[exerciseId] = {
               ...exercises[exerciseId],
-              bells: userBells[exerciseId]
+              bells: userBells[exerciseId],
             };
           }
         });
@@ -89,7 +77,9 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
     }
 
     // Load activity feed for community display
-    activityData = await env.WORKOUTS_KV.get("activity:recent", "json") as ActivityEntry[] | null;
+    activityData = (await env.WORKOUTS_KV.get("activity:recent", "json")) as
+      | ActivityEntry[]
+      | null;
   } catch (error) {
     console.error("KV error loading dashboard data:", error);
     return new Response(
@@ -104,12 +94,70 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
         "Error - Workout Trainer",
         undefined,
         undefined,
-        { weeks: programData.program.weeks, daysPerWeek: programData.program.days_per_week }
+        {
+          weeks: programData.program.weeks,
+          daysPerWeek: programData.program.days_per_week,
+        },
       ),
       {
         status: 500,
         headers: { "Content-Type": "text/html; charset=utf-8" },
+      },
+    );
+  }
+
+  let currentWeek: number;
+  if (!weekParam) {
+    let firstIncompleteWeek = 1;
+    for (const week of programData.weeks) {
+      const completedDays = week.days.filter(
+        (day) => !!completions[`workout:${week.number}-${day.number}`],
+      ).length;
+
+      if (completedDays < week.days.length) {
+        firstIncompleteWeek = week.number;
+        break;
       }
+    }
+
+    if (isAuth && firstIncompleteWeek > 1) {
+      return new Response(null, {
+        status: 302,
+        headers: { Location: `/workout/?week=${firstIncompleteWeek}` },
+      });
+    }
+
+    currentWeek = firstIncompleteWeek;
+  } else {
+    currentWeek = parseInt(weekParam, 10);
+  }
+
+  // Validate week parameter
+  if (
+    isNaN(currentWeek) ||
+    currentWeek < 1 ||
+    currentWeek > programData.program.weeks
+  ) {
+    return new Response(
+      htmlLayout(
+        `<div class="text-center py-12">
+          <p class="text-red-600 font-bold">Invalid week: ${escapeHtml(String(currentWeek))}</p>
+          <p class="mt-2">
+            <a href="/workout/" class="text-blue-600 hover:underline">Go to Week 1</a>
+          </p>
+        </div>`,
+        "Invalid Week",
+        undefined,
+        undefined,
+        {
+          weeks: programData.program.weeks,
+          daysPerWeek: programData.program.days_per_week,
+        },
+      ),
+      {
+        status: 404,
+        headers: { "Content-Type": "text/html; charset=utf-8" },
+      },
     );
   }
 
@@ -128,23 +176,31 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
         "Week Not Found",
         undefined,
         undefined,
-        { weeks: programData.program.weeks, daysPerWeek: programData.program.days_per_week }
+        {
+          weeks: programData.program.weeks,
+          daysPerWeek: programData.program.days_per_week,
+        },
       ),
       {
         status: 404,
         headers: { "Content-Type": "text/html; charset=utf-8" },
-      }
+      },
     );
   }
 
   const totalWeeks = programData.program.weeks;
   const completedCount = week.days.filter(
-    (day) => !!completions[`workout:${currentWeek}-${day.number}`]
+    (day) => !!completions[`workout:${currentWeek}-${day.number}`],
   ).length;
 
   // Calculate total completed workouts across all weeks
-  const totalWorkouts = programData.weeks.reduce((sum, w) => sum + w.days.length, 0);
-  const totalCompleted = Object.keys(completions).filter((key) => key.startsWith("workout:")).length;
+  const totalWorkouts = programData.weeks.reduce(
+    (sum, w) => sum + w.days.length,
+    0,
+  );
+  const totalCompleted = Object.keys(completions).filter((key) =>
+    key.startsWith("workout:"),
+  ).length;
 
   // Generate page HTML
   const content = `
@@ -208,7 +264,7 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
               !!completion,
               isAuth,
               completion?.notes,
-              userUnit
+              userUnit,
             );
           })
           .join("")}
@@ -229,13 +285,16 @@ export async function handleDashboard(request: Request, env: WorkerEnv): Promise
       `${programData.program.name} - Week ${currentWeek}`,
       { completed: totalCompleted, total: totalWorkouts },
       programData.program.description,
-      { weeks: programData.program.weeks, daysPerWeek: programData.program.days_per_week }
+      {
+        weeks: programData.program.weeks,
+        daysPerWeek: programData.program.days_per_week,
+      },
     ),
     {
       headers: {
         "Content-Type": "text/html; charset=utf-8",
         "Cache-Control": "private, no-cache",
       },
-    }
+    },
   );
 }
