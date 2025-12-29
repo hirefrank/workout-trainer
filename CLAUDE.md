@@ -34,6 +34,7 @@ This app runs directly on Cloudflare Workers V8 runtime:
 ### Entry Point
 
 **`src/index.ts`** - Main Worker with fetch handler:
+
 ```typescript
 export default {
   async fetch(request: Request, env: WorkerEnv, ctx: ExecutionContext) {
@@ -46,11 +47,10 @@ export default {
     // ... other routes
 
     // Main dashboard
-    if (path === "/" || path === "")
-      return handleDashboard(request, env);
+    if (path === "/" || path === "") return handleDashboard(request, env);
 
     return new Response("Not Found", { status: 404 });
-  }
+  },
 };
 ```
 
@@ -80,12 +80,13 @@ Multi-user system with per-user data isolation:
   - `user-bells:{handle}` - Custom bell weights and unit preference
   - `activity:recent` - Global activity feed (recent completions)
   - `push-sub:{hash}` - Push notification subscriptions
-- **TTL**: Workouts expire after 180 days, sessions after 24 hours, user bells after 1 year
+- **TTL**: Workouts expire after 180 days, sessions after 30 days, user bells after 1 year
 - **Parallel operations**: Use `Promise.all()` for multiple KV reads
 
 ### HTML Template Generation
 
 **`src/templates/`** - Server-rendered HTML without React:
+
 - **`layout.ts`**: HTML document wrapper with header and compiled Tailwind CSS
 - **`dashboard.ts`**: Main workout page with week navigation, loads user bells and unit preference
 - **`settings.ts`**: User settings page for customizing bell weights and unit preference
@@ -127,6 +128,7 @@ The app includes full PWA support for mobile installation and push notifications
 - **Standalone Mode**: App runs without browser UI when installed
 
 **Setup Required**:
+
 1. Generate VAPID keys: `node scripts/generate-vapid-keys.js`
 2. Update public key in `public/workout/app.js`
 3. Set private key: `wrangler secret put VAPID_PRIVATE_KEY`
@@ -182,7 +184,10 @@ wrangler.jsonc              # Cloudflare Workers config
 All handlers accept `Request` and `WorkerEnv` directly:
 
 ```typescript
-export async function handleLogin(request: Request, env: WorkerEnv): Promise<Response> {
+export async function handleLogin(
+  request: Request,
+  env: WorkerEnv,
+): Promise<Response> {
   // 1. Parse and validate
   const body = await request.json();
   const { password } = LoginSchema.parse(body);
@@ -191,7 +196,7 @@ export async function handleLogin(request: Request, env: WorkerEnv): Promise<Res
   if (password !== env.AUTH_PASSWORD) {
     return new Response(JSON.stringify({ error: "Invalid password" }), {
       status: 401,
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
     });
   }
 
@@ -202,15 +207,15 @@ export async function handleLogin(request: Request, env: WorkerEnv): Promise<Res
 
   // 4. Store in KV and return cookie
   await env.WORKOUTS_KV.put(`session:${sessionId}`, "active", {
-    expirationTtl: 60 * 60 * 24
+    expirationTtl: 60 * 60 * 24,
   });
 
   return new Response(JSON.stringify({ success: true }), {
     status: 200,
     headers: {
       "Content-Type": "application/json",
-      "Set-Cookie": createCookieHeader("auth_token", token)
-    }
+      "Set-Cookie": createCookieHeader("auth_token", token),
+    },
   });
 }
 ```
@@ -225,7 +230,7 @@ export function workoutCard(
   isComplete: boolean,
   canEdit: boolean,
   completionNotes?: string,
-  unit: string = "lbs"
+  unit: string = "lbs",
 ): string {
   return `
     <div class="workout-card border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${isComplete ? "bg-green-100" : ""}">
@@ -240,29 +245,31 @@ export function workoutCard(
 **Always escape user input**: `escapeHtml()` prevents XSS attacks
 
 **Important**: Template functions pass `unit` parameter through the component chain:
+
 - `dashboard.ts` loads user's unit preference from KV
 - Passes to `workoutCard()` → `renderExerciseGroups()` → `exerciseRow()`
 - All weight displays use user's preferred unit
 
 **Template Literal Gotcha**: Avoid nesting template literals inside `<script>` tags:
+
 ```typescript
 // ❌ BAD - nested template literal in script
 `<script>showStatus(\`Error: ${msg}\`);</script>`
-
 // ✅ GOOD - use string concatenation
-`<script>showStatus('Error: ' + msg);</script>`
+`<script>showStatus('Error: ' + msg);</script>`;
 ```
 
 **Settings Form Parsing**: Exercise IDs with hyphens require special handling:
+
 ```typescript
 // Form field names: "2-hand-swing-moderate", "kb-deadlift-heavy"
 // ❌ BAD - splits on first hyphen, breaks "2-hand-swing" → ["2", "hand", "swing", "moderate"]
-const [exerciseId, level] = key.split('-');
+const [exerciseId, level] = key.split("-");
 
 // ✅ GOOD - splits on LAST hyphen using lastIndexOf
-const lastDashIndex = key.lastIndexOf('-');
+const lastDashIndex = key.lastIndexOf("-");
 const exerciseId = key.substring(0, lastDashIndex); // "2-hand-swing"
-const level = key.substring(lastDashIndex + 1);      // "moderate"
+const level = key.substring(lastDashIndex + 1); // "moderate"
 ```
 
 ### Input Validation
@@ -279,15 +286,17 @@ export const WorkoutCompletionWithNotesSchema = z.object({
 });
 
 export const BellsSchema = z.object({
-  bells: z.object({
-    unit: z.enum(["lbs", "kg"]).optional(),
-  }).catchall(
-    z.object({
-      moderate: z.number().min(0).max(500),
-      heavy: z.number().min(0).max(500),
-      very_heavy: z.number().min(0).max(500),
+  bells: z
+    .object({
+      unit: z.enum(["lbs", "kg"]).optional(),
     })
-  ),
+    .catchall(
+      z.object({
+        moderate: z.number().min(0).max(500),
+        heavy: z.number().min(0).max(500),
+        very_heavy: z.number().min(0).max(500),
+      }),
+    ),
 });
 ```
 
@@ -299,13 +308,15 @@ export const BellsSchema = z.object({
 // Read user-specific completions in parallel
 const prefix = `workout:${userHandle}:`;
 const { keys } = await env.WORKOUTS_KV.list({ prefix });
-const values = await Promise.all(keys.map(key => env.WORKOUTS_KV.get(key.name, "json")));
+const values = await Promise.all(
+  keys.map((key) => env.WORKOUTS_KV.get(key.name, "json")),
+);
 
 // Write with TTL and user isolation
 await env.WORKOUTS_KV.put(
   `workout:${userHandle}:${week}-${day}`,
   JSON.stringify({ completedAt: new Date().toISOString(), notes }),
-  { expirationTtl: 60 * 60 * 24 * 180 } // 180 days
+  { expirationTtl: 60 * 60 * 24 * 180 }, // 180 days
 );
 
 // Load and merge user's custom bells with program defaults
@@ -313,10 +324,10 @@ const userBells = await env.WORKOUTS_KV.get(`user-bells:${userHandle}`, "json");
 const exercises = { ...programData.exercises };
 if (userBells) {
   Object.keys(userBells).forEach((exerciseId) => {
-    if (exerciseId !== 'unit' && exercises[exerciseId]) {
+    if (exerciseId !== "unit" && exercises[exerciseId]) {
       exercises[exerciseId] = {
         ...exercises[exerciseId],
-        bells: userBells[exerciseId]
+        bells: userBells[exerciseId],
       };
     }
   });
@@ -334,7 +345,7 @@ document.getElementById("login-trigger").addEventListener("click", () => {
 });
 
 // Complete workout with optional notes
-document.querySelectorAll(".complete-btn").forEach(btn => {
+document.querySelectorAll(".complete-btn").forEach((btn) => {
   btn.addEventListener("click", () => {
     // Show notes modal
     const modal = document.getElementById("notes-modal");
@@ -353,7 +364,7 @@ window.location.reload();
 - **Constant-time comparison**: Prevents timing attacks on password
 - **Input validation**: Zod schemas prevent injection attacks
 - **HTML escaping**: All user input escaped via `escapeHtml()`
-- **Token expiration**: 24-hour session lifetime
+- **Token expiration**: 30-day session lifetime
 - **KV TTL**: Automatic data cleanup
 
 ## Cloudflare Setup
@@ -363,16 +374,19 @@ window.location.reload();
 **Base Path**: `/workout/` (configured in wrangler.jsonc)
 
 **Routes**:
+
 - `hirefrank.com/workout*`
 - `www.hirefrank.com/workout*`
 
 To deploy to a different domain:
+
 - Update `routes` in `wrangler.jsonc`
 - Add `workers_dev: true` for workers.dev deployment
 
 ### Environment Variables
 
 Configured in `wrangler.jsonc` under `vars`:
+
 - `REGISTRATION_OPEN`: Controls whether new users can register (`"true"` or `"false"`)
   - Set to `"true"` for open registration
   - Set to `"false"` to require manual user approval
@@ -392,6 +406,7 @@ wrangler secret put VAPID_PRIVATE_KEY
 ### KV Namespace
 
 Configured in `wrangler.jsonc`:
+
 - Binding: `WORKOUTS_KV`
 - ID: `cf9e891fc895458883fa2ebb048202fb`
 
@@ -405,7 +420,7 @@ Edit `program.yaml` and run `pnpm build` to recompile:
 exercises:
   my-exercise:
     name: "My Exercise Name"
-    type: kettlebell  # or bodyweight
+    type: kettlebell # or bodyweight
     bells:
       moderate: 35
       heavy: 45
@@ -428,14 +443,14 @@ weeks:
           - exercise_id: my-exercise
             sets: 5
             reps: 10
-            weight_type: heavy     # Auto-uses 45 lbs from bells
+            weight_type: heavy # Auto-uses 45 lbs from bells
             notes: "Optional notes"
 
           # Overrides bells definition
           - exercise_id: my-exercise
             sets: 5
             reps: 10
-            weight: 50             # Custom weight
+            weight: 50 # Custom weight
             notes: "Progressive overload"
 ```
 
@@ -444,6 +459,7 @@ weeks:
 Titles follow format: `Training Focus | Accessory Purpose`
 
 **Training focuses**:
+
 - "Volume baseline" - Week 1 foundation
 - "Swing volume +67%" - Major volume increases
 - "TGU strength progression" - Weight progressions
@@ -451,6 +467,7 @@ Titles follow format: `Training Focus | Accessory Purpose`
 - "Strength consolidation" - Volume maintenance
 
 **Accessory purposes**:
+
 - "Lower Body Strength" - Deadlifts + squats
 - "Core Stability" - Deadbugs + suitcase march
 - "Upper Body Push" - Push-ups
@@ -461,11 +478,13 @@ Regenerate titles: `node scripts/rewrite-titles.mjs`
 ## Build System
 
 **`build.mjs`** - Orchestrates the build:
+
 1. Reads `program.yaml` with js-yaml
 2. Generates typed `src/data/program.ts`
 3. Compiles Tailwind CSS to `public/workout/styles.css` (served as static asset)
 
 **Important**: Always run `pnpm build` before deploying to ensure:
+
 - Program data is synced from YAML
 - Tailwind CSS is compiled for production use
 

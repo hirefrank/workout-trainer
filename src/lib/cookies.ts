@@ -34,10 +34,10 @@ export function createCookieHeader(
     path?: string;
     secure?: boolean;
     sameSite?: "Strict" | "Lax" | "None";
-  } = {}
+  } = {},
 ): string {
   const {
-    maxAge = 60 * 60 * 24, // 24 hours default
+    maxAge = 60 * 60 * 24 * 30, // 30 days default
     path = "/",
     secure = true,
     sameSite = "Lax",

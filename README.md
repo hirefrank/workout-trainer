@@ -77,7 +77,7 @@ This application has been hardened for Cloudflare Workers with the following sec
 
 ✅ **Timing Attack Protection** - Constant-time password comparison prevents timing attacks
 ✅ **Input Validation** - Zod schemas validate all server function inputs
-✅ **Token Expiration** - Authentication tokens expire after 24 hours
+✅ **Token Expiration** - Authentication tokens expire after 30 days
 ✅ **KV TTL** - Workout data auto-expires after 6 months
 ✅ **Workers Runtime Compatible** - Uses Web Standard APIs (no Node.js polyfills)
 ✅ **Security Headers Middleware** - CSP, X-Frame-Options, HSTS, and more
@@ -114,6 +114,7 @@ return addCORSHeaders(request, response, corsConfig);
 **Current Status: ✅ Ready for Personal Use**
 
 The application is production-ready for personal/single-user deployments with:
+
 - ✅ No runtime crashes (Workers-compatible)
 - ✅ Secure authentication (timing-attack resistant)
 - ✅ Excellent performance (<100ms load times)
@@ -122,12 +123,14 @@ The application is production-ready for personal/single-user deployments with:
 **For Multi-User/Public Production:**
 
 The application is production-ready! All critical security measures are implemented:
+
 - ✅ HMAC-signed tokens (secure session management)
 - ✅ HttpOnly cookies (XSS-resistant token storage)
 - ✅ Security headers middleware available
 - ✅ CORS configuration available
 
 **Optional Enhancements:**
+
 - Enable Cloudflare Rate Limiting rules (see `docs/RATE_LIMITING.md`)
 - Review and tighten CSP directives for your specific use case
 - Consider implementing Durable Objects for distributed rate limiting
@@ -149,9 +152,9 @@ exercises:
     name: "KB Deadlift"
     type: kettlebell
     bells:
-      moderate: 45    # Your moderate weight in lbs
-      heavy: 70       # Your heavy weight in lbs
-      very_heavy: 88  # Your very heavy weight in lbs
+      moderate: 45 # Your moderate weight in lbs
+      heavy: 70 # Your heavy weight in lbs
+      very_heavy: 88 # Your very heavy weight in lbs
 ```
 
 2. **Program Structure** - Completely customizable:
@@ -235,7 +238,7 @@ pnpm cf-typegen   # Generate Cloudflare types
 exercises:
   new-exercise:
     name: "New Exercise Name"
-    type: kettlebell  # or bodyweight
+    type: kettlebell # or bodyweight
     bells:
       moderate: 35
       heavy: 45
@@ -260,11 +263,13 @@ exercises:
 The system is designed for **kettlebell and bodyweight programs** with full flexibility:
 
 ✅ **Exercise Types**
+
 - Kettlebell exercises (with 3-tier weight system: moderate/heavy/very heavy)
 - Bodyweight exercises
 - Easy to extend for barbell, dumbbells, bands, machines (just add new types)
 
 ✅ **Programming Features**
+
 - Sets × Reps (e.g., `5 × 10`)
 - Progressive sets (e.g., `5+4` = 9 sets with weight changes)
 - Duration-based exercises (e.g., `20s`, `30-60s`)
@@ -276,6 +281,7 @@ The system is designed for **kettlebell and bodyweight programs** with full flex
 - YouTube tutorial links
 
 ✅ **Program Structure**
+
 - Any number of weeks
 - Any days per week
 - Deload weeks
@@ -283,6 +289,7 @@ The system is designed for **kettlebell and bodyweight programs** with full flex
 - Week-by-week progression
 
 ✅ **User Features**
+
 - Per-user weight customization (same program, personalized weights)
 - Multi-user support with individual tracking
 - Settings page auto-discovers exercises from YAML
@@ -298,6 +305,7 @@ The system is designed for **kettlebell and bodyweight programs** with full flex
 ### What Would Need Extension
 
 To support other training styles, you'd add:
+
 - Equipment types (barbell, dumbbells, bands, machines, etc.)
 - Advanced features (tempo, RPE, AMRAP, rest periods, etc.)
 
@@ -346,9 +354,9 @@ Update `wrangler.jsonc` with the IDs:
     {
       "binding": "WORKOUTS_KV",
       "id": "your-production-id",
-      "preview_id": "your-preview-id"
-    }
-  ]
+      "preview_id": "your-preview-id",
+    },
+  ],
 }
 ```
 
@@ -375,6 +383,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ## Acknowledgments
 
 Built with:
+
 - [TanStack Start](https://tanstack.com/start) - Full-stack React framework
 - [Cloudflare Workers](https://workers.cloudflare.com/) - Edge computing platform
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework

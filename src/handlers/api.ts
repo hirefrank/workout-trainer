@@ -5,10 +5,18 @@
 
 import type { WorkerEnv } from "~/types/env";
 import type { User, Session } from "~/types/user";
-import { parseCookie, createCookieHeader, deleteCookieHeader } from "~/lib/cookies";
+import {
+  parseCookie,
+  createCookieHeader,
+  deleteCookieHeader,
+} from "~/lib/cookies";
 import { constantTimeEqual, hmacSign, hmacVerify } from "~/lib/auth-utils";
 import { LoginSchema } from "~/lib/schemas";
-import { checkRateLimit, rateLimitResponse, RATE_LIMITS } from "~/lib/rate-limit";
+import {
+  checkRateLimit,
+  rateLimitResponse,
+  RATE_LIMITS,
+} from "~/lib/rate-limit";
 
 /**
  * Result of authentication check
@@ -23,10 +31,18 @@ export interface AuthResult {
  * Validates handle + password and creates HMAC-signed session token
  * Creates new user if registration is open and handle doesn't exist
  */
-export async function handleLogin(request: Request, env: WorkerEnv): Promise<Response> {
+export async function handleLogin(
+  request: Request,
+  env: WorkerEnv,
+): Promise<Response> {
   try {
     // Check rate limit for login endpoint
-    const isRateLimited = await checkRateLimit(request, env, "login", RATE_LIMITS.LOGIN);
+    const isRateLimited = await checkRateLimit(
+      request,
+      env,
+      "login",
+      RATE_LIMITS.LOGIN,
+    );
     if (isRateLimited) {
       return rateLimitResponse(60);
     }
@@ -35,11 +51,12 @@ export async function handleLogin(request: Request, env: WorkerEnv): Promise<Res
     const parseResult = LoginSchema.safeParse(body);
 
     if (!parseResult.success) {
-      const errorMessage = parseResult.error.errors[0]?.message || "Invalid input";
-      return new Response(
-        JSON.stringify({ error: errorMessage }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
+      const errorMessage =
+        parseResult.error.errors[0]?.message || "Invalid input";
+      return new Response(JSON.stringify({ error: errorMessage }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
     const { handle, password } = parseResult.data;
@@ -49,29 +66,32 @@ export async function handleLogin(request: Request, env: WorkerEnv): Promise<Res
     if (!authPassword) {
       return new Response(
         JSON.stringify({ error: "Authentication not configured" }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
+        { status: 500, headers: { "Content-Type": "application/json" } },
       );
     }
 
     // Use constant-time comparison to prevent timing attacks
     if (!constantTimeEqual(password, authPassword)) {
-      return new Response(
-        JSON.stringify({ error: "Invalid password" }),
-        { status: 401, headers: { "Content-Type": "application/json" } }
-      );
+      return new Response(JSON.stringify({ error: "Invalid password" }), {
+        status: 401,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
     // Check if user exists
     const userKey = `user:${handle}`;
-    const existingUser = await env.WORKOUTS_KV.get(userKey, "json") as User | null;
+    const existingUser = (await env.WORKOUTS_KV.get(
+      userKey,
+      "json",
+    )) as User | null;
 
     const now = Date.now();
 
     // Generate cryptographically secure session ID
     const sessionId = crypto.randomUUID();
 
-    // Create session with 24-hour expiration
-    const expiresAt = now + (24 * 60 * 60 * 1000); // 24 hours
+    // Create session with 30-day expiration
+    const expiresAt = now + 30 * 24 * 60 * 60 * 1000; // 30 days
 
     const session: Session = {
       handle,
@@ -92,8 +112,10 @@ export async function handleLogin(request: Request, env: WorkerEnv): Promise<Res
 
       if (!registrationOpen) {
         return new Response(
-          JSON.stringify({ error: "Registration is closed. Contact admin to join." }),
-          { status: 403, headers: { "Content-Type": "application/json" } }
+          JSON.stringify({
+            error: "Registration is closed. Contact admin to join.",
+          }),
+          { status: 403, headers: { "Content-Type": "application/json" } },
         );
       }
 
@@ -106,11 +128,11 @@ export async function handleLogin(request: Request, env: WorkerEnv): Promise<Res
 
       await Promise.all([
         env.WORKOUTS_KV.put(userKey, JSON.stringify(newUser), {
-          expirationTtl: 60 * 60 * 24 * 365 * 2  // 2 years
+          expirationTtl: 60 * 60 * 24 * 365 * 2, // 2 years
         }),
         env.WORKOUTS_KV.put(`session:${sessionId}`, JSON.stringify(session), {
-          expirationTtl: 60 * 60 * 24, // 24 hours
-        })
+          expirationTtl: 60 * 60 * 24 * 30, // 30 days
+        }),
       ]);
     } else {
       // Update last login time
@@ -121,11 +143,11 @@ export async function handleLogin(request: Request, env: WorkerEnv): Promise<Res
 
       await Promise.all([
         env.WORKOUTS_KV.put(userKey, JSON.stringify(updatedUser), {
-          expirationTtl: 60 * 60 * 24 * 365 * 2  // 2 years
+          expirationTtl: 60 * 60 * 24 * 365 * 2, // 2 years
         }),
         env.WORKOUTS_KV.put(`session:${sessionId}`, JSON.stringify(session), {
-          expirationTtl: 60 * 60 * 24, // 24 hours
-        })
+          expirationTtl: 60 * 60 * 24 * 30, // 30 days
+        }),
       ]);
     }
 
@@ -137,19 +159,19 @@ export async function handleLogin(request: Request, env: WorkerEnv): Promise<Res
         headers: {
           "Content-Type": "application/json",
           "Set-Cookie": createCookieHeader("auth_token", token, {
-            maxAge: 60 * 60 * 24, // 24 hours
+            maxAge: 60 * 60 * 24 * 30, // 30 days
             secure: true,
             sameSite: "Lax",
           }),
         },
-      }
+      },
     );
   } catch (error) {
     console.error("Login error:", error);
-    return new Response(
-      JSON.stringify({ error: "Login failed" }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
+    return new Response(JSON.stringify({ error: "Login failed" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
 
@@ -157,24 +179,27 @@ export async function handleLogin(request: Request, env: WorkerEnv): Promise<Res
  * Handle POST /api/logout
  * Clears authentication cookie
  */
-export async function handleLogout(request: Request, env: WorkerEnv): Promise<Response> {
-  return new Response(
-    JSON.stringify({ success: true }),
-    {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        "Set-Cookie": deleteCookieHeader("auth_token"),
-      },
-    }
-  );
+export async function handleLogout(
+  request: Request,
+  env: WorkerEnv,
+): Promise<Response> {
+  return new Response(JSON.stringify({ success: true }), {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+      "Set-Cookie": deleteCookieHeader("auth_token"),
+    },
+  });
 }
 
 /**
  * Handle GET /api/check-auth
  * Returns current authentication status and handle
  */
-export async function handleCheckAuth(request: Request, env: WorkerEnv): Promise<Response> {
+export async function handleCheckAuth(
+  request: Request,
+  env: WorkerEnv,
+): Promise<Response> {
   const authResult = await getAuthenticatedUser(request, env);
 
   return new Response(
@@ -185,7 +210,7 @@ export async function handleCheckAuth(request: Request, env: WorkerEnv): Promise
     {
       status: 200,
       headers: { "Content-Type": "application/json" },
-    }
+    },
   );
 }
 
@@ -193,7 +218,10 @@ export async function handleCheckAuth(request: Request, env: WorkerEnv): Promise
  * Get authenticated user from HMAC-signed token in HttpOnly cookie
  * Returns AuthResult with handle if authenticated
  */
-export async function getAuthenticatedUser(request: Request, env: WorkerEnv): Promise<AuthResult> {
+export async function getAuthenticatedUser(
+  request: Request,
+  env: WorkerEnv,
+): Promise<AuthResult> {
   try {
     const token = parseCookie(request, "auth_token");
 
@@ -215,14 +243,21 @@ export async function getAuthenticatedUser(request: Request, env: WorkerEnv): Pr
     }
 
     // Verify HMAC signature
-    const isValidSignature = await hmacVerify(sessionId, signature, authPassword);
+    const isValidSignature = await hmacVerify(
+      sessionId,
+      signature,
+      authPassword,
+    );
 
     if (!isValidSignature) {
       return { authenticated: false }; // Token has been tampered with
     }
 
     // Retrieve session from KV
-    const sessionData = await env.WORKOUTS_KV.get(`session:${sessionId}`, "json");
+    const sessionData = await env.WORKOUTS_KV.get(
+      `session:${sessionId}`,
+      "json",
+    );
 
     if (!sessionData) {
       return { authenticated: false }; // Session not found or expired (KV TTL)
@@ -240,4 +275,3 @@ export async function getAuthenticatedUser(request: Request, env: WorkerEnv): Pr
     return { authenticated: false };
   }
 }
-

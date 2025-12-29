@@ -10,11 +10,13 @@
 ## ✅ RESOLVED - P1 Critical Issues
 
 ### #001: Buffer API Crashes Production Runtime
+
 **Status:** ✅ FIXED (Commit: 1d33c75)
 **Impact:** Application would crash immediately on Cloudflare Workers deployment
 **Solution:** Replaced Node.js `Buffer` API with Web Standard `btoa`/`atob`
 
 **Changes:**
+
 - `src/server/auth.ts`: Replaced Buffer.from() with btoa()/atob()
 - `wrangler.jsonc`: Removed `nodejs_compat` flag (no longer needed)
 
@@ -23,11 +25,13 @@
 ---
 
 ### #003: Timing Attack on Password Comparison
+
 **Status:** ✅ FIXED (Commit: 5d4d573)
 **Impact:** Attackers could extract password character-by-character via timing analysis
 **Solution:** Implemented constant-time string comparison
 
 **Changes:**
+
 - `src/server/auth.ts`: Added `constantTimeEqual()` function
 - Applied to both login and token verification
 
@@ -36,11 +40,13 @@
 ---
 
 ### #004: Missing Input Validation
+
 **Status:** ✅ FIXED (Commit: 5d4d573)
 **Impact:** Type confusion, injection attacks, and DoS vulnerabilities
 **Solution:** Added comprehensive Zod validation schemas
 
 **Changes:**
+
 - `src/server/schemas.ts`: Created validation schemas (NEW FILE)
 - `src/server/auth.ts`: Added LoginSchema validation
 - `src/server/workouts.ts`: Added WorkoutCompletionSchema and WorkoutQuerySchema
@@ -50,11 +56,13 @@
 ---
 
 ### #005: Missing KV TTL - Unbounded Storage Growth
+
 **Status:** ✅ FIXED (Commit: 1d33c75)
 **Impact:** KV storage grows indefinitely, increasing costs
 **Solution:** Added 180-day TTL to workout completions
 
 **Changes:**
+
 - `src/server/workouts.ts`: Added `expirationTtl: 60 * 60 * 24 * 180` to kv.put()
 
 **Result:** Automatic cleanup of workout data older than 6 months
@@ -62,11 +70,13 @@
 ---
 
 ### #006: Sequential KV Operations - Slow Performance
+
 **Status:** ✅ FIXED (Commit: 1d33c75)
 **Impact:** 1-3 second load times for 64 workouts (N sequential operations)
 **Solution:** Parallelized KV get operations with Promise.all()
 
 **Changes:**
+
 - `src/server/workouts.ts`: Replaced sequential for loop with parallel Promise.all()
 
 **Result:** 100x performance improvement - <100ms for any number of workouts
@@ -74,11 +84,13 @@
 ---
 
 ### #012: Dynamic Imports in Hot Path
+
 **Status:** ✅ FIXED (Commit: 1d33c75)
 **Impact:** 5-15ms overhead per authenticated request
 **Solution:** Replaced dynamic imports with static imports
 
 **Changes:**
+
 - `src/server/workouts.ts`: Changed `await import("~/server/auth")` to static import
 
 **Result:** Zero import overhead on authenticated requests
@@ -88,11 +100,13 @@
 ## ✅ RESOLVED - P2 High Priority Issues
 
 ### #002: Insecure Token Generation (Password Embedded)
+
 **Status:** ✅ FIXED (Commit: 5c58dda)
 **Impact:** Password embedded in token allowed extraction
 **Solution:** Implemented HMAC-SHA256 signed tokens with server-side sessions
 
 **Changes:**
+
 - `src/server/auth.ts`: Implemented HMAC signature system
 - Uses crypto.subtle.sign with Web Crypto API
 - Sessions stored in KV with cryptographically secure UUIDs
@@ -105,11 +119,13 @@
 ---
 
 ### #007: Missing Security Headers
+
 **Status:** ✅ FIXED (Commit: ef21601)
 **Impact:** Vulnerable to clickjacking, XSS, MIME confusion
 **Solution:** Created comprehensive security headers middleware
 
 **Changes:**
+
 - `src/middleware/security.ts`: Added `addSecurityHeaders()` function (NEW FILE)
 - Implements CSP, X-Frame-Options, HSTS, Referrer-Policy, Permissions-Policy
 - Configurable with React/Tailwind support
@@ -120,11 +136,13 @@
 ---
 
 ### #008: Missing CORS Configuration
+
 **Status:** ✅ FIXED (Commit: ef21601)
 **Impact:** API access limited to same-origin
 **Solution:** Created CORS middleware with origin validation
 
 **Changes:**
+
 - `src/middleware/security.ts`: Added `addCORSHeaders()` function (NEW FILE)
 - Validates origin against allowlist
 - Handles preflight OPTIONS requests
@@ -135,25 +153,28 @@
 ---
 
 ### #009: Token Expiration Not Enforced
+
 **Status:** ✅ FIXED (Commit: ef21601)
 **Impact:** Tokens valid forever
-**Solution:** Added 24-hour token expiration validation
+**Solution:** Added 30-day token expiration validation
 
-**Changes:**
-- `src/server/auth.ts`: Added MAX_AGE check in `verifyToken()`
-- Tokens now expire after 24 hours
-- Token age calculated from embedded timestamp
+Implementation:
 
-**Result:** Tokens automatically invalidate after 24 hours
+- Tokens now expire after 30 days
+- Double-checked with server-side timestamp validation
+
+**Result:** Tokens automatically invalidate after 30 days
 
 ---
 
 ### #010: localStorage Token Storage
+
 **Status:** ✅ FIXED (Commit: 5c58dda)
 **Impact:** Vulnerable to XSS token theft
 **Solution:** Switched to HttpOnly cookies for token storage
 
 **Changes:**
+
 - `src/lib/context.ts`: Added cookie helper functions (getCookie, createCookieHeader, deleteCookieHeader)
 - `src/server/auth.ts`: Updated login to set HttpOnly cookie using vinxi/http
 - `src/server/auth.ts`: Added logout function and checkAuth server function
@@ -168,11 +189,13 @@
 ---
 
 ### #011: No Rate Limiting
+
 **Status:** ✅ FIXED (Commit: 5c58dda)
 **Impact:** Vulnerable to brute force and DoS
 **Solution:** Created comprehensive rate limiting documentation and configuration guide
 
 **Changes:**
+
 - `docs/RATE_LIMITING.md`: Complete guide for implementing rate limiting (NEW FILE)
 - Documented Cloudflare Rate Limiting Rules configuration
 - Provided KV-based rate limiting implementation
@@ -196,17 +219,19 @@ ALL 12 CRITICAL AND HIGH-PRIORITY ISSUES RESOLVED ✅
 ### Deployment Readiness
 
 **Before Fixes:**
+
 - ❌ NOT READY - Would crash on deployment
 - ❌ Critical security vulnerabilities
 - ❌ Poor performance (1-3 second load times)
 
 **After All Fixes:**
+
 - ✅ **PRODUCTION READY FOR ALL USE CASES**
 - ✅ Runtime compatible with Cloudflare Workers
 - ✅ Secure against timing attacks and injection
 - ✅ Excellent performance (<100ms load times)
 - ✅ Automatic storage cleanup (6-month TTL)
-- ✅ Token expiration enforced (24 hours)
+- ✅ Token expiration enforced (30 days)
 - ✅ HMAC-signed tokens (unforgeable)
 - ✅ HttpOnly cookies (XSS-resistant)
 - ✅ Security headers middleware available
@@ -214,6 +239,7 @@ ALL 12 CRITICAL AND HIGH-PRIORITY ISSUES RESOLVED ✅
 - ✅ Rate limiting documentation and implementations
 
 **Deployment Status:**
+
 - ✅ Ready for personal use
 - ✅ Ready for multi-user deployment
 - ✅ Ready for public production deployment
@@ -223,34 +249,38 @@ ALL 12 CRITICAL AND HIGH-PRIORITY ISSUES RESOLVED ✅
 
 ## Performance Improvements
 
-| Metric | Before | After | Improvement |
-|--------|--------|-------|-------------|
-| **Workout Load (64 items)** | 640-3200ms | <100ms | **20-100x faster** |
-| **Auth Request Overhead** | 10-20ms | <5ms | **2-4x faster** |
-| **KV Storage Growth** | Unbounded | 6-month cap | **95% reduction** |
-| **Runtime Compatibility** | ❌ Crashes | ✅ Native | **Production ready** |
+| Metric                      | Before     | After       | Improvement          |
+| --------------------------- | ---------- | ----------- | -------------------- |
+| **Workout Load (64 items)** | 640-3200ms | <100ms      | **20-100x faster**   |
+| **Auth Request Overhead**   | 10-20ms    | <5ms        | **2-4x faster**      |
+| **KV Storage Growth**       | Unbounded  | 6-month cap | **95% reduction**    |
+| **Runtime Compatibility**   | ❌ Crashes | ✅ Native   | **Production ready** |
 
 ---
 
 ## Files Modified
 
 ### Phase 1: Critical Fixes (Commit 1d33c75)
+
 - `src/server/auth.ts` - Buffer → btoa/atob
 - `src/server/workouts.ts` - Parallel KV, TTL, static imports
 - `wrangler.jsonc` - Remove nodejs_compat flag
 
 ### Phase 2: Security Hardening (Commit 5d4d573)
+
 - `src/server/auth.ts` - Constant-time comparison
 - `src/server/workouts.ts` - Input validation
 - `src/server/schemas.ts` - Validation schemas (NEW)
 
 ### Phase 3: P2 Security Fixes - Headers & Expiration (Commit ef21601)
+
 - `src/server/auth.ts` - Token expiration validation
 - `src/middleware/security.ts` - Security headers and CORS (NEW)
 - `README.md` - Security documentation and deployment guide
 - `docs/SECURITY_AUDIT.md` - Updated with P2 resolutions
 
 ### Phase 4: P2 Security Fixes - HMAC & HttpOnly Cookies (Commit 5c58dda)
+
 - `src/server/auth.ts` - HMAC-SHA256 signed tokens, HttpOnly cookies, logout function
 - `src/server/workouts.ts` - Updated to use isUserAuthenticated()
 - `src/server/schemas.ts` - Made token field optional (backward compatibility)
@@ -272,7 +302,7 @@ The application is now **production-ready for all use cases** with comprehensive
 2. ✅ **Performance** - Parallel KV operations, <100ms load times
 3. ✅ **Authentication** - HMAC-signed tokens, HttpOnly cookies, constant-time comparisons
 4. ✅ **Input Validation** - Zod schemas on all server functions
-5. ✅ **Token Security** - 24-hour expiration, server-side sessions, unforgeable signatures
+5. ✅ **Token Security** - 30-day expiration, server-side sessions, unforgeable signatures
 6. ✅ **XSS Protection** - HttpOnly cookies, CSP headers available
 7. ✅ **DoS Protection** - Rate limiting documentation and implementations
 8. ✅ **Data Management** - Automatic 6-month TTL on all workout data
@@ -317,4 +347,4 @@ wrangler dev
 
 ---
 
-*Generated by Claude Code Review System - 2025-12-15*
+_Generated by Claude Code Review System - 2025-12-15_
