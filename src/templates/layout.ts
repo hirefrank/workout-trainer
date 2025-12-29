@@ -9,9 +9,11 @@ export function htmlLayout(
   title: string,
   footerStats?: { completed: number; total: number },
   description?: string,
-  programMeta?: { weeks: number; daysPerWeek: number }
+  programMeta?: { weeks: number; daysPerWeek: number },
 ): string {
-  const metaDescription = description || "Workout program tracker with progress tracking and completion notes";
+  const metaDescription =
+    description ||
+    "Workout program tracker with progress tracking and completion notes";
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -26,7 +28,11 @@ export function htmlLayout(
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Workout">
   <link rel="manifest" href="/workout/manifest.json">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
+  <link rel="icon" type="image/x-icon" href="/workout/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/workout/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/workout/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/workout/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="/workout/apple-touch-icon.png">
   <link rel="stylesheet" href="/workout/styles.css">
   <style>
     body, html {
@@ -58,8 +64,8 @@ export function htmlLayout(
               footerStats
                 ? `COMPLETED ${footerStats.completed} OUT OF ${footerStats.total} WORKOUTS`
                 : programMeta
-                ? `${programMeta.weeks} WEEKS | ${programMeta.daysPerWeek} DAYS/WEEK`
-                : "WORKOUT TRACKER"
+                  ? `${programMeta.weeks} WEEKS | ${programMeta.daysPerWeek} DAYS/WEEK`
+                  : "WORKOUT TRACKER"
             }
           </p>
           <a href="https://github.com/hirefrank/workout-trainer" target="_blank" rel="noopener noreferrer"
@@ -72,7 +78,10 @@ export function htmlLayout(
   </div>
 
   <!-- Modals - Outside main content for proper fixed positioning -->
-  ${content.includes('auth-modal') ? '' : `
+  ${
+    content.includes("auth-modal")
+      ? ""
+      : `
     <div id="auth-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[100]">
       <div class="bg-white border-2 border-black p-6 max-w-sm w-full shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]" onclick="event.stopPropagation()">
         <h3 class="text-xl font-bold mb-4">Enter Password</h3>
@@ -120,7 +129,8 @@ export function htmlLayout(
         </form>
       </div>
     </div>
-  `}
+  `
+  }
 
   <script src="/workout/app.js"></script>
 </body>
