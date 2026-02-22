@@ -1,9 +1,21 @@
 {
+  // ===========================================================================
+  // Workout Trainer - Wrangler Configuration
+  // ===========================================================================
+  // Deploy your own instance:
+  //   1. Click "Deploy to Cloudflare" in the README
+  //   2. Create a KV namespace: npx wrangler kv:namespace create WORKOUTS_KV
+  //   3. Update the kv_namespaces id below with the ID from step 2
+  //   4. Set secrets: AUTH_PASSWORD
+  //   5. Deploy: pnpm run deploy
+  //
+  // For personal overrides (custom domains, account ID), copy to
+  // wrangler.local.jsonc and use: pnpm run deploy:local
+  // ===========================================================================
+
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "workout-trainer",
   "compatibility_date": "2025-01-01",
-  "account_id": "6034f1c5d23e5503f6573740480cf0d6",
-  // Observability for production monitoring
   "observability": {
     "enabled": true,
     "head_sampling_rate": 1.0
@@ -15,22 +27,19 @@
     "directory": "./public/",
     "not_found_handling": "404-page"
   },
-  // Route patterns for /workout on hirefrank.com
-  "routes": [
-    {
-      "pattern": "hirefrank.com/workout*",
-      "zone_name": "hirefrank.com"
-    },
-    {
-      "pattern": "www.hirefrank.com/workout*",
-      "zone_name": "hirefrank.com"
-    }
-  ],
+  // Routes (optional - remove if using workers.dev subdomain only)
+  // "routes": [
+  //   {
+  //     "pattern": "yourdomain.com/workout*",
+  //     "zone_name": "yourdomain.com"
+  //   }
+  // ],
   // KV namespace for workout completions and sessions
+  // Create with: npx wrangler kv:namespace create WORKOUTS_KV
   "kv_namespaces": [
     {
       "binding": "WORKOUTS_KV",
-      "id": "cf9e891fc895458883fa2ebb048202fb"
+      "id": "your-kv-namespace-id-from-wrangler-create"
     }
   ],
   // Environment variables

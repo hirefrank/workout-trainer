@@ -4,6 +4,7 @@ dist
 .tanstack
 .env
 .dev.vars
+wrangler.local.jsonc
 pnpm-lock.yaml
 *.log
 .DS_Store

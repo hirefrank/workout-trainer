@@ -2,6 +2,8 @@
 
 A fully customizable workout program tracker built with TanStack Start and deployed on Cloudflare Workers. Includes a complete 16-week progressive kettlebell program as an example.
 
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/hirefrank/workout-trainer)
+
 ## Features
 
 - **Fully Customizable Program** - Complete control over exercises, weights, sets, reps, and weekly structure via YAML
@@ -37,7 +39,7 @@ pnpm install
 # Create KV namespace
 npx wrangler kv:namespace create WORKOUTS_KV
 
-# Update wrangler.jsonc with the KV namespace ID from the output above
+# Update the kv_namespaces id in wrangler.jsonc with the ID from the output above
 
 # Set authentication password
 npx wrangler secret put AUTH_PASSWORD
@@ -51,6 +53,9 @@ pnpm dev
 # Full-stack development with remote bindings
 # Uses real KV and secrets via Wrangler's getPlatformProxy()
 # Fast hot-reload + full functionality
+
+# Or use local override config (gitignored)
+pnpm dev:local
 ```
 
 Visit http://localhost:3000 to see the app.
@@ -65,6 +70,9 @@ pnpm build
 
 # Deploy to Cloudflare Workers
 pnpm deploy
+
+# Deploy using local override config (gitignored)
+pnpm deploy:local
 ```
 
 Your app will be available at `https://workout-trainer.<your-subdomain>.workers.dev`
@@ -221,12 +229,14 @@ src/
 ```bash
 # Development
 pnpm dev          # Dev server with remote bindings (KV + secrets)
+pnpm dev:local    # Dev with wrangler.local.jsonc overrides
 wrangler dev      # Alternative: Full Workers runtime
 
 # Build and deploy
 pnpm build        # Build for production
 pnpm typecheck    # Run TypeScript checks
 pnpm deploy       # Deploy to Cloudflare Workers
+pnpm deploy:local # Deploy with wrangler.local.jsonc overrides
 pnpm cf-typegen   # Generate Cloudflare types
 ```
 
