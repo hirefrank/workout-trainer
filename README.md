@@ -1,6 +1,6 @@
 # 💪 Workout Trainer
 
-A fully customizable workout program tracker built with TanStack Start and deployed on Cloudflare Workers. Includes a complete 16-week progressive kettlebell program as an example.
+A fully customizable workout program tracker deployed on Cloudflare Workers. Includes a complete 16-week progressive kettlebell program as an example.
 
 [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/hirefrank/workout-trainer)
 
@@ -30,7 +30,7 @@ A fully customizable workout program tracker built with TanStack Start and deplo
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/hirefrank/workout-trainer.git
 cd workout-trainer
 
 # Install dependencies
@@ -192,31 +192,34 @@ For production use, consider implementing a more robust auth system.
 
 ### Tech Stack
 
-- **Framework**: TanStack Start (React 19 + TanStack Router)
-- **Runtime**: Cloudflare Workers (edge computing)
-- **Storage**: Cloudflare KV (completion tracking)
-- **Styling**: Tailwind CSS v4
-- **Build**: Vite
+- **Runtime**: Cloudflare Workers (edge computing, vanilla fetch handler)
+- **Storage**: Cloudflare KV (completion tracking, sessions)
+- **Styling**: Tailwind CSS v4 (compiled at build time)
+- **Build**: Custom build script (YAML → TypeScript compilation + Tailwind)
 
 ### Project Structure
 
 ```
 src/
-├── routes/           # TanStack Router file-based routes
-│   ├── __root.tsx   # Root layout
-│   └── index.tsx    # Main workout view
-├── components/       # React components
-│   └── WorkoutCard.tsx
-├── server/          # Server functions
-│   ├── workouts.ts  # KV operations
-│   └── auth.ts      # Authentication
-├── data/            # YAML configuration
-│   └── program.yaml # Program data
-├── lib/             # Utilities
-│   ├── utils.ts     # Helper functions
-│   └── context.ts   # Cloudflare context helpers
-├── types/           # TypeScript types
-│   ├── env.ts       # Environment types
+├── index.ts          # Worker entry point (fetch handler, routing)
+├── handlers/         # API endpoint handlers
+│   ├── api.ts       # Authentication (login, logout, checkAuth)
+│   └── workouts.ts  # Workout tracking (completions, bells, activity)
+├── templates/        # Server-rendered HTML generation
+│   ├── layout.ts    # Document wrapper with CSS
+│   ├── dashboard.ts # Main workout view
+│   ├── settings.ts  # User settings page
+│   └── components.ts # Reusable UI components
+├── data/            # Generated from program.yaml
+│   └── program.ts   # Compiled exercise & week definitions
+├── lib/             # Utility functions
+│   ├── auth-utils.ts # HMAC signing & verification
+│   ├── cookies.ts   # Cookie parsing & creation
+│   ├── html.ts      # XSS prevention (escapeHtml)
+│   └── schemas.ts   # Zod input validation
+├── middleware/       # Security headers middleware
+├── types/           # TypeScript interfaces
+│   ├── env.ts       # Cloudflare environment types
 │   └── program.ts   # Program data types
 └── styles/          # CSS
     └── app.css      # Tailwind imports
@@ -394,6 +397,5 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 Built with:
 
-- [TanStack Start](https://tanstack.com/start) - Full-stack React framework
 - [Cloudflare Workers](https://workers.cloudflare.com/) - Edge computing platform
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
